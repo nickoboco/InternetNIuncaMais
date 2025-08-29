@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIOunca mais!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-area">
+            <div class="header-block">
+                <span class="score-label">Chamados</span>
+                <span id="chamados-counter">0</span>
+            </div>
+            <div class="header-block">
+                <span class="score-label">Dias</span>
+                <span id="days-passed">0</span>
+            </div>
+            <div class="header-block">
+                <div class="patience-bar-bg">
+                    <div id="patience-bar" class="patience-bar"></div>
+                </div>
+                <span class="score-label">Paciência</span>
+                <span id="paciencia">100</span>
+            </div>
+            <div class="header-block">
+                <div class="progress-bar-bg">
+                    <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+                </div>
+                <span class="score-label">Resolução</span>
+                <span id="progress-bar-text">0%</span>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div class="left-column">
+                <div id="log" class="log-area">
+                    <p>Bem-vindo ao teste de paciência! Sua Internet <b>NÃO FUNCIONA!</b> Será que vão resolver?</p>
+                </div>
+                <div class="protocol-list-container">
+                    <p class="group-title">Protocolos Registrados</p>
+                    <div id="protocol-list" class="protocol-list-area">
+                        <p>Nenhum chamado registrado ainda.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="actions-grid">
+                    <div class="actions-group" id="n1-actions">
+                        <p class="group-title">Nível 1: Abrir Chamado</p>
+                        <button id="ligar">Ligar</button>
+                        <button id="chamar-wpp">Usar o WPP</button>
+                        <button id="abrir-app">Usar o App</button>
+                        <button id="enviarEmail">Enviar E-mail</button>
+                        <button id="usarAssistenteVirtual">Chat com IA</button>
+                    </div>
+                    <div class="actions-group" id="n2-actions">
+                        <p class="group-title">Nível 2: Acompanhar</p>
+                        <button id="pegar-status-n2" disabled>Pegar um Status</button>
+                        <button id="receber-tecnico" disabled>Receber o Técnico</button>
+                        <button id="reclamarRedeSocial" disabled>Reclamar na rede social</button>
+                        <button id="receberLigacao" disabled>Atender Ligação</button>
+                    </div>
+                    <div class="actions-group" id="n3-actions">
+                        <p class="group-title">Nível 3: Escalar</p>
+                        <button id="anatel" disabled>ANATEL</button>
+                        <button id="procon" disabled>Procon</button>
+                        <button id="ligarOuvidoria" disabled>Ouvidoria</button>
+                        <button id="reclame-aqui" disabled>Reclame Aqui</button>
+                        <button id="consumidor-gov" disabled>Consumidor.gov</button>
+                        <button id="acaoJudicial" disabled>Ação Judicial</button>
+                    </div>
+                    <div class="actions-group" id="n4-actions">
+                        <p class="group-title">Nível 4: DIY</p>
+                        <button id="arrumarSozinho">Tentar arrumar sozinho</button>
+                        <button id="vizinhoWifi">Pedir Wi-Fi ao Vizinho</button>
+                        <button id="videoTikTok">Postar no TikTok</button>
+                        <button id="mensagemCEO" disabled>Postar no LinkedIn</button>
+                    </div>
+                </div>
+                 <div class="actions-footer">
+                    <button id="esperar">Esperar 1 dia</button>
+                    <button id="cancelar-plano">Cancelar o plano</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="cancellation-modal" class="modal">
+        <div class="modal-content">
+            <p id="modal-message"></p>
+            <div class="modal-buttons">
+                <button id="modal-accept">Aceitar</button>
+                <button id="modal-reject">Rejeitar</button>
+            </div>
+        </div>
+    </div>
+    <div id="intro-modal" class="modal" style="display: flex;">
+        <div class="modal-content">
+            <h2>Bem-vindo ao NIOnca mais!</h2>
+            <p>Aqui você vai passar raiva e perder a paciência! Será que seu problema com a internet será resolvido? Veremos...</p>
+            <button id="intro-start">Começar</button>
+        </div>
+    </div>
+    <div id="gameover-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>Game Over</h2>
+            <p id="gameover-message">Sua paciência acabou! Você não aguenta mais tentar resolver o problema e decide viver sem internet.</p>
+            <button id="gameover-restart">Sofrer novamente</button>
+        </div>
+    </div>
+    <div id="feedback-modal" class="feedback-modal" style="display:none;">
+        <span id="feedback-text"></span>
+    </div>
+
+    <script src="messages.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
