@@ -17,6 +17,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameoverModal = document.getElementById('gameover-modal');
     const feedbackModal = document.getElementById('feedback-modal');
     const feedbackText = document.getElementById('feedback-text');
+    // Modal para mensagem principal
+    let mainMsgModal = document.getElementById('main-msg-modal');
+    let mainMsgText = document.getElementById('main-msg-text');
+    const logModalArea = document.getElementById('log-modal-area');
+    if (!mainMsgModal) {
+        mainMsgModal = document.createElement('div');
+        mainMsgModal.id = 'main-msg-modal';
+        mainMsgModal.style.position = 'absolute';
+        mainMsgModal.style.top = '0';
+        mainMsgModal.style.left = '50%';
+        mainMsgModal.style.transform = 'translateX(-50%)';
+        mainMsgModal.style.background = '#fff';
+        mainMsgModal.style.borderRadius = '12px';
+        mainMsgModal.style.boxShadow = '0 8px 25px rgba(0,0,0,0.18)';
+        mainMsgModal.style.padding = '16px 28px';
+        mainMsgModal.style.zIndex = '99999';
+        mainMsgModal.style.display = 'none';
+        mainMsgModal.style.textAlign = 'center';
+        mainMsgModal.style.fontSize = '1rem';
+        mainMsgModal.style.fontWeight = 'bold';
+        mainMsgModal.style.maxWidth = '320px';
+        mainMsgModal.style.pointerEvents = 'none';
+        mainMsgText = document.createElement('span');
+        mainMsgText.id = 'main-msg-text';
+        mainMsgModal.appendChild(mainMsgText);
+        logModalArea.appendChild(mainMsgModal);
+    }
 
     // Buttons
     const introStartBtn = document.getElementById('intro-start');
@@ -142,10 +169,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (state.progresso >= 100) {
-            logMessage('MILAGRE! Você alcançou 100% e resolveu o problema!');
+            showFinalModal('MILAGRE! Você alcançou 100% e resolveu o problema!');
             Object.values(actions).forEach(button => { if(button) button.disabled = true; });
             actions.cancelarPlano.disabled = false;
         }
+
+    // Modal de finalização
+    function showFinalModal(msg) {
+        let finalModal = document.getElementById('final-modal');
+        let finalText = document.getElementById('final-modal-text');
+        if (!finalModal) {
+            finalModal = document.createElement('div');
+            finalModal.id = 'final-modal';
+            finalModal.style.position = 'fixed';
+            finalModal.style.top = '0';
+            finalModal.style.left = '0';
+            finalModal.style.width = '100vw';
+            finalModal.style.height = '100vh';
+            finalModal.style.background = 'rgba(0,0,0,0.7)';
+            finalModal.style.display = 'flex';
+            finalModal.style.alignItems = 'center';
+            finalModal.style.justifyContent = 'center';
+            finalModal.style.zIndex = '100000';
+            finalText = document.createElement('div');
+            finalText.id = 'final-modal-text';
+            finalText.style.background = '#fff';
+            finalText.style.borderRadius = '16px';
+            finalText.style.padding = '40px 60px';
+            finalText.style.fontSize = '1.3rem';
+            finalText.style.fontWeight = 'bold';
+            finalText.style.textAlign = 'center';
+            finalText.style.boxShadow = '0 8px 32px rgba(0,0,0,0.25)';
+            finalModal.appendChild(finalText);
+            document.body.appendChild(finalModal);
+        }
+        finalText.innerHTML = msg + '<br><br><button id="final-modal-close" style="margin-top:18px;padding:10px 28px;font-size:1rem;border-radius:8px;background:#007bff;color:#fff;border:none;cursor:pointer;">Fechar</button>';
+        finalModal.style.display = 'flex';
+        document.getElementById('final-modal-close').onclick = function() {
+            finalModal.style.display = 'none';
+        };
+    }
         updateActionButtonsState();
         updateProtocolListUI();
     }
@@ -226,33 +289,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function logMessage(message, pacienciaDelta = 0, progressoDelta = 0) {
-    const p = document.createElement('p');
-    p.className = 'log-entry';
-    p.innerHTML = message;
-
-        // Cria o bloco de pontos ganhos/perdidos
-        const pointsDiv = document.createElement('span');
-        pointsDiv.className = 'log-points';
-
-        let pointsArr = [];
+        // Mostra toast lateral antes de adicionar ao log
+        let feedback = '';
         if (pacienciaDelta !== 0) {
             const cor = pacienciaDelta > 0 ? 'green' : 'red';
-            pointsArr.push(
-                `<span class="${pacienciaDelta > 0 ? 'points-positive' : 'points-negative'}"><b><span style="color:${cor};font-weight:bold;">${pacienciaDelta > 0 ? '+' : ''}${pacienciaDelta} Paciência</span></b></span>`
-            );
+            feedback += `<span style="color:${cor};font-weight:bold;">${pacienciaDelta > 0 ? '+' : ''}${pacienciaDelta} Paciência</span> `;
         }
         if (progressoDelta !== 0) {
             const cor = progressoDelta > 0 ? 'green' : 'red';
-            pointsArr.push(
-                `<span class="${progressoDelta > 0 ? 'points-positive' : 'points-negative'}"><b><span style="color:${cor};font-weight:bold;">${progressoDelta > 0 ? '+' : ''}${progressoDelta} Progresso</span></b></span>`
-            );
+            feedback += `<span style="color:${cor};font-weight:bold;">${progressoDelta > 0 ? '+' : ''}${progressoDelta} Progresso</span> `;
         }
-        if (pointsArr.length > 0) {
-            pointsDiv.innerHTML = pointsArr.join(' ');
-            p.appendChild(pointsDiv);
-        }
-
-        logArea.prepend(p);
+        mainMsgText.innerHTML = `<div>${message}</div>${feedback ? `<div style='margin-top:8px;'>${feedback}</div>` : ''}`;
+        mainMsgModal.style.display = 'block';
+        setTimeout(() => {
+            mainMsgModal.style.display = 'none';
+            const p = document.createElement('p');
+            p.className = 'log-entry';
+            p.innerHTML = message;
+            // Cria o bloco de pontos ganhos/perdidos
+            const pointsDiv = document.createElement('span');
+            pointsDiv.className = 'log-points';
+            let pointsArr = [];
+            if (pacienciaDelta !== 0) {
+                const cor = pacienciaDelta > 0 ? 'green' : 'red';
+                pointsArr.push(
+                    `<span class="${pacienciaDelta > 0 ? 'points-positive' : 'points-negative'}"><b><span style="color:${cor};font-weight:bold;">${pacienciaDelta > 0 ? '+' : ''}${pacienciaDelta} Paciência</span></b></span>`
+                );
+            }
+            if (progressoDelta !== 0) {
+                const cor = progressoDelta > 0 ? 'green' : 'red';
+                pointsArr.push(
+                    `<span class="${progressoDelta > 0 ? 'points-positive' : 'points-negative'}"><b><span style="color:${cor};font-weight:bold;">${progressoDelta > 0 ? '+' : ''}${progressoDelta} Progresso</span></b></span>`
+                );
+            }
+            if (pointsArr.length > 0) {
+                pointsDiv.innerHTML = pointsArr.join(' ');
+                p.appendChild(pointsDiv);
+            }
+            logArea.prepend(p);
+        }, 3000);
     }
 
     function updateProtocolListUI() {
