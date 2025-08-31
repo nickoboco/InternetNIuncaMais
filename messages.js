@@ -181,7 +181,7 @@ const messages = {
 			{ "text": "Atendente informou que o caso foi escalado para engenharia central e abriu um outro chamado.", "progresso": 6, "opensTicket": true }
 		],
 		"negative": [
-			{ "text": "O sistema não encontrou seu protocolo. Você tem certeza que anotou certo?", "paciencia": -5, "closesTicket": true },
+			{ "text": "O sistema não encontrou seu protocolo. Você tem certeza que anotou certo? Deve ter sido um bug.", "paciencia": -5, "closesTicket": true },
 			{ "text": "Atendente fechou o chamado e disse que não têm falha na sua internet. Você ficou mais confuso.", "paciencia": -4, "closesTicket": true },
 			{ "text": "Mudaram o status para 'Aguardando disponibilidade', mas nem te pediram data alguma.", "paciencia": -6 },
 			{ "text": "Atendente escalou o chamado, mas não deu mais notícias. O protocolo ficou parado em 'aguardando técnico'.", "paciencia": -7 },
@@ -202,9 +202,9 @@ const messages = {
         ],
         "negative": [
             { "text": "A Ouvidoria só atende das 10 às 14 de segunda a quarta. Hoje não é um desses dias.", "paciencia": -4 },
-            { "text": "A Ouvidoria informou que você precisa esperar o prazo do chamado original (10 dias) antes de reclamar.", "paciencia": -6 },
-            { "text": "A Ouvidoria fechou qualquer chamado alegando que já foi resolvido, mas não foi.", "paciencia": -6, "closesTicket": true },
-            { "text": "A Ouvidoria encerrou todos os chamados por duplicidade.", "paciencia": -8, "closesTicket": true }
+            { "text": "A Ouvidoria informou que você precisa retornar o contato daqui 10 dias para abrir um protocolo", "paciencia": -6 },
+            { "text": "A Ouvidoria fechou tudo alegando que seu caso já foi resolvido, mas não foi.", "paciencia": -6, "closesTicket": true },
+            { "text": "A Ouvidoria encerrou todos os chamados alegando duplicidade.", "paciencia": -8, "closesTicket": true }
         ],
         "status": [
 		    { "text": "A Ouvidoria te retornou a ligação informando que seu chamado foi encerrado por inconsistência de dados.", "paciencia": -9, "closesTicket": true },
@@ -294,10 +294,10 @@ const messages = {
 			{ "text": "Procon solicitou complementação que não altera o resultado final.", "paciencia": -6 }
 		],
 		"status": [
-			{ "text": "O Procon respondeu: a empresa apresentou defesa e você terá que aguardar nova análise em até 10 dias.", "paciencia": -5 , "closesTicket": true},
+			{ "text": "O Procon informou que a empresa apresentou uma defesa justa e que você está criando caso atoa.", "paciencia": -5 , "closesTicket": true},
 			{ "text": "O Procon intermediou um acordo e você vai receber R$15 reais de desconto na próxima fatura.", "progresso": 2,  "paciencia": -5, "closesTicket": true },
-			{ "text": "O Procon informou que o caso foi encerrado sem solução efetiva, pois está fora da área de atuação deles.", "paciencia": -8, "closesTicket": true },
-			{ "text": "O Procon marcou uma audiência de conciliação presencial daqui 30 dias.", "progresso": 5,  "paciencia":-10, "closesTicket": true }
+			{ "text": "O Procon cancelou sua reclamação alegando que está fora da área de atuação deles.", "paciencia": -8, "closesTicket": true },
+			{ "text": "O Procon solicitou uma audiência de conciliação presencial na sede da empresa. ", "progresso": 5,  "paciencia":-10, "closesTicket": true }
 		]
 	},
 	"reclameAqui": {
@@ -359,7 +359,7 @@ const messages = {
 			{ "text": "A ANATEL te enviou uma notificação burocrática sem ações concretas.", "paciencia": -7 },
 			{ "text": "Recurso administrativo da ANATEL demorou demais.", "paciencia": -11 },
 			{ "text": "ANATEL pediu tentativa de solução prévia com a empresa e travou o processo.", "paciencia": -8 },
-			{ "text": "A ANATEL não entendeu sua reclamação e cancelou sua solicitação.", "paciencia": -13 }
+			{ "text": "A ANATEL não entendeu sua reclamação e bloqueou seu acesso ao sistema.", "paciencia": -13 }
         ],
         "status": [
             { "text": "A ANATEL informou que a operadora respondeu pedindo mais tempo para avaliar", "paciencia": -10, "closesTicket": true  },
@@ -512,6 +512,22 @@ const messages = {
             { "text": "A operadora processou você pelo vídeo e cobrou o prejuízo de marketing.", "paciencia": -20, "closesTicket": true }
         ]
     },
+    "CelsoRussomanno": {
+        "positive": [
+            { "text": "A equipe do Celso Russomanno te respondeu dizendo que vão entrar em contato com a operadora para ver se conseguem ajudar.", "progresso": 5, "paciencia": 6 },
+            { "text": "Sua mensagem foi lida por um dos assessores do Celso Russomanno e ele disse que 'o caso é interessante'. A esperança está viva.", "progresso": 3, "paciencia": 8},
+            { "text": "Você foi convidado para participar de um quadro no programa. A exposição pública pode te ajudar a resolver.", "progresso": 10, "paciencia": 10 },
+            { "text": "A equipe te deu dicas sobre como agir e te encorajou a continuar lutando pelos seus direitos.", "progresso": 2, "paciencia": 7 },
+            { "text": "O perfil do Celso Russomanno te respondeu no Twitter dizendo: 'conte com a gente!'..", "progresso": 5, "paciencia": 9 }
+        ],
+        "negative": [
+            { "text": "Equipe do Celso Russomanno te respondeu falando que você precisa pagar R$3000 reais de cachê para que ele olhe seu caso.", "paciencia": -10 },
+            { "text": "A equipe te respondeu dizendo que o problema não está na alçada deles.", "paciencia": -8 },
+            { "text": "Você marcou o Celso Russomanno em um post e ele te bloqueou.", "paciencia": -10 },
+            { "text": "Você mandou a mensagem com a história e a equipe do Celso te respondeu com um emoji de joinha e mais nada.", "paciencia": -7 },
+            { "text": "A equipe te respondeu com um link para o canal do YouTube.", "paciencia": -8 }
+        ]
+    },
     "random": [ 
         { "text": "Uma atualização de sistema da operadora resetou tudo. Qualquer chamado que você tinha, não existe mais.", "paciencia": -10, "closesTicket": true },
         { "text": "A operadora te ligou para oferecer um novo plano, ignorando completamente seu problema.", "paciencia": -5 },
@@ -529,3 +545,4 @@ const messages = {
         { "text": "Você acessou o APP e descobriu que fecharam todos seus chamados há 3 dias.", "paciencia": -12, "closesTicket": true },
         ] 
     };
+    

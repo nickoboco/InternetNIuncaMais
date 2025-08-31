@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         arrumarSozinho: document.getElementById('arrumarSozinho'),
         vizinhoWifi: document.getElementById('vizinhoWifi'),
         videoTikTok: document.getElementById('videoTikTok'),
+        CelsoRussomanno: document.getElementById('CelsoRussomanno'),
         trocarOperadora: document.getElementById('trocarOperadora'),
         esperar: document.getElementById('esperar'),
         cancelarPlano: document.getElementById('cancelar-plano'),
@@ -112,7 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
         acaoJudicial: { count: 1, days: 45 },
         arrumarSozinho: { count: 2, days: 1 },
         vizinhoWifi: { count: 1, days: 1 },
-        videoTikTok: { count: 1, days: 1 }
+        videoTikTok: { count: 1, days: 1 },
+        CelsoRussomanno: { count: 1, days: 1 }
     };
 
     let actionCounters = {};
@@ -128,7 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
             activeN3Protocol: null,
             cancellationInProgress: false,
             protocols: [],
-            usedN3Actions: [] // Rastreia quais N3 já foram usados com sucesso
+            usedN3Actions: [], // Rastreia quais N3 já foram usados com sucesso
+            diyUsageCount: {} // Rastreia quantas vezes cada DIY foi usado (máximo 2)
         };
         actionCounters = {}; // Reset counters
         
@@ -154,6 +157,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 actions[key].disabled = false;
                 actions[key].style.color = '';
                 actions[key].style.backgroundColor = '';
+            }
+        });
+        
+        // Reset completo do estilo visual dos botões DIY
+        const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'trocarOperadora', 'CelsoRussomanno'];
+        n4_buttons.forEach(key => {
+            if (actions[key]) {
+                actions[key].disabled = false;
+                actions[key].style.color = '';
+                actions[key].style.backgroundColor = '';
+                actions[key].style.opacity = '';
             }
         });
         
@@ -368,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const n2_buttons = ['receberTecnico', 'pegarStatusN2', 'reclamarRedeSocial', 'receberLigacao'];
         // Inclui ligarOuvidoria no N3
         const n3_buttons = ['anatel', 'procon', 'ligarOuvidoria', 'reclameAqui', 'consumidorGov', 'defensoriaPublica', 'acaoJudicial'];
-        const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'trocarOperadora'];
+        const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'trocarOperadora', 'CelsoRussomanno'];
 
         if (!state.isTicketOpen) {
             n1_buttons.forEach(key => { if(actions[key]) actions[key].disabled = false; });
@@ -408,7 +422,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        n4_buttons.forEach(key => { if(actions[key]) actions[key].disabled = false; });
+        // Controla botões DIY (máximo 2 usos cada)
+        n4_buttons.forEach(key => { 
+            if (actions[key]) {
+                const usageCount = state.diyUsageCount[key] || 0;
+                if (usageCount >= 2) {
+                    actions[key].disabled = true;
+                    actions[key].style.color = '#666';
+                    actions[key].style.backgroundColor = '#f0f0f0';
+                    actions[key].style.opacity = '0.6';
+                } else {
+                    actions[key].disabled = false;
+                    actions[key].style.color = '';
+                    actions[key].style.backgroundColor = '';
+                    actions[key].style.opacity = '';
+                }
+            }
+        });
 
         // Salva textos originais dos botões N3 (inclui Ouvidoria)
         if (!updateActionButtonsState.originalTexts) {
@@ -566,6 +596,15 @@ document.addEventListener('DOMContentLoaded', () => {
             state.activeN3Protocol.daysWaited += daysToAdd;
             const pIndex = state.protocols.findIndex(p => p.protocolNumber === state.activeN3Protocol.protocolNumber);
             if (pIndex !== -1) state.protocols[pIndex].daysWaited = state.activeN3Protocol.daysWaited;
+        }
+
+        // Incrementa contador de uso para botões DIY (nível 4)
+        const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'trocarOperadora', 'CelsoRussomanno'];
+        if (n4_buttons.includes(actionType)) {
+            if (!state.diyUsageCount[actionType]) {
+                state.diyUsageCount[actionType] = 0;
+            }
+            state.diyUsageCount[actionType]++;
         }
 
         if (outcome) {
