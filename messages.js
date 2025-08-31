@@ -429,7 +429,11 @@ const messages = {
     },
     "arrumarSozinho": {
         "positive": [
-            { "text": "Reiniciar o modem deu certo por alguns minutos, mas logo caiu de novo.", "progresso": 1, "paciencia": -5 }
+            { "text": "Reiniciar o modem deu certo por 30 minutos, mas logo caiu de novo.", "progresso": 1 },
+            { "text": "Você ligou e desligou o modem novamente e o sinal voltou a funcionar, mas está bem fraco e quase não funciona.", "progresso": 1 },
+            { "text": "Você mexeu nos cabos e as luzes do roteador voltaram a acender. Agora, pelo menos o modem liga.", "progresso": 2 },
+            { "text": "A luz do roteador voltou a piscar. Sinal que a operadora reconhece o aparelho novamente.", "progresso": 1 },
+            { "text": "Você ligou o cabo novamente e o sinal fraco retornou desde que você esteja a 1 metro do roteador.", "progresso": 1 }
         ],
         "negative": [
             { "text": "Você tentou 'configurações avançadas' no modem e agora nem a luz de energia acende mais.", "paciencia": -10 },
@@ -515,10 +519,10 @@ const messages = {
     "CelsoRussomanno": {
         "positive": [
             { "text": "A equipe do Celso Russomanno te respondeu dizendo que vão entrar em contato com a operadora para ver se conseguem ajudar.", "progresso": 5, "paciencia": 6 },
-            { "text": "Sua mensagem foi lida por um dos assessores do Celso Russomanno e ele disse que 'o caso é interessante'. A esperança está viva.", "progresso": 3, "paciencia": 8},
+            { "text": "Sua mensagem foi lida por um dos assessores do Celso Russomanno e ele disse que 'o caso é interessante'. A esperança está viva.", "progresso": 6, "paciencia": 8},
             { "text": "Você foi convidado para participar de um quadro no programa. A exposição pública pode te ajudar a resolver.", "progresso": 10, "paciencia": 10 },
-            { "text": "A equipe te deu dicas sobre como agir e te encorajou a continuar lutando pelos seus direitos.", "progresso": 2, "paciencia": 7 },
-            { "text": "O perfil do Celso Russomanno te respondeu no Twitter dizendo: 'conte com a gente!'..", "progresso": 5, "paciencia": 9 }
+            { "text": "A equipe te deu dicas sobre como agir e te encorajou a continuar lutando pelos seus direitos.", "progresso": 8, "paciencia": 7 },
+            { "text": "O perfil do Celso Russomanno te respondeu no Twitter dizendo: 'conte com a gente!'..", "progresso": 8, "paciencia": 9 }
         ],
         "negative": [
             { "text": "Equipe do Celso Russomanno te respondeu falando que você precisa pagar R$3000 reais de cachê para que ele olhe seu caso.", "paciencia": -10 },

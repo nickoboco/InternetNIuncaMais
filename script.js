@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pacienciaBar = document.getElementById('patience-bar');
     const chamadosCounterSpan = document.getElementById('chamados-counter');
     const daysPassedSpan = document.getElementById('days-passed');
+    const actionsCounterSpan = document.getElementById('actions-counter');
     const progressBar = document.getElementById('progress-bar');
     const progressBarText = document.getElementById('progress-bar-text');
     const logArea = document.getElementById('log');
@@ -148,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             progresso: 0,
             chamadosAbertos: 0,
             daysPassed: 0,
+            actionsTaken: 0,
             isTicketOpen: false,
             hasTicketBeenClosed: false,
             activeN3Protocol: null,
@@ -212,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Contar todos protocolos, inclusive N3
     chamadosCounterSpan.textContent = Array.isArray(state.protocols) ? state.protocols.length : state.chamadosAbertos;
     daysPassedSpan.textContent = state.daysPassed;
+    actionsCounterSpan.textContent = state.actionsTaken;
         progressBar.style.width = `${state.progresso}%`;
         progressBarText.textContent = `${state.progresso}%`;
 
@@ -561,7 +564,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const item = document.createElement('div');
             item.className = 'protocol-item';
             let typeName = protocol.type.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-            item.innerHTML = `<span>Canal: ${typeName}: ${protocol.protocolNumber}</span><b><span class="protocol-status ${protocol.status.toLowerCase().replace(/ /g, '')}"></span> - ${protocol.status}</b>`;
+            item.innerHTML = `<span>${typeName}: ${protocol.protocolNumber}</span><b><span class="protocol-status ${protocol.status.toLowerCase().replace(/ /g, '')}"></span> - ${protocol.status}</b>`;
             protocolListDiv.appendChild(item);
         });
     }
@@ -575,6 +578,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function triggerAction(actionType) {
         if (!state) return;
+        
+        // Incrementa contador de ações tomadas
+        state.actionsTaken++;
         
         // Move mensagem atual para o log antes de processar nova ação
         moveCurrentMessageToLog();
@@ -851,6 +857,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startCancellationSequence() {
         if (!state) return;
+        
+        // Incrementa contador de ações tomadas
+        state.actionsTaken++;
+        
         state.cancellationInProgress = true;
         cancellationSequenceStep = 0;
         updateUI();
