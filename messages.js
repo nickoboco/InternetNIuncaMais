@@ -145,17 +145,17 @@ const messages = {
 			{ "text": "O técnico realizou um teste e encaminhou seu chamado para outra equipe que vai voltar em até 48 horas.", "progresso": 9, "paciencia": 1}
 		],
 		"negative": [
-			{ "text": "O técnico não apareceu na janela de 24h. Seu chamado fechou sozinho por 'indisponibilidade'.", "paciencia": -10, "closesTicket": true },
+			{ "text": "O técnico não apareceu na janela de 24h. Seu chamado fechou sozinho por 'indisponibilidade'.", "paciencia": -8, "closesTicket": true },
 			{ "text": "O técnico veio, mas esqueceu as ferramentas. Tirou uma foto da fachada e foi embora. Fechou o chamado.", "paciencia": -8 , "closesTicket": true },
-			{ "text": "O técnico culpou a sua instalação e alegou que não consegue resolver. Fechou teu chamado.", "paciencia": -12 , "closesTicket": true },
+			{ "text": "O técnico culpou a sua instalação e alegou que não consegue resolver. Fechou teu chamado.", "paciencia": -7 , "closesTicket": true },
 			{ "text": "Você ficou esperando o técnico o dia todo, mas ele não apareceu. O chamado continua aberto.", "paciencia": -9 },
 			{ "text": "O técnico cancelou em cima da hora por 'imprevisto'. Seu chamado foi cancelado.", "paciencia": -7 ,"closesTicket": true},
-			{ "text": "O técnico fez uma gambiarra improvisada que piorou a situação. Fechou o chamado.", "paciencia": -15 , "closesTicket": true },
-			{ "text": "O técnico faltou sem justificativa e ninguém remarcou. Cancelaram o chamado.", "paciencia": -11 , "closesTicket": true},
-			{ "text": "A visita foi rápida e sem diagnóstico completo, nada foi feito. Pelo menos o chamado continua aberto.", "paciencia": -10 },
-			{ "text": "O técnico disse que precisa cobrar um valor extra alegando que o serviço está fora do contrato, você não pagou e ele fechou o chamado.", "paciencia": -13 , "closesTicket": true },
-			{ "text": "O técnico veio, mas fechou seu chamado dizendo que estava tudo certo, mesmo sem funcionar.", "paciencia": -10, "closesTicket": true },
-			{ "text": "O técnico cancelou todos os chamados abertos alegando que deu erro no sistema e foi embora. ", "paciencia": -12, "closesTicket": true },
+			{ "text": "O técnico fez uma gambiarra improvisada que piorou a situação. Fechou o chamado.", "paciencia": -6 , "closesTicket": true },
+			{ "text": "O técnico faltou sem justificativa e ninguém remarcou. Cancelaram o chamado.", "paciencia": -8 , "closesTicket": true},
+			{ "text": "A visita foi rápida e sem diagnóstico completo, nada foi feito. Pelo menos o chamado continua aberto.", "paciencia": -4 },
+			{ "text": "O técnico disse que precisa cobrar um valor extra alegando que o serviço está fora do contrato, você não pagou e ele fechou o chamado.", "paciencia": -6 , "closesTicket": true },
+			{ "text": "O técnico veio, mas fechou seu chamado dizendo que estava tudo certo, mesmo sem funcionar.", "paciencia": -9, "closesTicket": true },
+			{ "text": "O técnico cancelou todos os chamados abertos alegando que deu erro no sistema e foi embora. ", "paciencia": -8, "closesTicket": true },
 			{ "text": "O técnico fechou o chamado sem resolver. Você terá que abrir outro.", "paciencia": -8, "closesTicket": true }
 		]
 	},
@@ -203,16 +203,16 @@ const messages = {
             { "text": "A Ouvidoria informou que você precisa retornar o contato daqui 10 dias para abrir um protocolo", "paciencia": -6 },
             { "text": "A Ouvidoria fechou tudo alegando que seu caso já foi resolvido, mas não foi.", "paciencia": -6, "closesTicket": true },
             { "text": "A Ouvidoria encerrou todos os chamados alegando duplicidade.", "paciencia": -8, "closesTicket": true },
-            { "text": "A Ouvidoria desligou o telefone na sua cara sem te dar nenhuma satisfação.", "paciencia": -10 },
-            { "text": "Você ligou para a Ouvidoria, mas eles alegaram que não existe nenhum chamado aberto no seu nome.", "paciencia": -12, "closesTicket": true },
+            { "text": "A Ouvidoria desligou o telefone na sua cara sem te dar nenhuma satisfação.", "paciencia": -9 },
+            { "text": "Você ligou para a Ouvidoria, mas eles alegaram que não existe nenhum chamado aberto no seu nome.", "paciencia": -9, "closesTicket": true },
             { "text": "O número da Ouvidoria te direcionou para o suporte normal. Você teve que começar tudo de novo.", "paciencia": -9, "closesTicket": true }
         ],
         "status": [
 		    { "text": "A Ouvidoria te retornou a ligação informando que seu chamado foi encerrado por inconsistência de dados.", "paciencia": -9, "closesTicket": true },
-            { "text": "A Ouvidoria informou que o chamado foi encerrado por não se enquadrar nas políticas de 'serviço essencial'.", "paciencia": -11, "closesTicket": true },
+            { "text": "A Ouvidoria informou que o chamado foi encerrado por não se enquadrar nas políticas de 'serviço essencial'.", "paciencia": -8, "closesTicket": true },
             { "text": "O prazo de resposta da Ouvidoria é de 15 dias úteis, e você precisa aguardar esse tempo.", "paciencia": -7, "closesTicket": false },
-            { "text": "A Ouvidoria fechou o chamado alegando que já foi solucionado, mas na verdade não foi.", "paciencia": -10, "closesTicket": true },
-            { "text": "A Ouvidoria te transferiu para o suporte regular e seu chamado foi encerrado.", "paciencia": -12, "closesTicket": true },
+            { "text": "A Ouvidoria fechou o chamado alegando que já foi solucionado, mas na verdade não foi.", "paciencia": -7, "closesTicket": true },
+            { "text": "A Ouvidoria te transferiu para o suporte regular e seu chamado foi encerrado.", "paciencia": -8, "closesTicket": true },
             { "text": "O status do seu chamado foi alterado para 'Em avaliação pela alta gestão'. É um pequeno progresso.", "progresso": 2, "paciencia": 3, "closesTicket": true },
             { "text": "A Ouvidoria confirmou que seu caso foi encaminhado para a equipe técnica de supervisão. Melhor que nada.", "progresso": 5, "paciencia": 5, "closesTicket": true  },
             { "text": "A Ouvidoria confirmou que um técnico será enviado em 48 horas para resolver seu problema. Será?", "progresso": 7, "paciencia": 7, "closesTicket": true  }
@@ -235,7 +235,7 @@ const messages = {
             { "text": "Sua reclamação foi ignorada. Aparentemente, o estagiário das redes sociais está de folga.", "paciencia": -4 },
             { "text": "Um bot respondeu sua reclamação com uma mensagem genérica que não ajuda em nada.", "paciencia": -5 },
             { "text": "O perfil oficial respondeu que seu chamado foi encerrado por falta de interação.", "paciencia": -5, "closesTicket": true },
-            { "text": "A empresa fechou todos os chamados abertos após sua reclamação viralizar negativamente. ", "paciencia": -10, "closesTicket": true },
+            { "text": "A empresa fechou todos os chamados abertos após sua reclamação viralizar negativamente. ", "paciencia": -8, "closesTicket": true },
             { "text": "A equipe de redes sociais apagou seu post, alegando que ele viola as 'regras de comunidade'.", "paciencia": -7 },
             { "text": "A operadora te enviou uma DM pedindo seu CPF, mas depois de você enviar, eles pararam de responder.", "paciencia": -6 },
             { "text": "Você recebeu uma resposta da equipe de redes sociais que te direciona para a central de atendimento telefônico.", "paciencia": -8 },
@@ -278,7 +278,7 @@ const messages = {
 	"procon": {
 		"positive": [
 			{ "text": "Você abriu uma reclamação no Procon. A empresa tem 10 dias para responder. Protocolo gerado.", "generatesProtocol": true, "deadline": 5, "paciencia": 5 },
-			{ "text": "Procon notificou a empresa e houve primeiro contato. +10 de progresso.", "progresso": 10, "generatesProtocol": true, "deadline": 5 },
+			{ "text": "Procon notificou a empresa e houve primeiro contato.", "progresso": 10, "generatesProtocol": true, "deadline": 5 },
 			{ "text": "Procon confirmou recebimento e incluiu seu caso em relatório público.", "progresso": 5, "generatesProtocol": true, "deadline": 5 }
 		],
 		"negative": [
@@ -289,8 +289,8 @@ const messages = {
 			{ "text": "Sistema do Procon atrasou a notificação e o prazo expirou.", "paciencia": -7 },
 			{ "text": "Procon mandou mensagem automática e não houve humanização.", "paciencia": -3 },
 			{ "text": "Recurso foi indeferido por detalhe processual que você desconhecia.", "paciencia": -9 },
-			{ "text": "A empresa descumpriu decisão do Procon e nada foi executado.", "paciencia": -12 },
-			{ "text": "Demora na tramitação administrativa do Procon.", "paciencia": -10 },
+			{ "text": "A empresa descumpriu decisão do Procon e nada foi executado.", "paciencia": -4 },
+			{ "text": "Demora na tramitação administrativa do Procon.", "paciencia": -6 },
 			{ "text": "Procon solicitou complementação que não altera o resultado final.", "paciencia": -6 }
 		],
 		"status": [
@@ -307,7 +307,7 @@ const messages = {
 		],
 		"negative": [
 			{ "text": "Você esqueceu sua senha do Reclame Aqui. A recuperação de senha não funciona.", "paciencia": -3 },
-			{ "text": "A empresa respondeu com mensagem padrão e ignorou a solução.", "paciencia": -10 },
+			{ "text": "A empresa respondeu com mensagem padrão e ignorou a solução.", "paciencia": -8 },
 			{ "text": "A sua reclamação foi removida por um problema técnico.", "paciencia": -5 },
 			{ "text": "Pouco engajamento público; a empresa não sentiu pressão.", "paciencia": -4 },
 			{ "text": "A plataforma pediu documentos extras e a reclamação ficou pendente.", "paciencia": -6 },
@@ -353,19 +353,19 @@ const messages = {
 		"negative": [
 			{ "text": "A ANATEL informa que você precisa de um protocolo da ouvidoria da empresa, que você não tem.", "paciencia": -8 },
 			{ "text": "ANATEL arquivou sua reclamação temporariamente por falta de documentos.", "paciencia": -6 },
-			{ "text": "A resposta da ANATEL foi genérica e não ajudou.", "paciencia": -4 },
+			{ "text": "A ANATEL te deu uma resposta genérica e não ajudou.", "paciencia": -4 },
 			{ "text": "A ANATEL informou que o prazo é 10 dias úteis e você desistiu.", "paciencia": -9 },
-			{ "text": "ANATEL disse que não há responsabilidade direta da operadora no caso.", "paciencia": -12 },
+			{ "text": "ANATEL disse que não há responsabilidade direta da operadora no caso.", "paciencia": -10 },
 			{ "text": "A ANATEL te enviou uma notificação burocrática sem ações concretas.", "paciencia": -7 },
-			{ "text": "Recurso administrativo da ANATEL demorou demais.", "paciencia": -11 },
+			{ "text": "A ANATEL nem te respondeu.", "paciencia": -10 },
 			{ "text": "ANATEL pediu tentativa de solução prévia com a empresa e travou o processo.", "paciencia": -8 },
 			{ "text": "A ANATEL não entendeu sua reclamação e bloqueou seu acesso ao sistema.", "paciencia": -13 }
         ],
         "status": [
-            { "text": "A ANATEL informou que a operadora respondeu pedindo mais tempo para avaliar", "paciencia": -10, "closesTicket": true  },
-            { "text": "A ANATEL encerrou o processo por falta de evidências. -12 de paciência.", "paciencia": -12, "closesTicket": true },
-            { "text": "A ANATEL notificou a empresa novamente e eles pediram mais 10 dias de prazo", "progresso": 10, "paciencia": -5, "closesTicket": true  },
-            { "text": "Seu caso foi encaminhado para fiscalização externa com prazo de 45 dias.", "paciencia": -5, "progresso": 8, "closesTicket": true}
+            { "text": "A ANATEL informou que a operadora pediu mais tempo para avaliar o caso e fechou seu protocolo.", "paciencia": -10, "closesTicket": true  },
+            { "text": "A ANATEL encerrou o processo por falta de evidências.", "paciencia": -12, "closesTicket": true },
+            { "text": "A ANATEL notificou a empresa novamente e eles pediram mais 10 dias de prazo. Pelo menos tem um prazo.", "progresso": 10, "paciencia": -5, "closesTicket": true  },
+            { "text": "Seu caso foi encaminhado para fiscalização externa. Pena que o prazo é 30 dias.", "paciencia": -5, "progresso": 8, "closesTicket": true}
         ]
     },
     "mensagemCEO": {
@@ -380,7 +380,7 @@ const messages = {
             { "text": "Sua postagem recebeu um comentário automático pedindo para você entrar em contato por um canal que você já usou.", "paciencia": -7 },
             { "text": "Um funcionário da operadora, não relacionado ao suporte, te mandou uma mensagem privada pedindo para você apagar o post.", "paciencia": -6 },
             { "text": "Sua postagem viralizou, mas a única resposta da empresa foi uma nota de 'lamentamos o ocorrido'.", "paciencia": -8 },
-            { "text": "A operadora fechou todos os chamados após sua postagem viralizar de forma negativa.", "paciencia": -10, "closesTicket": true },
+            { "text": "A operadora fechou todos os chamados após sua postagem viralizar de forma negativa.", "paciencia": -6, "closesTicket": true },
             { "text": "Você recebeu uma resposta pública, mas foi apenas um 'Sua voz é importante para nós!'.", "paciencia": -5 },
             { "text": "Você tentou citar o CEO e seu perfil foi bloqueado.", "paciencia": -9 },
             { "text": "O LinkedIn removeu sua postagem por 'conteúdo sensível' sem dar explicação.", "paciencia": -8 },
@@ -395,8 +395,8 @@ const messages = {
     },
 	"defensoriaPublica": {
         "positive": [
-            { "text": "A Defensoria Pública aceitou seu caso e enviou uma notificação para a empresa.", "progresso": 10, "paciencia": 5, "generatesProtocol": true, "deadline": 6 },
-            { "text": "Após a notificação da Defensoria, a empresa te ligou para propor um acordo.", "progresso": 15, "paciencia": 10 }
+            { "text": "A Defensoria Pública aceitou seu caso e enviou uma notificação para a empresa. Quem sabe!", "progresso": 10, "paciencia": 5, "generatesProtocol": true, "deadline": 6 },
+            { "text": "Após a notificação da Defensoria, a empresa te ligou para propor um acordo. Vamos ver no que dá!", "progresso": 15, "paciencia": 10 }
         ],
         "negative": [
             { "text": "A fila na Defensoria Pública era enorme. Você conseguiu apenas agendar um atendimento para daqui a 2 meses.", "paciencia": -8 },
@@ -414,12 +414,12 @@ const messages = {
             { "text": "Você entrou com uma ação no Juizado Especial Cível. A empresa foi citada e tem uma audiência marcada para daqui 6 dias.", "progresso": 20, "paciencia": -10, "generatesProtocol": true, "deadline": 6  },
         ],
         "negative": [
-            { "text": "O processo é lento. A primeira audiência foi marcada para daqui a 6 meses.", "paciencia": -15 },
-            { "text": "O juiz considerou o pedido improcedente. Você perdeu tempo e paciência.", "paciencia": -20 },
+            { "text": "O processo é lento. A primeira audiência foi marcada para daqui a 6 meses.", "paciencia": -10 },
+            { "text": "O juiz considerou o pedido improcedente. Você perdeu tempo e paciência.", "paciencia": -10 },
             { "text": "Você não conseguiu juntar a documentação necessária e o processo foi arquivado.", "paciencia": -10 },
-            { "text": "A empresa não compareceu à audiência. Apenas protelaram o problema.", "paciencia": -12 },
-            { "text": "Você descobriu que o advogado da empresa já trabalhou no tribunal.", "paciencia": -15 },
-            { "text": "A operadora contratou um escritório de advocacia que é conhecido por usar táticas de intimidação.", "paciencia": -18 }
+            { "text": "A empresa não compareceu à audiência. Apenas protelaram o problema.", "paciencia": -9 },
+            { "text": "Você descobriu que o advogado da empresa já trabalhou no tribunal.", "paciencia": -8 },
+            { "text": "A operadora contratou um escritório de advocacia que é conhecido por usar táticas de intimidação.", "paciencia": -9 }
         ],
         "status": [
             { "text": "O processo judicial foi arquivado, mas nem falaram com você.", "paciencia": -15, "closesTicket": true },
@@ -436,25 +436,17 @@ const messages = {
             { "text": "Você ligou o cabo novamente e o sinal fraco retornou desde que você esteja a 1 metro do roteador.", "progresso": 1 }
         ],
         "negative": [
-            { "text": "Você tentou 'configurações avançadas' no modem e agora nem a luz de energia acende mais.", "paciencia": -10 },
+            { "text": "Você tentou 'configurações avançadas' no modem e agora nem a luz de energia acende mais.", "paciencia": -8 },
             { "text": "Ao mexer nos cabos, você acidentalmente desconectou o da TV. Agora são dois problemas.", "paciencia": -8 },
             { "text": "Você entrou na interface do roteador e esqueceu a senha de administrador. Agora está bloqueado.", "paciencia": -4 },
-            { "text": "Sem querer, você derrubou café em cima do roteador. Cheiro de queimado no ar...", "paciencia": -10 },
+            { "text": "Sem querer, você derrubou café em cima do roteador. Cheiro de queimado no ar...", "paciencia": -7 },
             { "text": "Na tentativa de 'melhorar o sinal', você reposicionou a antena. Agora ela quebrou.", "paciencia": -8 },
-            { "text": "Você resolveu atualizar o firmware manualmente e travou tudo no meio do processo.", "paciencia": -12 },
+            { "text": "Você resolveu atualizar o firmware manualmente e travou tudo no meio do processo.", "paciencia": -6 },
             { "text": "Tentando soprar a entrada do cabo, você fez o fio ficar ainda mais frouxo.", "paciencia": -7 },
             { "text": "Seu cachorro achou que o cabo que você mexeu era brinquedo. Adeus, cabo.", "paciencia": -9 },
             { "text": "Ao resetar o modem com um clipe de papel, você manteve pressionado tempo demais e apagou todas as configurações.", "paciencia": -8 },
-            { "text": "Você puxou o cabo de energia sem querer enquanto mexia nos fios. Tudo desligado.", "paciencia": -10 },
+            { "text": "Você puxou o cabo de energia sem querer enquanto mexia nos fios. Tudo desligado.", "paciencia": -8 },
             { "text": "Você decidiu trocar o modem de lugar para 'pegar melhor o sinal'. Agora não lembra onde ligava cada fio.", "paciencia": -9 }
-        ]
-    },
-    "trocarOperadora": {
-        "positive": [
-            { "text": "Você trocou de operadora. A nova instalação foi rápida e a internet está funcionando. Jogo novo, vida nova.", "progresso": 100, "paciencia": 20, "closesTicket": true, "resetsGame": true }
-        ],
-        "negative": [
-            { "text": "A nova operadora usa a mesma infraestrutura da antiga. O problema persiste.", "paciencia": -25, "closesTicket": true }
         ]
     },
     "vizinhoWifi": {
@@ -474,20 +466,17 @@ const messages = {
         ],
         "negative": [
             { "text": "O Wi-Fi do vizinho também é da mesma operadora e está fora do ar. Vocês compartilham o sofrimento.", "paciencia": -5 },
-            { "text": "Seu vizinho trocou a senha e não te avisou. A alegria durou pouco.", "paciencia": -10 },
+            { "text": "Seu vizinho trocou a senha e não te avisou. A alegria durou pouco.", "paciencia": -8 },
             { "text": "A conexão do vizinho é tão ruim que não carrega nem uma página de busca.", "paciencia": -7 },
             { "text": "A conexão do Wi-Fi do vizinho funciona, mas cai a cada 5 minutos.", "paciencia": -8 },
             { "text": "Seu vizinho te passou a senha, mas só funciona quando a porta está aberta.", "paciencia": -4 },
-            { "text": "A vizinha te deu a senha, mas depois te cobrou uma mensalidade por usar a internet.", "paciencia": -10 },
-            { "text": "A vizinha te deu a senha, mas o Wi-Fi dela só funciona para aplicativos de chat.", "paciencia": -9 },
-            { "text": "A conexão é tão lenta que você assiste os vídeos do YouTube quadro a quadro, como se fosse um flipbook.", "paciencia": -9 },
+            { "text": "A conexão é tão lenta que você assiste os vídeos do YouTube quadro a quadro", "paciencia": -9 },
             { "text": "Você se conectou à internet do vizinho, mas o sinal só funciona quando chove e o céu está cinza.", "paciencia": -8 },
             { "text": "O vizinho instalou um roteador com inteligência artificial que te desconecta se você usar mais de 100MB por dia.", "paciencia": -10 },
             { "text": "A internet do vizinho só carrega em anos bissextos. A paciência está acabando.", "paciencia": -10 },
             { "text": "O vizinho te deu a senha, mas depois te entregou um contrato de uso que te obriga a bater palmas para o roteador toda vez que ele piscar.", "paciencia": -10 },
             { "text": "A conexão só funciona quando o vizinho está fora de casa, o que raramente acontece. Você está na espreita.", "paciencia": -7 },
             { "text": "O sinal é tão fraco que a única coisa que você consegue fazer é mandar mensagens de texto no WhatsApp.", "paciencia": -5 },
-            { "text": "A vizinha te deu a senha, mas depois descobriu que o Wi-Fi dela só funciona em dias de lua cheia.", "paciencia": -9 },
             { "text": "O vizinho te cobrou uma mensalidade por usar a internet e ainda te mandou um boleto por e-mail.", "paciencia": -10 },
             { "text": "A senha é tão complexa que você desistiu antes de conseguir se conectar.", "paciencia": -3 }
         ]
@@ -506,14 +495,14 @@ const messages = {
         "negative": [
             { "text": "Seu vídeo foi denunciado por 'discurso de ódio' contra a operadora. O TikTok o removeu.", "paciencia": -8 },
             { "text": "Ninguém se importou com seu vídeo. Você se sentiu ainda mais sozinho nessa luta.", "paciencia": -6 },
-            { "text": "A operadora fechou todos os chamados abertos após seu vídeo viralizar negativamente. Todos os chamados encerrados.", "paciencia": -10, "closesTicket": true },
+            { "text": "A operadora fechou todos os chamados abertos após seu vídeo viralizar negativamente. Todos os chamados encerrados.", "paciencia": -4, "closesTicket": true },
             { "text": "Sua reclamação se perdeu na 'For You Page' e não alcançou ninguém.", "paciencia": -5 },
             { "text": "Um bot da operadora comentou no seu vídeo com uma mensagem de 'Agradecemos o seu feedback!'.", "paciencia": -7 },
             { "text": "O vídeo foi ignorado pela operadora, mas os haters não perderam a oportunidade.", "paciencia": -9 },
-            { "text": "A operadora não só ignorou o vídeo, como também encerrou seus chamados.", "paciencia": -12, "closesTicket": true },
-            { "text": "Seu vídeo recebeu um comentário de um funcionário da operadora que te ofendeu pessoalmente.", "paciencia": -15 },
+            { "text": "A operadora não só ignorou o vídeo, como também encerrou seus chamados.", "paciencia": -10, "closesTicket": true },
+            { "text": "Seu vídeo recebeu um comentário de um funcionário da operadora que te ofendeu pessoalmente.", "paciencia": -9 },
             { "text": "O vídeo não deu em nada. Você se sente tolo por ter feito ele.", "paciencia": -5 },
-            { "text": "A operadora processou você pelo vídeo e cobrou o prejuízo de marketing.", "paciencia": -20, "closesTicket": true }
+            { "text": "A operadora processou você pelo vídeo e cobrou o prejuízo de marketing.", "paciencia": -12, "closesTicket": true }
         ]
     },
     "CelsoRussomanno": {
@@ -533,20 +522,20 @@ const messages = {
         ]
     },
     "random": [ 
-        { "text": "Uma atualização de sistema da operadora resetou tudo. Qualquer chamado que você tinha, não existe mais.", "paciencia": -10, "closesTicket": true },
+        { "text": "Uma atualização de sistema da operadora resetou tudo. Qualquer chamado que você tinha, não existe mais.", "paciencia": -6, "closesTicket": true },
         { "text": "A operadora te ligou para oferecer um novo plano, ignorando completamente seu problema.", "paciencia": -5 },
         { "text": "Seu vizinho, que usa a mesma operadora, está com a internet funcionando perfeitamente.", "paciencia": -3 },
         { "text": "Choveu. A desculpa agora é 'condições climáticas adversas'.", "paciencia": -7 },
-        { "text": "Sua fatura do mês veio com um aumento inexplicável, mesmo com o serviço inoperante.", "paciencia": -10 },
+        { "text": "Sua fatura do mês veio com um aumento inexplicável, mesmo com o serviço inoperante.", "paciencia": -7 },
         { "text": "Você recebeu um e-mail de 'boas-vindas' da operadora, como se fosse um cliente novo.", "paciencia": -8 },
         { "text": "O site da operadora está em manutenção. Não é possível acessar a área do cliente.", "paciencia": -4 },
         { "text": "Você recebeu uma ligação para avaliar o serviço de atendimento, mas a pesquisa não te deixa dar nota zero.", "paciencia": -7 },
         { "text": "Um robô te ligou e desligou na sua cara.", "paciencia": -4 },
         { "text": "Um vizinho que não usa a mesma operadora fez um comentário sarcástico sobre o seu problema.", "paciencia": -3 },
-        { "text": "A operadora enviou um SMS avisando que seu problema 'foi resolvido'. Você checa e nada mudou, mas todos seus chamados foram fechados.", "paciencia": -10, "closesTicket": true },
+        { "text": "A operadora enviou um SMS avisando que seu problema 'foi resolvido'. Você checa e nada mudou, mas todos seus chamados foram fechados.", "paciencia": -8, "closesTicket": true },
         { "text": "Um técnico estava a caminho, mas ligou dizendo que seu carro quebrou.", "paciencia": -6 },
         { "text": "A operadora te enviou um e-mail de 'obrigado' por ser um cliente fiel.", "paciencia": -4 },
-        { "text": "Você acessou o APP e descobriu que fecharam todos seus chamados há 3 dias.", "paciencia": -12, "closesTicket": true },
+        { "text": "Você acessou o APP e descobriu que fecharam todos seus chamados há 3 dias.", "paciencia": -6, "closesTicket": true },
         ] 
     };
     

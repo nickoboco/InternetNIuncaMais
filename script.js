@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Game State
     let state;
     let cancellationSequenceStep = 0;
+    let cameFromIntroModal = false;
 
     // --- Core Functions ---
 
@@ -85,6 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
             introModal.style.display = 'none';
             resetGame();
         };
+        
+        // Event listener para o botão "Como jogar" no modal de início
+        const introHowtoBtn = document.getElementById('intro-howto');
+        if (introHowtoBtn) {
+            introHowtoBtn.addEventListener('click', () => {
+                cameFromIntroModal = true;
+                introModal.style.display = 'none';
+                howtoModal.style.display = 'flex';
+            });
+        }
+        
         // Register other event listeners once
         Object.keys(actions).forEach(key => {
             if (actions[key] && key !== 'cancelarPlano') {
@@ -98,12 +110,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Event listeners para How to Play modal
         if (howtoBtn) {
             howtoBtn.addEventListener('click', () => {
+                cameFromIntroModal = false;
                 howtoModal.style.display = 'flex';
             });
         }
         if (howtoClose) {
             howtoClose.addEventListener('click', () => {
                 howtoModal.style.display = 'none';
+                // Se veio do modal de início, volta para ele
+                if (cameFromIntroModal) {
+                    introModal.style.display = 'flex';
+                    cameFromIntroModal = false;
+                }
             });
         }
         // Fechar modal clicando fora dele
@@ -237,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
         if (state.paciencia <= 0) {
-            const resumoGameOver = `Sua paciência acabou após ${state.daysPassed} dias tentando resolver o problema, tendo aberto ${state.protocols.length} chamados. Você decide viver sem internet mesmo.`;
+            const resumoGameOver = `Sua paciência acabou após ${state.daysPassed} dias tentando resolver o problema, tendo aberto ${state.protocols.length} chamados e tomado ${state.actionsTaken} ações. Você decide viver sem internet mesmo, pois no fim, NIem vale a pena..`;
             showGameoverModal(resumoGameOver);
             // Não bloqueia os botões automaticamente - só quando o user clicar em "Fechar"
             return; // Evita múltiplos modais e logs
@@ -253,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fecha chamado se estiver aberto
             state.isTicketOpen = false;
             
-            const resumoMsg = `MILAGRE! Você conseguiu resolver seu problema de internet em ${state.daysPassed} dias abrindo somente ${state.protocols.length} chamados. Seria uma pena se a operadora deixasse de atender seu endereço mês que vem..`;
+            const resumoMsg = `MILAGRE! Você conseguiu resolver seu problema de internet em ${state.daysPassed} dias abrindo somente ${state.protocols.length} chamados e tomando ${state.actionsTaken} ações. Seria uma pena se a operadora deixasse de atender seu endereço mês que vem..`;
             showFinalModal(resumoMsg);
             // Não bloqueia os botões automaticamente - só quando o user clicar em "Fechar"
         }
@@ -530,9 +548,22 @@ document.addEventListener('DOMContentLoaded', () => {
             feedback += `<span style="color:${cor};font-weight:bold;">${progressoDelta > 0 ? '+' : ''}${progressoDelta} Progresso</span> `;
         }
         
-        // Exibe a nova mensagem no espaço reservado SEM mover nada para o log ainda
+        // Determina a cor de fundo baseado no impacto geral
+        let backgroundColor = '';
+        const totalImpact = pacienciaDelta + progressoDelta;
+        if (totalImpact > 0) {
+            backgroundColor = 'rgba(40, 167, 69, 0.1)'; // Verde claro para positivo
+        } else if (totalImpact < 0) {
+            backgroundColor = 'rgba(220, 53, 69, 0.1)'; // Vermelho claro para negativo
+        }
+        
+        // Exibe a nova mensagem no espaço reservado com cor de fundo
         mainMsgText.innerHTML = `<div>${message}</div>${feedback ? `<div style='margin-top:8px;'>${feedback}</div>` : ''}`;
         mainMsgText.style.visibility = 'visible';
+        mainMsgText.style.backgroundColor = backgroundColor;
+        mainMsgText.style.borderRadius = '8px';
+        mainMsgText.style.padding = backgroundColor ? '0.7rem' : '';
+        mainMsgText.style.transition = 'background-color 0.3s ease';
     }
 
     function moveCurrentMessageToLog() {
@@ -547,7 +578,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 logArea.appendChild(p);
             }
+            // Reset do estilo visual do bloco
             mainMsgText.style.visibility = 'hidden';
+            mainMsgText.style.backgroundColor = '';
+            mainMsgText.style.borderRadius = '';
+            mainMsgText.style.padding = '';
             mainMsgText.innerHTML = '';
         }
     }
@@ -555,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateProtocolListUI() {
         protocolListDiv.innerHTML = '';
         if (state.protocols.length === 0) {
-            protocolListDiv.innerHTML = '<p>Nenhum chamado registrado ainda.</p>';
+            protocolListDiv.innerHTML = '';
             return;
         }
         // Reverter ordem para mostrar protocolos mais recentes no topo
@@ -661,7 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (pIndex !== -1) state.protocols[pIndex].daysWaited = state.activeN3Protocol.daysWaited;
         }
         
-        logMessage('Você esperou um dia. Nada aconteceu. Ainda.');
+        logMessage('Você esperou um dia. Nada aconteceu. Ainda.', -1, 0);
         updateUI();
     }
 
@@ -737,9 +772,6 @@ document.addEventListener('DOMContentLoaded', () => {
         state.progresso += deltaProgresso;
         if (state.progresso < 0) state.progresso = 0; // Impede progresso negativo
         if (state.progresso > 100) state.progresso = 100; // Cap at 100
-
-        // Show feedback modal
-        showFeedbackModal(deltaPaciencia, deltaProgresso);
 
         // Lógica de abertura de chamado - criar mensagem única
         if (outcome.opensTicket) {

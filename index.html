@@ -17,6 +17,10 @@
         </div>
         <div class="header-area">
             <div class="header-block">
+                <span class="score-label">Ações tomadas</span>
+                <span id="actions-counter">0</span>
+            </div>
+            <div class="header-block">
                 <span class="score-label">Chamados abertos</span>
                 <span id="chamados-counter">0</span>
             </div>
@@ -24,18 +28,14 @@
                 <span class="score-label">Dias sem internet</span>
                 <span id="days-passed">0</span>
             </div>
-            <div class="header-block">
-                <span class="score-label">Ações tomadas</span>
-                <span id="actions-counter">0</span>
-            </div>
-            <div class="header-block">
+            <div class="header-block-with-bar">
                 <div class="patience-bar-bg">
                     <div id="patience-bar" class="patience-bar"></div>
                 </div>
                 <span class="score-label">Paciência</span>
                 <span id="paciencia">100</span>
             </div>
-            <div class="header-block">
+            <div class="header-block-with-bar">
                 <div class="progress-bar-bg">
                     <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
                 </div>
@@ -49,17 +49,16 @@
                 <div class="left-block modal-block">
                     <div id="log-modal-area" class="modal-area"></div>
                 </div>
-                <div class="left-block log-block">
-                    <p class="group-title">Histórico de interações</p>
-                    <div id="log" class="log-area">
-                    </div>
-                </div>
                 <div class="left-block protocol-block">
                     <div class="protocol-list-container">
                         <p class="group-title">Protocolos Registrados</p>
                         <div id="protocol-list" class="protocol-list-area">
-                            <p>Nenhum chamado registrado ainda.</p>
                         </div>
+                    </div>
+                </div>
+                <div class="left-block log-block">
+                    <p class="group-title">Histórico de ações</p>
+                    <div id="log" class="log-area">
                     </div>
                 </div>
             </div>
@@ -122,64 +121,77 @@
         <div class="modal-content">
             <h2>Bem-vindo ao NIunca mais internet!</h2>
             <p>O <b>NIunca mais internet!</b> é a sua chance de se estressar com essa operadora que vai testar sua <b>paciência</b>.  
-                Enfrente o desafio de tentar resolver seu problema de internet e se arrependa do dia em que se tornou um cliente. 
-                A sua jornada de paciência começa agora!</p>
-            <button id="intro-start">Começar</button>
+                Enfrente o desafio de tentar resolver seu problema de internet e se arrependa do dia em que se tornou um cliente.</p> 
+            <p>A sua jornada de paciência começa agora!</p>
+            <div class="modal-buttons">
+                <button id="intro-howto">❓ Como jogar</button>
+                <button id="intro-start">✅ Começar</button>
+            </div>
         </div>
     </div>
     <div id="gameover-modal" class="modal" style="display:none;">
         <div class="modal-content">
-            <h2>Game Over</h2>
+            <h2>Game Over 😫</h2>
             <p id="gameover-message">Sua paciência acabou! Você NIão aguenta mais tentar resolver o problema e decide viver sem internet, 
                 pois no fim, NIem vale a pena.</p>
             <div class="modal-buttons">
-                <button id="gameover-restart">Sofrer novamente</button>
-                <button id="gameover-close">Fechar</button>
+                <button id="gameover-restart">😫 Sofrer novamente </button>
+                <button id="gameover-close">❌Fechar</button>
             </div>
         </div>
-    </div>
-    <div id="feedback-modal" class="feedback-modal" style="display:none;">
-        <span id="feedback-text"></span>
     </div>
 
     <!-- How to Play Modal -->
     <div id="howto-modal" class="howto-modal">
         <div class="howto-modal-content">
-            <h2>🎮 Como Jogar - NIunca mais internet!</h2>
+            <div class="howto-body">
+                <h2>🎮 Como Jogar - NIunca mais internet!</h2>
+                
+                <div class="howto-grid">
+                    <div class="howto-section">
+                        <h3>📋 Objetivo</h3>
+                        <p>Sua internet não funciona! Use as ações disponíveis para tentar resolver o problema antes que sua paciência acabe.</p>
+                        
+                        <h3>🎲 Sistema de Probabilidade</h3>
+                        <ul>
+                            <li><strong>50%</strong> chance positiva/negativa por ação</li>
+                            <li><span style="color: #28a745;">Positivos</span> aumentam progresso</li>
+                            <li><span style="color: #dc3545;">Negativos</span> diminuem paciência</li>
+                            <li><strong>5%</strong> chance de eventos aleatórios</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="howto-section">
+                        <h3>🔢 Níveis de Ação</h3>
+                        <ul>
+                            <li><strong>Nível 1:</strong> Abrir chamado</li>
+                            <li><strong>Nível 2:</strong> Acompanhar chamado</li>
+                            <li><strong>Nível 3:</strong> Escalar (paciência <60)</li>
+                            <li><strong>Nível 4:</strong> Tentar a sorte (2x máximo)</li>
+                        </ul>
+                        
+                        <h3>⚖️ Protocolos N3</h3>
+                        <ul>
+                            <li>Uso único por jogo</li>
+                            <li>Prazos específicos para aguardar</li>
+                            <li>Ação bloqueada após encerramento</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="howto-section">
+                        <h3>🎯 Vitória/Derrota</h3>
+                        <ul>
+                            <li><strong>Vitória:</strong> 100% de progresso</li>
+                            <li><strong>Derrota:</strong> Paciência = 0</li>
+                            <li><strong>Alternativa:</strong> "Cancelar plano"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             
-            <h3>📋 Objetivo</h3>
-            <p>Sua internet não funciona! Use as ações disponíveis para tentar resolver o problema antes que sua paciência acabe.</p>
-            
-            <h3>🎲 Sistema de Probabilidade</h3>
-            <ul>
-                <li><strong>50% de chance</strong> para cada ação ter resultado positivo ou negativo</li>
-                <li>Resultados <span style="color: #28a745;">positivos</span> aumentam seu progresso</li>
-                <li>Resultados <span style="color: #dc3545;">negativos</span> diminuem sua paciência</li>
-                <li><strong>5% de chance</strong> de eventos aleatórios complicarem sua vida mais ainda</li>
-            </ul>
-            <h3>🔢 Níveis de Ação</h3>
-            <ul>
-                <li><strong>Nível 1:</strong> Utilize para abrir um chamado, se conseguir</li>
-                <li><strong>Nível 2:</strong> Tendo um chamado aberto, utilize para dar sequência. Boa sorte</li>
-                <li><strong>Nível 3:</strong> Com a paciência acabando, que tal escalar? Vai que ajuda</li>
-                <li><strong>Nível 4:</strong> Tentar a sorte com ações aleatórias. Quem sabe funciona?</li>
-            </ul>
-            
-            <h3>⚖️ Protocolos N3 (Regulamentação)</h3>
-            <ul>
-                <li>Cada ação só pode ser usada uma vez por jogo, desde que consiga abrir um protocolo</li>
-                <li>Os protocolos têm prazos específicos e você precisa aguardar para pegar o resultado</li>
-                <li>Uma vez encerrado o protocolo, aquela ação fica permanentemente bloqueada</li>
-            </ul>
-            
-            <h3>🎯 Condições de Vitória/Derrota</h3>
-            <ul>
-                <li><strong>Vitória:</strong> Atinja 100% de progresso</li>
-                <li><strong>Derrota:</strong> Paciência chegue a 0</li>
-                <li><strong>Alternativa:</strong> Use o botão "Cancelar plano" e teste a sorte!</li>
-            </ul>
-            
-            <button class="howto-close" id="howto-close">Entendi, vamos jogar!</button>
+            <div class="howto-footer">
+                <button class="howto-close" id="howto-close">Entendi, vamos jogar!</button>
+            </div>
         </div>
     </div>
 
