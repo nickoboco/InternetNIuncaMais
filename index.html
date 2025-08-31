@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIOunca mais!</title>
+    <title>NIUnca mais!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
+        <div class="title-area">
+            <h1 class="game-title">NIUnca mais!</h1>
+        </div>
         <div class="header-area">
             <div class="header-block">
-                <span class="score-label">Chamados</span>
+                <span class="score-label">Chamados abertos</span>
                 <span id="chamados-counter">0</span>
             </div>
             <div class="header-block">
-                <span class="score-label">Dias</span>
+                <span class="score-label">Dias sem internet</span>
                 <span id="days-passed">0</span>
             </div>
             <div class="header-block">
@@ -35,14 +38,20 @@
 
         <div class="game-area">
             <div class="left-column">
-                <div id="log-modal-area" style="width:100%;min-height:40px;position:relative;"></div>
-                <div id="log" class="log-area" style="max-height:160px;min-height:70px;overflow-y:auto;">
-                    <p>Bem-vindo ao teste de paciência! Sua Internet <b>NÃO FUNCIONA!</b> Será que vão resolver?</p>
+                <div class="left-block modal-block">
+                    <div id="log-modal-area" class="modal-area"></div>
                 </div>
-                <div class="protocol-list-container">
-                    <p class="group-title">Protocolos Registrados</p>
-                    <div id="protocol-list" class="protocol-list-area">
-                        <p>Nenhum chamado registrado ainda.</p>
+                <div class="left-block log-block">
+                    <p class="group-title">Histórico de interações</p>
+                    <div id="log" class="log-area">
+                    </div>
+                </div>
+                <div class="left-block protocol-block">
+                    <div class="protocol-list-container">
+                        <p class="group-title">Protocolos Registrados</p>
+                        <div id="protocol-list" class="protocol-list-area">
+                            <p>Nenhum chamado registrado ainda.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -58,14 +67,14 @@
                         <button id="usarAssistenteVirtual">Chat com IA</button>
                     </div>
                     <div class="actions-group" id="n2-actions">
-                        <p class="group-title">Nível 2: Acompanhar</p>
+                        <p class="group-title">Nível 2: Acompanhar Chamado</p>
                         <button id="pegar-status-n2" disabled>Pegar um Status</button>
                         <button id="receber-tecnico" disabled>Receber o Técnico</button>
-                        <button id="reclamarRedeSocial" disabled>Reclamar na rede social</button>
                         <button id="receberLigacao" disabled>Atender Ligação</button>
+                        <button id="reclamarRedeSocial" disabled>Reclamar na rede social</button>
                     </div>
                     <div class="actions-group" id="n3-actions">
-                        <p class="group-title">Nível 3: Escalar</p>
+                        <p class="group-title">Nível 3: Escalar (Paciência <60)</p>
                         <button id="anatel" disabled>ANATEL</button>
                         <button id="procon" disabled>Procon</button>
                         <button id="ligarOuvidoria" disabled>Ouvidoria</button>
@@ -78,12 +87,13 @@
                         <button id="arrumarSozinho">Tentar arrumar sozinho</button>
                         <button id="vizinhoWifi">Pedir Wi-Fi ao Vizinho</button>
                         <button id="videoTikTok">Postar no TikTok</button>
-                        <button id="mensagemCEO" disabled>Postar no LinkedIn</button>
+                        <button id="mensagemCEO">Postar no LinkedIn</button>
                     </div>
                 </div>
                  <div class="actions-footer">
-                    <button id="esperar">Esperar 1 dia</button>
-                    <button id="cancelar-plano">Cancelar o plano</button>
+                    <button id="esperar" title="Este botão fica ativo quando há protocolo do Nível 3 aguardando prazo">Esperar 1 dia</button>
+                    <button id="cancelar-plano" title="Está sem paciência e quer cancelar? Clica aqui e tenta a sorte.">Cancelar o plano</button>
+                    <button id="restart-game" style="display:none;">Sofrer novamente</button>
                 </div>
             </div>
         </div>
@@ -101,8 +111,8 @@
     </div>
     <div id="intro-modal" class="modal" style="display: flex;">
         <div class="modal-content">
-            <h2>Bem-vindo ao NIOnca mais!</h2>
-            <p>Aqui você vai passar raiva e perder a paciência! Será que seu problema com a internet será resolvido? Veremos...</p>
+            <h2>Bem-vindo ao NIUnca mais!</h2>
+            <p>Aqui você vai passar raiva e perder a paciência! Será que seu problema com a internet será resolvido? Tenta a sorte...</p>
             <button id="intro-start">Começar</button>
         </div>
     </div>
@@ -110,7 +120,10 @@
         <div class="modal-content">
             <h2>Game Over</h2>
             <p id="gameover-message">Sua paciência acabou! Você não aguenta mais tentar resolver o problema e decide viver sem internet.</p>
-            <button id="gameover-restart">Sofrer novamente</button>
+            <div class="modal-buttons">
+                <button id="gameover-restart">Sofrer novamente</button>
+                <button id="gameover-close">Fechar</button>
+            </div>
         </div>
     </div>
     <div id="feedback-modal" class="feedback-modal" style="display:none;">

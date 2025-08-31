@@ -1,3 +1,37 @@
+/* Blocos da coluna esquerda */
+.left-block {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 0.7rem;
+    margin-bottom: 0.4rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.modal-block {
+    min-height: 56px;
+    justify-content: center;
+}
+.modal-area {
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.log-block {
+    flex: 1;
+    min-height: 70px;
+    max-height: 160px;
+    overflow-y: auto;
+    margin-bottom: 0.4rem;
+}
+.protocol-block {
+    flex-shrink: 0;
+    max-height: 130px;
+}
 .header-block {
     background-color: #f8f9fa;
     border-radius: 10px;
@@ -34,7 +68,24 @@ body {
     padding: 0.7rem;
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
+    gap: 0.5rem;
+}
+
+/* Title Area */
+.title-area {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.game-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0.3rem 0;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    letter-spacing: -0.5px;
 }
 
 /* Header Area */
@@ -120,9 +171,8 @@ body {
  .patience-bar {
      height: 100%;
      border-radius: 8px;
-     transition: width 0.5s ease-in-out;
-     background: linear-gradient(90deg, #dc3545, #ffc107, #28a745);
-     background-size: 300% 100%;
+     transition: width 0.5s ease-in-out, background 0.3s ease-in-out;
+     background: #28a745;
      position: absolute;
      left: 0;
      top: 0;
@@ -186,7 +236,7 @@ body {
     overflow-y: auto;
     flex-grow: 1;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     font-size: 0.8rem;
 }
 
@@ -206,6 +256,7 @@ body {
     overflow-y: auto;
     font-size: 0.8rem;
     color: #495057;
+    max-height: 100px;
 }
 
 /* Right Column */
