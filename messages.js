@@ -11,16 +11,16 @@ const messages = {
 			{ "text": "Seu chamado foi aberto e está na fila de atendimento da equipe técnica.", "progresso": 3, "paciencia": 1, "opensTicket": true }
 		],
 		"negative": [
-			{ "text": "Após 45 minutos na musiquinha, a ligação caiu.", "paciencia": -5 },
+			{ "text": "Você ficou 45 minutos ouvindo a musiquinha e a ligação caiu.", "paciencia": -5 },
             { "text": "Você confirmou seu CPF 3 vezes e a ura informou que estava errado, a ligação caiu.", "paciencia": -6 },
             { "text": "Atendente não conseguiu abrir o chamado por indisponibilidade no sistema.", "paciencia": -4 },
             { "text": "O agente de IA na ura não conseguia te entender, entrou em loop e a ligação caiu.", "paciencia": -8 },
-			{ "text": "O atendente te transferiu para outro setor e a ligação caiu antes de abrir o chamado.", "paciencia": -7 },
+			{ "text": "O atendente te transferiu para outro setor e a ligação caiu antes dele abrir o chamado.", "paciencia": -7 },
 			{ "text": "Você foi colocado em espera por mais de uma hora e desligou revoltado.", "paciencia": -5 },
 			{ "text": "O chamado que abriram sumiu do sistema assim que você desligou a ligação.", "paciencia": -6 },
 			{ "text": "O atendente ficava pedindo 'só mais um momento' e não abriu o chamado. Você perdeu tempo.", "paciencia": -8 },
 			{ "text": "Te atenderam e disseram que não há motivo para abrir chamado, pois o serviço vai normalizar sozinho em breve.", "paciencia": -1 },
-			{ "text": "A ura te pediu o número do passaporte para prosseguir, você não tem.", "paciencia": -3 },
+			{ "text": "A ura pediu o número do passaporte para prosseguir. Qual a lógica disso?", "paciencia": -3 },
 			{ "text": "O atendente registrou um chamado no cadastro errado e você só viu depois que desligou.", "paciencia": -6 },
 			{ "text": "A automação na ura marcou seu chamado como 'resolvido' assim que você desligou.", "paciencia": -4 },
 		]
@@ -81,18 +81,6 @@ const messages = {
 			{ "text": "Você não encontrou suporte humano pelo app e não conseguiu gerar o chamado.", "paciencia": -6 }
 		]
 	},
-    "irLoja": {
-        "positive": [
-            { "text": "Na loja, o atendente abriu um chamado com protocolo em papel.", "progresso": 2, "paciencia": -5, "opensTicket": true },
-            { "text": "O gerente ouviu seu caso e abriu um chamado prioritário.", "progresso": 2, "paciencia": -2, "opensTicket": true },
-            { "text": "Você saiu da loja com um protocolo em mãos. Chamado aberto.", "progresso": 2, "paciencia": -3, "opensTicket": true },
-            { "text": "Chamado aberto na loja. Agora é esperar.", "progresso": 1, "paciencia": -4, "opensTicket": true }
-        ],
-        "negative": [
-            { "text": "A loja estava lotada e você esperou 2 horas para ser atendido.", "paciencia": -10 },
-            { "text": "O sistema da loja estava fora do ar. Pediram para você voltar amanhã.", "paciencia": -8 }
-        ]
-    },
     "enviarEmail": {
         "positive": [
             { "text": "Seu e-mail foi respondido com um número de protocolo. Chamado aberto.", "progresso": 2, "paciencia": 0, "opensTicket": true },
@@ -147,28 +135,28 @@ const messages = {
     },
 	"receberTecnico": {
 		"positive": [
-			{ "text": "O técnico veio e resolveu o problema! ...só que não. Ele disse que o problema é na central e fechou seu chamado.", "progresso": 10, "paciencia": -3, "closesTicket": true },
-			{ "text": "Técnico identificou cabos soltos no poste, mas não arrumou. Ele falou pra você ligar na Central e fechou seu chamado.", "progresso": 5, "paciencia": -5, "closesTicket": true },
-			{ "text": "O técnico veio, testou e tirou fotos do modem. Pediu pra você entrar em contato novamente e pedir pra mandarem outro técnico. Chamado fechado.", "progresso": 5, "paciencia": -6 , "closesTicket": true },
-			{ "text": "Técnico agendou reparo de infraestrutura e prometeu retorno em 48h, mas fechou seu chamado.", "progresso": 6, "paciencia": -6 , "closesTicket": true },
-			{ "text": "Técnico trocou modem defeituoso e a internet funcionou por 10 minutos. Assim que ele foi embora o problema voltou. Seu chamado foi fechado.", "progresso": 5, "paciencia": -10, "closesTicket": true },
-			{ "text": "Técnico só confirmou o problema e solicitou troca do modem para a Central. Abriu um novo chamado.", "progresso": 5, "paciencia": -3, "opensTicket": true },
-			{ "text": "Técnico confirmou que sua instalação estava incorreta. Informou que você precisa ligar na Central para validar e fechou os chamados.", "progresso": 7, "paciencia": -2 , "closesTicket": true },
-			{ "text": "Técnico realizou teste e encaminhou seu chamado para outro técnico que vai voltar em até 48 horas.", "progresso": 9, "paciencia": -2}
+			{ "text": "O técnico veio e resolveu o problema! ...só que não. Ele disse que o problema é na central e que vão te ligar.", "progresso": 6, "paciencia": 1 },
+			{ "text": "O técnico identificou cabos soltos no poste, mas não arrumou, pois ele não têm o treinamento. Ele falou pra você aguardar outro técnico.", "progresso": 5, "paciencia": 1 },
+			{ "text": "O técnico veio, testou e tirou fotos do modem. Falou que retorna outro dia para terminar o serviço.", "progresso": 5, "paciencia": 1 },
+			{ "text": "O técnico agendou um reparo de infraestrutura e prometeu retorno em 48h.", "progresso": 6, "paciencia": 1 },
+			{ "text": "O técnico trocou o modem e a internet funcionou por 10 minutos. Assim que ele foi embora o problema voltou, pelo menos o chamado continua aberto.", "progresso": 5, "paciencia": 1},
+			{ "text": "O técnico só confirmou o problema e solicitou troca do modem para a Central. Abriu um novo chamado e disse que vão te ligar.", "progresso": 5, "paciencia": 1, "opensTicket": true },
+			{ "text": "O técnico confirmou que sua instalação estava incorreta e informou que a Central vai te ligar pra falar o que fazer.", "progresso": 7, "paciencia": 1 },
+			{ "text": "O técnico realizou um teste e encaminhou seu chamado para outra equipe que vai voltar em até 48 horas.", "progresso": 9, "paciencia": 1}
 		],
 		"negative": [
-			{ "text": "O técnico não apareceu na janela de 24h. 'Problemas na rota', disse o SMS.", "paciencia": -10 },
+			{ "text": "O técnico não apareceu na janela de 24h. Seu chamado fechou sozinho por 'indisponibilidade'.", "paciencia": -10, "closesTicket": true },
 			{ "text": "O técnico veio, mas esqueceu as ferramentas. Tirou uma foto da fachada e foi embora. Fechou o chamado.", "paciencia": -8 , "closesTicket": true },
-			{ "text": "Técnico culpou sua instalação residencial e não resolveu. Fechou teu chamado.", "paciencia": -12 , "closesTicket": true },
+			{ "text": "O técnico culpou a sua instalação e alegou que não consegue resolver. Fechou teu chamado.", "paciencia": -12 , "closesTicket": true },
 			{ "text": "Você ficou esperando o técnico o dia todo, mas ele não apareceu. O chamado continua aberto.", "paciencia": -9 },
-			{ "text": "Técnico cancelou em cima da hora por 'imprevisto'. Seu chamado foi cancelado.", "paciencia": -7 ,"closesTicket": true},
-			{ "text": "Técnico fez uma gambiarra improvisada que piorou a situação. Fechou o chamado.", "paciencia": -15 , "closesTicket": true },
-			{ "text": "Técnico faltou sem justificativa e ninguém remarcou. Cancelaram o chamado.", "paciencia": -11 , "closesTicket": true},
-			{ "text": "Visita foi rápida e sem diagnóstico completo, nada foi feito. Pelo menos o chamado continua aberto.", "paciencia": -10 },
-			{ "text": "Técnico disse que precisa cobrar um valor extra alegando que o serviço está fora do contrato, você não pagou e ele fechou o chamado.", "paciencia": -13 , "closesTicket": true },
+			{ "text": "O técnico cancelou em cima da hora por 'imprevisto'. Seu chamado foi cancelado.", "paciencia": -7 ,"closesTicket": true},
+			{ "text": "O técnico fez uma gambiarra improvisada que piorou a situação. Fechou o chamado.", "paciencia": -15 , "closesTicket": true },
+			{ "text": "O técnico faltou sem justificativa e ninguém remarcou. Cancelaram o chamado.", "paciencia": -11 , "closesTicket": true},
+			{ "text": "A visita foi rápida e sem diagnóstico completo, nada foi feito. Pelo menos o chamado continua aberto.", "paciencia": -10 },
+			{ "text": "O técnico disse que precisa cobrar um valor extra alegando que o serviço está fora do contrato, você não pagou e ele fechou o chamado.", "paciencia": -13 , "closesTicket": true },
 			{ "text": "O técnico veio, mas fechou seu chamado dizendo que estava tudo certo, mesmo sem funcionar.", "paciencia": -10, "closesTicket": true },
-			{ "text": "O técnico cancelou todos os chamados abertos alegando erro de sistema e foi embora. ", "paciencia": -12, "closesTicket": true },
-			{ "text": "O técnico fechou o chamado sem resolver nada. Você terá que abrir outro.", "paciencia": -8, "closesTicket": true }
+			{ "text": "O técnico cancelou todos os chamados abertos alegando que deu erro no sistema e foi embora. ", "paciencia": -12, "closesTicket": true },
+			{ "text": "O técnico fechou o chamado sem resolver. Você terá que abrir outro.", "paciencia": -8, "closesTicket": true }
 		]
 	},
 	"pegarStatusN2": {
@@ -178,11 +166,16 @@ const messages = {
 			{ "text": "Atendente informou que houve oscilação na área e está monitorando.", "progresso": 3},
 			{ "text": "Atendente te explicou que a situação é complexa e requer mais investigação.", "progresso": 2 },
 			{ "text": "Atendente colocou seu chamado como prioridade 'alta' e previsão de 24 horas.", "progresso": 5 },
-			{ "text": "Atendente informou que o caso foi escalado para engenharia central e abriu um outro chamado.", "progresso": 6, "opensTicket": true }
+			{ "text": "Atendente informou que seu caso foi escalado para engenharia central e um novo chamado foi aberto.", "progresso": 6, "opensTicket": true },
+            { "text": "O atendente te informou que o seu chamado foi transferido para um setor de alta prioridade. Apenas a mudança de setor já é um pequeno avanço.", "progresso": 2 },
+            { "text": "O status do chamado foi alterado para 'Em avaliação técnica'. Seu problema está sendo investigado.", "progresso": 3 },
+            { "text": "Atendente confirmou que a solicitação foi lida pela equipe responsável e que eles estão cientes do problema.", "progresso": 1 },
+            { "text": "O atendente apenas confirmou seu endereço. Mas essa nova verificação pode significar algum progresso.", "progresso": 1 },
+            { "text": "Atendente informou que o problema foi escalado para a próxima etapa do processo interno. A burocracia está seguindo o fluxo.", "progresso": 2 }
 		],
 		"negative": [
 			{ "text": "O sistema não encontrou seu protocolo. Você tem certeza que anotou certo? Deve ter sido um bug.", "paciencia": -5, "closesTicket": true },
-			{ "text": "Atendente fechou o chamado e disse que não têm falha na sua internet. Você ficou mais confuso.", "paciencia": -4, "closesTicket": true },
+			{ "text": "O atendente fechou seu chamado e disse que não consta nenhuma falha na sua internet. Você ficou mais confuso e com raiva.", "paciencia": -4, "closesTicket": true },
 			{ "text": "Mudaram o status para 'Aguardando disponibilidade', mas nem te pediram data alguma.", "paciencia": -6 },
 			{ "text": "Atendente escalou o chamado, mas não deu mais notícias. O protocolo ficou parado em 'aguardando técnico'.", "paciencia": -7 },
 			{ "text": "Atendente disse que o chamado está sendo fechado por 'Falta de informações'.", "paciencia": -3 , "closesTicket": true },
@@ -198,38 +191,45 @@ const messages = {
     "ligarOuvidoria": {
         "positive": [
             { "text": "A Ouvidoria atendeu, gerou um novo protocolo e prometeu acompanhar o caso de perto.", "paciencia": 5, "generatesProtocol": true,  "deadline": 4, },
-            { "text": "Falar na Ouvidoria fez seu caso ser marcado como 'crítico'.", "progresso": 3,  "generatesProtocol": true,  "deadline": 3,"paciencia": 5 }
+            { "text": "Falar na Ouvidoria fez seu caso ser marcado como 'crítico'.", "progresso": 3,  "generatesProtocol": true,  "deadline": 3,"paciencia": 5 },
+            { "text": "A Ouvidoria atendeu, gerou um novo protocolo e prometeu acompanhar o caso de perto.", "paciencia": 5, "generatesProtocol": true, "deadline": 4, },
+            { "text": "Falar na Ouvidoria fez seu caso ser marcado como 'crítico'.", "progresso": 3, "generatesProtocol": true, "deadline": 3,"paciencia": 5 },
+            { "text": "O atendente da Ouvidoria informou que o seu problema foi entendido e que será tratado com prioridade. Eles abriram um novo protocolo.", "paciencia": 6, "generatesProtocol": true, "deadline": 4, "progresso": 3 },
+            { "text": "A Ouvidoria te transferiu para um setor de alta gerência e disse que vão avaliar. ", "paciencia": 4, "generatesProtocol": true, "deadline": 4, "progresso": 4 },
+            { "text": "O atendente da Ouvidoria te ouviu por 15 minutos e disse que entrará em contato com a gerência do suporte para resolver o seu problema.", "paciencia": 5, "generatesProtocol": true, "deadline": 5, "progresso": 5 }
         ],
         "negative": [
             { "text": "A Ouvidoria só atende das 10 às 14 de segunda a quarta. Hoje não é um desses dias.", "paciencia": -4 },
             { "text": "A Ouvidoria informou que você precisa retornar o contato daqui 10 dias para abrir um protocolo", "paciencia": -6 },
             { "text": "A Ouvidoria fechou tudo alegando que seu caso já foi resolvido, mas não foi.", "paciencia": -6, "closesTicket": true },
-            { "text": "A Ouvidoria encerrou todos os chamados alegando duplicidade.", "paciencia": -8, "closesTicket": true }
+            { "text": "A Ouvidoria encerrou todos os chamados alegando duplicidade.", "paciencia": -8, "closesTicket": true },
+            { "text": "A Ouvidoria desligou o telefone na sua cara sem te dar nenhuma satisfação.", "paciencia": -10 },
+            { "text": "Você ligou para a Ouvidoria, mas eles alegaram que não existe nenhum chamado aberto no seu nome.", "paciencia": -12, "closesTicket": true },
+            { "text": "O número da Ouvidoria te direcionou para o suporte normal. Você teve que começar tudo de novo.", "paciencia": -9, "closesTicket": true }
         ],
         "status": [
 		    { "text": "A Ouvidoria te retornou a ligação informando que seu chamado foi encerrado por inconsistência de dados.", "paciencia": -9, "closesTicket": true },
             { "text": "A Ouvidoria informou que o chamado foi encerrado por não se enquadrar nas políticas de 'serviço essencial'.", "paciencia": -11, "closesTicket": true },
             { "text": "O prazo de resposta da Ouvidoria é de 15 dias úteis, e você precisa aguardar esse tempo.", "paciencia": -7, "closesTicket": false },
             { "text": "A Ouvidoria fechou o chamado alegando que já foi solucionado, mas na verdade não foi.", "paciencia": -10, "closesTicket": true },
-            { "text": "A Ouvidoria te transferiu para o suporte regular e seu chamado foi encerrado.", "paciencia": -12, "closesTicket": true }
-		]
-    },
-    "chatOnline": {
-        "positive": [
-            { "text": "O chat online funcionou e o atendente te deu uma atualização útil sobre o chamado.", "progresso": 4, "paciencia": 1 },
-            { "text": "Você conseguiu que o atendente do chat registrasse sua insatisfação, adicionando urgência ao chamado.", "progresso": 3, "paciencia": 1 }
-        ],
-        "negative": [
-            { "text": "O chat online desconectou no meio da conversa. Você terá que começar de novo.", "paciencia": -5 },
-            { "text": "Você ficou travado na posição 58 da fila do chat online.", "paciencia": -3 },
-            { "text": "O atendente do chat fechou seu chamado sem te avisar.", "paciencia": -4, "closesTicket": true },
-            { "text": "O chat encerrou todos os chamados abertos por tempo de inatividade. Todos os chamados encerrados.", "paciencia": -7, "closesTicket": true }
+            { "text": "A Ouvidoria te transferiu para o suporte regular e seu chamado foi encerrado.", "paciencia": -12, "closesTicket": true },
+            { "text": "O status do seu chamado foi alterado para 'Em avaliação pela alta gestão'. É um pequeno progresso.", "progresso": 2, "paciencia": 3, "closesTicket": true },
+            { "text": "A Ouvidoria confirmou que seu caso foi encaminhado para a equipe técnica de supervisão. Melhor que nada.", "progresso": 5, "paciencia": 5, "closesTicket": true  },
+            { "text": "A Ouvidoria confirmou que um técnico será enviado em 48 horas para resolver seu problema. Será?", "progresso": 7, "paciencia": 7, "closesTicket": true  }
         ]
     },
     "reclamarRedeSocial": {
         "positive": [
             { "text": "Sua reclamação na rede social foi notada. O perfil oficial da empresa pediu seu CPF por DM.", "progresso": 5, "paciencia": 2 },
-            { "text": "Outros usuários com o mesmo problema comentaram no seu post. A pressão aumentou um pouco.", "progresso": 2, "paciencia": 3 }
+            { "text": "Outros usuários com o mesmo problema comentaram no seu post. A pressão aumentou um pouco.", "progresso": 2, "paciencia": 3 },
+            { "text": "A equipe de redes sociais te enviou uma mensagem direta e criou um chamado interno para seu problema.", "progresso": 4, "paciencia": 4 },
+            { "text": "O perfil oficial respondeu publicamente que está 'analisando' a sua situação, e que entrará em contato em breve.", "progresso": 3, "paciencia": 3 },
+            { "text": "Um gerente das redes sociais te seguiu. Talvez a atenção de alguém maior resolva.", "progresso": 3, "paciencia": 5 },
+            { "text": "A equipe das redes sociais te respondeu, pediu desculpas pelo ocorrido e disse que vai 'dar uma olhada' no seu caso.", "progresso": 2, "paciencia": 4 },
+            { "text": "Um influenciador digital com milhares de seguidores curtiu sua reclamação, o que aumentou a visibilidade do seu post.", "progresso": 3, "paciencia": 6 },
+            { "text": "Você recebeu uma mensagem privada com um link para o chat de suporte. Bora tentar né.", "progresso": 3, "paciencia": 5 },
+            { "text": "O perfil oficial marcou seu post como 'em andamento'. Ao menos estão olhando pra ele.", "progresso": 1, "paciencia": 2 },
+            { "text": "A operadora te mandou uma mensagem automática com um link de um formulário. Vai saber se dá certo.", "progresso": 2, "paciencia": 2 }
         ],
         "negative": [
             { "text": "Sua reclamação foi ignorada. Aparentemente, o estagiário das redes sociais está de folga.", "paciencia": -4 },
@@ -253,7 +253,7 @@ const messages = {
             { "text": "Era um robô com uma voz agradável te desejando um bom dia.", "paciencia": 1 },
             { "text": "O atendente ligou apenas para confirmar seu nome completo. Ele foi bem educado.", "paciencia": 1 },
             { "text": "A operadora ligou para dizer que o setor responsável irá analisar o seu caso. Algum dia.", "paciencia": 2 },
-            { "text": "Era um funcionário da ouvidoria que te ouviu por 10 minutos. Parece que ele se importou, mas nada foi resolvido.", "paciencia": 3 },
+            { "text": "Era um funcionário da operadora que te ouviu por 10 minutos. Parece que ele se importou, mas nada foi resolvido por enquanto.", "paciencia": 3 },
             { "text": "A ligação era para avisar que sua solicitação foi encaminhada para a equipe de supervisão. É uma etapa a mais.", "paciencia": 2 },
             { "text": "O atendente te ligou para dizer que entende sua frustração. A empatia vale um pouco, certo?", "paciencia": 1 },
             { "text": "A operadora te ligou apenas para confirmar seu endereço de e-mail. Eles se preocupam com os detalhes.", "paciencia": 1 },
@@ -294,10 +294,10 @@ const messages = {
 			{ "text": "Procon solicitou complementação que não altera o resultado final.", "paciencia": -6 }
 		],
 		"status": [
-			{ "text": "O Procon informou que a empresa apresentou uma defesa justa e que você está criando caso atoa.", "paciencia": -5 , "closesTicket": true},
-			{ "text": "O Procon intermediou um acordo e você vai receber R$15 reais de desconto na próxima fatura.", "progresso": 2,  "paciencia": -5, "closesTicket": true },
-			{ "text": "O Procon cancelou sua reclamação alegando que está fora da área de atuação deles.", "paciencia": -8, "closesTicket": true },
-			{ "text": "O Procon solicitou uma audiência de conciliação presencial na sede da empresa. ", "progresso": 5,  "paciencia":-10, "closesTicket": true }
+			{ "text": "O Procon informou que a empresa apresentou uma defesa justa e que sua reclamação não procede. What?!", "paciencia": -5 , "closesTicket": true},
+			{ "text": "O Procon intermediou um acordo e você vai receber R$15 reais de desconto na próxima fatura. Ual!", "progresso": 2,  "paciencia": -5, "closesTicket": true },
+			{ "text": "O Procon cancelou sua reclamação alegando que está fora da área de atuação deles. Brincadeira!", "paciencia": -8, "closesTicket": true },
+			{ "text": "O Procon solicitou uma audiência de conciliação presencial na sede da empresa. Haja paciência!", "progresso": 8,  "paciencia":-10, "closesTicket": true }
 		]
 	},
 	"reclameAqui": {

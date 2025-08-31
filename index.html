@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIunca mais!</title>
+    <title>NIunca mais internet!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="title-area">
-            <h1 class="game-title">NIunca mais!</h1>
+            <h1 class="game-title">NIunca mais internet!</h1>
+            <div class="title-buttons">
+                <button id="howto-btn" class="title-btn">❓ Como jogar</button>
+                <a href="https://www.linkedin.com/in/nickolas-selhorst/" class="title-btn" target="_blank" rel="noopener">💼 LinkedIn</a>
+            </div>
         </div>
         <div class="header-area">
             <div class="header-block">
@@ -83,8 +87,8 @@
                         <button id="acaoJudicial" disabled>Ação Judicial</button>
                     </div>
                     <div class="actions-group" id="n4-actions">
-                        <p class="group-title">Nível 4: DIY (2x por ação)</p>
-                        <button id="arrumarSozinho">Tentar arrumar sozinho</button>
+                        <p class="group-title">Tentar a sorte (2x por ação)</p>
+                        <button id="arrumarSozinho">Arrumar sozinho</button>
                         <button id="vizinhoWifi">Pedir Wi-Fi ao Vizinho</button>
                         <button id="videoTikTok">Postar no TikTok</button>
                         <button id="mensagemCEO">Postar no LinkedIn</button>
@@ -112,15 +116,18 @@
     </div>
     <div id="intro-modal" class="modal" style="display: flex;">
         <div class="modal-content">
-            <h2>Bem-vindo ao NIunca mais!</h2>
-            <p>Aqui você vai passar raiva e perder a paciência! Será que seu problema com a internet será resolvido? Tenta a sorte...</p>
+            <h2>Bem-vindo ao NIunca mais internet!</h2>
+            <p>O <b>NIunca mais internet!</b> é a sua chance de se estressar com essa operadora que vai testar sua <b>paciência</b>.  
+                Enfrente o desafio de tentar resolver seu problema de internet e se arrependa do dia em que se tornou um cliente. 
+                A sua jornada de paciência começa agora!</p>
             <button id="intro-start">Começar</button>
         </div>
     </div>
     <div id="gameover-modal" class="modal" style="display:none;">
         <div class="modal-content">
             <h2>Game Over</h2>
-            <p id="gameover-message">Sua paciência acabou! Você não aguenta mais tentar resolver o problema e decide viver sem internet.</p>
+            <p id="gameover-message">Sua paciência acabou! Você NIão aguenta mais tentar resolver o problema e decide viver sem internet, 
+                pois no fim, NIem vale a pena.</p>
             <div class="modal-buttons">
                 <button id="gameover-restart">Sofrer novamente</button>
                 <button id="gameover-close">Fechar</button>
@@ -129,6 +136,47 @@
     </div>
     <div id="feedback-modal" class="feedback-modal" style="display:none;">
         <span id="feedback-text"></span>
+    </div>
+
+    <!-- How to Play Modal -->
+    <div id="howto-modal" class="howto-modal">
+        <div class="howto-modal-content">
+            <h2>🎮 Como Jogar - NIunca mais internet!</h2>
+            
+            <h3>📋 Objetivo</h3>
+            <p>Sua internet não funciona! Use as ações disponíveis para tentar resolver o problema antes que sua paciência acabe.</p>
+            
+            <h3>🎲 Sistema de Probabilidade</h3>
+            <ul>
+                <li><strong>50% de chance</strong> para cada ação ter resultado positivo ou negativo</li>
+                <li>Resultados <span style="color: #28a745;">positivos</span> aumentam seu progresso</li>
+                <li>Resultados <span style="color: #dc3545;">negativos</span> diminuem sua paciência</li>
+                <li><strong>5% de chance</strong> de eventos aleatórios complicarem sua vida mais ainda</li>
+            </ul>
+            <h3>🔢 Níveis de Ação</h3>
+            <ul>
+                <li><strong>Nível 1:</strong> Utilize para abrir um chamado, se conseguir</li>
+                <li><strong>Nível 2:</strong> Tendo um chamado aberto, utilize para dar sequência. Boa sorte</li>
+                <li><strong>Nível 3:</strong> Com a paciência acabando, que tal escalar? Vai que ajuda</li>
+                <li><strong>Nível 4:</strong> Tentar a sorte com ações aleatórias. Quem sabe funciona?</li>
+            </ul>
+            
+            <h3>⚖️ Protocolos N3 (Regulamentação)</h3>
+            <ul>
+                <li>Cada ação só pode ser usada uma vez por jogo, desde que consiga abrir um protocolo</li>
+                <li>Os protocolos têm prazos específicos e você precisa aguardar para pegar o resultado</li>
+                <li>Uma vez encerrado o protocolo, aquela ação fica permanentemente bloqueada</li>
+            </ul>
+            
+            <h3>🎯 Condições de Vitória/Derrota</h3>
+            <ul>
+                <li><strong>Vitória:</strong> Atinja 100% de progresso</li>
+                <li><strong>Derrota:</strong> Paciência chegue a 0</li>
+                <li><strong>Alternativa:</strong> Use o botão "Cancelar plano" e teste a sorte!</li>
+            </ul>
+            
+            <button class="howto-close" id="howto-close">Entendi, vamos jogar!</button>
+        </div>
     </div>
 
     <script src="messages.js"></script>

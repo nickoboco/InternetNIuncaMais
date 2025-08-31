@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameoverModal = document.getElementById('gameover-modal');
     const feedbackModal = document.getElementById('feedback-modal');
     const feedbackText = document.getElementById('feedback-text');
+    const howtoModal = document.getElementById('howto-modal');
+    const howtoBtn = document.getElementById('howto-btn');
+    const howtoClose = document.getElementById('howto-close');
     const restartGameBtn = document.getElementById('restart-game');
     // Modal para mensagem principal
     const logModalArea = document.getElementById('log-modal-area');
@@ -89,6 +92,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         if (actions.cancelarPlano) {
             actions.cancelarPlano.addEventListener('click', startCancellationSequence);
+        }
+        
+        // Event listeners para How to Play modal
+        if (howtoBtn) {
+            howtoBtn.addEventListener('click', () => {
+                howtoModal.style.display = 'flex';
+            });
+        }
+        if (howtoClose) {
+            howtoClose.addEventListener('click', () => {
+                howtoModal.style.display = 'none';
+            });
+        }
+        // Fechar modal clicando fora dele
+        if (howtoModal) {
+            howtoModal.addEventListener('click', (e) => {
+                if (e.target === howtoModal) {
+                    howtoModal.style.display = 'none';
+                }
+            });
         }
     }
 
@@ -178,6 +201,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateUI() {
         if (!state) return;
+        
+        // Validação preventiva para evitar valores inválidos
+        if (state.paciencia < 0) state.paciencia = 0;
+        if (state.paciencia > 100) state.paciencia = 100;
+        if (state.progresso < 0) state.progresso = 0;
+        if (state.progresso > 100) state.progresso = 100;
+        
     pacienciaSpan.textContent = state.paciencia;
     // Contar todos protocolos, inclusive N3
     chamadosCounterSpan.textContent = Array.isArray(state.protocols) ? state.protocols.length : state.chamadosAbertos;
@@ -381,8 +411,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const n1_buttons = ['ligar', 'chamarWpp', 'abrirApp', 'irLoja', 'enviarEmail', 'usarAssistenteVirtual'];
         const n2_buttons = ['receberTecnico', 'pegarStatusN2', 'reclamarRedeSocial', 'receberLigacao'];
         // Inclui ligarOuvidoria no N3
-        const n3_buttons = ['anatel', 'procon', 'ligarOuvidoria', 'reclameAqui', 'consumidorGov', 'defensoriaPublica', 'acaoJudicial'];
-        const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'trocarOperadora', 'CelsoRussomanno'];
+        const n3_buttons = ['anatel', 'procon', 'ligarOuvidoria', 'reclameAqui', 'consumidorGov', 'acaoJudicial'];
+        const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'CelsoRussomanno'];
 
         if (!state.isTicketOpen) {
             n1_buttons.forEach(key => { if(actions[key]) actions[key].disabled = false; });
@@ -669,8 +699,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Só loga a mensagem de status, não loga novamente a principal
                 logMessage(statusOutcome.text, sPaciencia, sProgresso);
                 state.paciencia += sPaciencia;
+                if (state.paciencia < 0) state.paciencia = 0; // Impede paciência negativa
                 if (state.paciencia > 100) state.paciencia = 100; // Cap at 100
                 state.progresso += sProgresso;
+                if (state.progresso < 0) state.progresso = 0; // Impede progresso negativo
+                if (state.progresso > 100) state.progresso = 100; // Cap at 100
                 const pIndex = state.protocols.findIndex(p => p.protocolNumber === state.activeN3Protocol.protocolNumber);
                 if (pIndex !== -1) state.protocols[pIndex].status = 'Encerrado';
                 if (statusOutcome.closesTicket) {
@@ -692,9 +725,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (deltaPaciencia < 0) shakeScreen();
 
         state.paciencia += deltaPaciencia;
+        if (state.paciencia < 0) state.paciencia = 0; // Impede paciência negativa
         if (state.paciencia > 100) state.paciencia = 100; // Cap at 100
 
         state.progresso += deltaProgresso;
+        if (state.progresso < 0) state.progresso = 0; // Impede progresso negativo
+        if (state.progresso > 100) state.progresso = 100; // Cap at 100
 
         // Show feedback modal
         showFeedbackModal(deltaPaciencia, deltaProgresso);
@@ -788,14 +824,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let rProgresso = randomEvent.progresso || 0;
         logMessage(`EVENTO ALEATÓRIO: ${randomEvent.text}`, rPaciencia, rProgresso);
         state.paciencia += rPaciencia;
+        if (state.paciencia < 0) state.paciencia = 0; // Impede paciência negativa
         if (state.paciencia > 100) state.paciencia = 100; // Cap at 100
-        if(randomEvent.progresso) {
-            state.progresso = randomEvent.progresso;
-        } else if (randomEvent.progresso === 0) {
-            state.progresso = 0;
-        } else {
-            state.progresso = Math.floor(state.progresso * 0.9);
+        if(randomEvent.progresso !== undefined) {
+            if (randomEvent.progresso === 0) {
+                state.progresso = 0;
+            } else {
+                state.progresso = randomEvent.progresso;
+            }
         }
+        // Se progresso não está definido no evento, não mexe no progresso atual
+        if (state.progresso < 0) state.progresso = 0; // Impede progresso negativo
+        if (state.progresso > 100) state.progresso = 100; // Cap at 100
 
         if (randomEvent.closesTicket && state.isTicketOpen) {
             state.isTicketOpen = false;
