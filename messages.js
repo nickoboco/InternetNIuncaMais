@@ -237,6 +237,7 @@ const messages = {
             { "text": "O agente de IA ficou preso em um loop e sempre respondia: 'Desculpe, não entendi.'.", "paciencia": -8 },
             { "text": "O agente de IA sugeriu uma solução que custava mais caro do que o seu problema.", "paciencia": -9 }
         ],
+    },
 	"receberTecnico": {
 		"positive": [
 			{ "text": "O técnico veio e resolveu o problema! ...só que não. Ele disse que o problema é na central e que vão te ligar.", "progresso": 6, "paciencia": 1 },
@@ -544,7 +545,7 @@ const messages = {
 			{ "text": "ANATEL solicitou relatório detalhado da empresa e acelerou a investigação.", "progresso": 12, "deadline": 5, "generatesProtocol": true },
 			{ "text": "ANATEL exigiu relatório de ação com prazo.", "progresso": 15, "deadline": 6,"generatesProtocol": true },
             { "text": "O protocolo da ANATEL foi gerado e a operadora foi oficialmente cobrada. Pelo menos alguém vai olhar.", "progresso": 10, "generatesProtocol": true, "deadline": 5, "paciencia": 8 },
-        { "text": "ANATEL confirmou recebimento da sua denúncia e prometeu atualização em 7 dias. A burocracia está funcionando.", "progresso": 15, "deadline": 7, "generatesProtocol": true }
+            { "text": "ANATEL confirmou recebimento da sua denúncia e prometeu atualização em 7 dias. A burocracia está funcionando.", "progresso": 15, "deadline": 7, "generatesProtocol": true }
 		],
 		"negative": [
 			{ "text": "A ANATEL informa que você precisa de um protocolo da ouvidoria da empresa, que você não tem.", "paciencia": -8 },
@@ -749,5 +750,5 @@ const messages = {
         { "text": "A operadora te enviou um e-mail de 'obrigado' por ser um cliente fiel.", "paciencia": -4 },
         { "text": "Você acessou o APP e descobriu que fecharam todos seus chamados há 3 dias.", "paciencia": -6, "closesTicket": true },
         ] 
-    }
-};
+}
+
