@@ -19,24 +19,31 @@ class RankingSystem {
     }
 
     // Calcular pontuação baseada nas métricas do jogo
-    calculateScore(gameData) {
+    calculateScore(gameData, isVictory = false) {
         const base = 1000;
-        const daysPenalty = gameData.days * 5;  // Reduzido de 10 para 5
-        const actionsPenalty = gameData.actions * 1;  // Reduzido de 2 para 1
-        const protocolsPenalty = gameData.protocols * 8;  // Reduzido de 15 para 8
-        const patienceBonus = gameData.remainingPatience * 3;  // Reduzido de 5 para 3
+        const daysPenalty = gameData.days * 5;
+        const actionsPenalty = gameData.actions * 1;
+        const protocolsPenalty = gameData.protocols * 8;
         
-        // Bônus de velocidade (ajustado para ser menos agressivo)
+        // Bônus só são aplicados na vitória
+        let patienceBonus = 0;
         let speedBonus = 0;
-        if (gameData.days <= 3) speedBonus = 200;  // Reduzido de 300 para 200
-        else if (gameData.days <= 5) speedBonus = 150;  // Reduzido de 200 para 150
-        else if (gameData.days <= 10) speedBonus = 75;  // Reduzido de 100 para 75
-        
-        // Bônus de eficiência (poucas ações) - ajustado
         let efficiencyBonus = 0;
-        if (gameData.actions <= 10) efficiencyBonus = 100;  // Reduzido de 150 para 100
-        else if (gameData.actions <= 15) efficiencyBonus = 75;  // Reduzido de 100 para 75
-        else if (gameData.actions <= 20) efficiencyBonus = 35;  // Reduzido de 50 para 35
+        
+        if (isVictory) {
+            // Bônus de paciência na vitória
+            patienceBonus = gameData.remainingPatience * 3;
+            
+            // Bônus de velocidade na vitória
+            if (gameData.days <= 3) speedBonus = 200;
+            else if (gameData.days <= 5) speedBonus = 150;
+            else if (gameData.days <= 10) speedBonus = 75;
+            
+            // Bônus de eficiência na vitória
+            if (gameData.actions <= 10) efficiencyBonus = 100;
+            else if (gameData.actions <= 15) efficiencyBonus = 75;
+            else if (gameData.actions <= 20) efficiencyBonus = 35;
+        }
 
         const finalScore = Math.max(0, 
             base - daysPenalty - actionsPenalty - protocolsPenalty + 

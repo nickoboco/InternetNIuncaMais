@@ -194,34 +194,30 @@ document.addEventListener('DOMContentLoaded', () => {
         if(isFullReset) {
             // Limpa o log e mostra a mensagem inicial no espaço reservado
             logArea.innerHTML = '';
-            logMessage('Bem-vindo ao teste de paciência! Sua internet <b>NIão FUNCIONA!</b> Quer tentar resolver? Use as ações ao lado e boa sorte!');
+            logMessage('Bem-vindo ao teste de paciência! Sua internet <b>NIão FUNCIONA!</b> Quer tentar resolver? Use as ações ao lado e cuide para não perder a paciência!');
         }
         
         // Restaura os botões do footer para o estado normal
         hideRestartButton();
         
-        // Reset completo do estilo visual dos botões N3
-        const n3_buttons = ['anatel', 'procon', 'ligarOuvidoria', 'reclameAqui', 'consumidorGov', 'defensoriaPublica', 'acaoJudicial'];
-        n3_buttons.forEach(key => {
-            if (actions[key]) {
-                actions[key].disabled = false;
-                actions[key].style.color = '';
-                actions[key].style.backgroundColor = '';
-            }
-        });
+        // Reset completo do estilo visual e estado de TODOS os botões
+        const allButtons = ['ligar', 'chamarWpp', 'abrirApp', 'irLoja', 'enviarEmail', 'usarAssistenteVirtual', 
+                           'receberTecnico', 'pegarStatusN2', 'reclamarRedeSocial', 'receberLigacao', 'chatOnline',
+                           'anatel', 'procon', 'ligarOuvidoria', 'reclameAqui', 'consumidorGov', 'defensoriaPublica', 'acaoJudicial',
+                           'arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'CelsoRussomanno', 'trocarOperadora'];
         
-        // Reset completo do estilo visual dos botões DIY
-        const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'CelsoRussomanno'];
-        n4_buttons.forEach(key => {
+        allButtons.forEach(key => {
             if (actions[key]) {
                 actions[key].disabled = false;
                 actions[key].style.color = '';
                 actions[key].style.backgroundColor = '';
                 actions[key].style.opacity = '';
                 
-                // Restaura texto original se existir
-                if (updateActionButtonsState.originalN4Texts && updateActionButtonsState.originalN4Texts[key]) {
-                    actions[key].textContent = updateActionButtonsState.originalN4Texts[key];
+                // Restaura texto original para botões N4 se existir
+                if (['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'CelsoRussomanno'].includes(key)) {
+                    if (updateActionButtonsState.originalN4Texts && updateActionButtonsState.originalN4Texts[key]) {
+                        actions[key].textContent = updateActionButtonsState.originalN4Texts[key];
+                    }
                 }
             }
         });
@@ -286,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
             remainingPatience: state.paciencia
         };
         
-        const scoreResult = rankingSystem.calculateScore(gameData);
+        const scoreResult = rankingSystem.calculateScore(gameData, false); // false = sem bônus durante o jogo
         currentScoreSpan.textContent = scoreResult.score;
     }
 
@@ -450,6 +446,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateActionButtonsState() {
+        // Debug para verificar estado do jogo
+        console.log('updateActionButtonsState - Estado:', {
+            isTicketOpen: state.isTicketOpen,
+            paciencia: state.paciencia,
+            activeN3Protocol: state.activeN3Protocol
+        });
+        
         Object.values(actions).forEach(button => {
             // Desabilita todos os botões exceto cancelar-plano
             if (button && button.id !== 'cancelar-plano') button.disabled = true;
@@ -468,16 +471,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        const n1_buttons = ['ligar', 'chamarWpp', 'abrirApp', 'irLoja', 'enviarEmail', 'usarAssistenteVirtual'];
+        const n1_buttons = ['ligar', 'chamarWpp', 'abrirApp', 'irLoja', 'enviarEmail', 'usarAssistenteVirtual', 'chatOnline'];
         const n2_buttons = ['receberTecnico', 'pegarStatusN2', 'reclamarRedeSocial', 'receberLigacao'];
         // Inclui ligarOuvidoria no N3
         const n3_buttons = ['anatel', 'procon', 'ligarOuvidoria', 'reclameAqui', 'consumidorGov', 'acaoJudicial'];
         const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'CelsoRussomanno'];
 
         if (!state.isTicketOpen) {
+            console.log('Habilitando botões N1:', n1_buttons);
             n1_buttons.forEach(key => { if(actions[key]) actions[key].disabled = false; });
         } else {
+            console.log('Habilitando botões N2:', n2_buttons);
             n2_buttons.forEach(key => { if(actions[key]) actions[key].disabled = false; });
+        }
+        
+        // Sempre habilita trocar operadora
+        if (actions.trocarOperadora) {
+            actions.trocarOperadora.disabled = false;
         }
 
         if (state.paciencia <= 60) {
@@ -1017,7 +1027,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 onReject = () => nextCancellationEvent();
                 break;
             case 2:
-                const fine = Math.floor(Math.random() * 100) + 50;
+                const fine = Math.floor(Math.random() * 685) + 400;
                 msg = `Disseram que você terá que pagar uma multa de R$ ${fine},00. Aceita pagar a multa?`;
                 onAccept = () => {
                     logMessage(`O boleto de pagamento falhou e te transferiram para o setor de retenção.`);
@@ -1036,7 +1046,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 4:
                 msg = 'A operadora te fez uma última oferta: 1 ano de Netflix grátis. Aceitar ou cancelar de vez?';
                 onAccept = () => { logMessage('Você aceitou a oferta. O pesadelo continua!'); hideCancellationModal(); };
-                onAcceptSecond = () => { logMessage('Não há como rejeitar o destino. Apenas aceite e siga em frente.'); hideCancellationModal() };
+                onAcceptSecond = () => { logMessage('Não há como rejeitar essa oferta. Apenas aceite e siga em frente. Pelo menos agora você tem Netflix grátis por 1 ano.'); hideCancellationModal() };
                 onReject = () => {
                     modalReject.textContent = 'ACEITAR!';
                     modalReject.style.backgroundColor = '#4CAF50'; // Green like the accept button
@@ -1074,7 +1084,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Calcular pontuação
-        const scoreResult = rankingSystem.calculateScore(gameData);
+        const scoreResult = rankingSystem.calculateScore(gameData, true); // true = com bônus na vitória
         
         // Preencher dados do modal
         document.getElementById('victory-days').textContent = gameData.days;
