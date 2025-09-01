@@ -6,6 +6,8 @@ test-firebase.html
 DEPLOY.md
 firebase-security-setup.js
 firestore.rules
+*firebase*
+*example*
 
 # Logs
 *.log
