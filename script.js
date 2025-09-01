@@ -1388,9 +1388,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // === FIREBASE CONFIGURATION ===
-// SUBSTITUA PELA SUA CONFIGURAÇÃO DO FIREBASE
 const firebaseConfig = {
-  apiKey: "AIzaSyA-7Du4OFJ75KYUw-o0yJKAnpREwjJb69g",
+  apiKey: "__FIREBASE_KEY__",
   authDomain: "internetniuncamais.firebaseapp.com",
   projectId: "internetniuncamais",
   storageBucket: "internetniuncamais.firebasestorage.app",
