@@ -1,0 +1,24 @@
+# Arquivos sensíveis
+.env
+firebase-config-local.js
+test-firebase.html
+*.env
+DEPLOY.md
+firebase-security-setup.js
+firestore.rules
+
+# Logs
+*.log
+
+# Cache e temporários
+.cache/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
