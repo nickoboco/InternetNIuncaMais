@@ -204,7 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const allButtons = ['ligar', 'chamarWpp', 'abrirApp', 'irLoja', 'enviarEmail', 'usarAssistenteVirtual', 
                            'receberTecnico', 'pegarStatusN2', 'reclamarRedeSocial', 'receberLigacao', 'chatOnline',
                            'anatel', 'procon', 'ligarOuvidoria', 'reclameAqui', 'consumidorGov', 'defensoriaPublica', 'acaoJudicial',
-                           'arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'CelsoRussomanno', 'trocarOperadora'];
+                           'arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'CelsoRussomanno', 'trocarOperadora',
+                           'esperar', 'cancelarPlano'];
         
         allButtons.forEach(key => {
             if (actions[key]) {
@@ -282,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
             remainingPatience: state.paciencia
         };
         
-        const scoreResult = rankingSystem.calculateScore(gameData, false); // false = sem bônus durante o jogo
+        const scoreResult = rankingSystem.calculateScore(gameData); // Sistema simplificado sem bônus
         currentScoreSpan.textContent = scoreResult.score;
     }
 
@@ -1058,8 +1059,25 @@ document.addEventListener('DOMContentLoaded', () => {
             remainingPatience: state.paciencia
         };
 
+        // Reset do estado do modal para permitir nova inserção
+        const playerNameInput = document.getElementById('player-name');
+        const submitBtn = document.getElementById('submit-score');
+        const skipBtn = document.getElementById('skip-ranking');
+        const statusDiv = document.getElementById('ranking-status');
+        
+        // Restaurar estado inicial dos elementos
+        playerNameInput.value = '';
+        playerNameInput.style.display = 'block';
+        submitBtn.style.display = 'block';
+        submitBtn.disabled = false;
+        skipBtn.textContent = 'Pular Ranking';
+        statusDiv.textContent = '';
+        statusDiv.className = 'ranking-status';
+        
+        console.log('Modal de vitória resetado para permitir nova inserção');
+
         // Calcular pontuação
-        const scoreResult = rankingSystem.calculateScore(gameData, true); // true = com bônus na vitória
+        const scoreResult = rankingSystem.calculateScore(gameData); // Sistema simplificado sem bônus
         
         // Preencher dados do modal
         document.getElementById('victory-days').textContent = gameData.days;

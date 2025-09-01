@@ -19,35 +19,15 @@ class RankingSystem {
     }
 
     // Calcular pontuação baseada nas métricas do jogo
-    calculateScore(gameData, isVictory = false) {
+    calculateScore(gameData) {
         const base = 1000;
         const daysPenalty = gameData.days * 5;
         const actionsPenalty = gameData.actions * 1;
         const protocolsPenalty = gameData.protocols * 8;
         
-        // Bônus só são aplicados na vitória
-        let patienceBonus = 0;
-        let speedBonus = 0;
-        let efficiencyBonus = 0;
-        
-        if (isVictory) {
-            // Bônus de paciência na vitória
-            patienceBonus = gameData.remainingPatience * 3;
-            
-            // Bônus de velocidade na vitória
-            if (gameData.days <= 3) speedBonus = 200;
-            else if (gameData.days <= 5) speedBonus = 150;
-            else if (gameData.days <= 10) speedBonus = 75;
-            
-            // Bônus de eficiência na vitória
-            if (gameData.actions <= 10) efficiencyBonus = 100;
-            else if (gameData.actions <= 15) efficiencyBonus = 75;
-            else if (gameData.actions <= 20) efficiencyBonus = 35;
-        }
-
+        // Sistema simplificado: apenas penalidades, sem bônus
         const finalScore = Math.max(0, 
-            base - daysPenalty - actionsPenalty - protocolsPenalty + 
-            patienceBonus + speedBonus + efficiencyBonus
+            base - daysPenalty - actionsPenalty - protocolsPenalty
         );
 
         return {
@@ -57,9 +37,9 @@ class RankingSystem {
                 daysPenalty: -daysPenalty,
                 actionsPenalty: -actionsPenalty,
                 protocolsPenalty: -protocolsPenalty,
-                patienceBonus,
-                speedBonus,
-                efficiencyBonus
+                patienceBonus: 0,
+                speedBonus: 0,
+                efficiencyBonus: 0
             }
         };
     }

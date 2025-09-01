@@ -93,24 +93,16 @@ NIuncamaisinternet/
 ## 🏆 Sistema de Ranking
 
 ### 📊 **Pontuação**
-O jogo possui um sistema competitivo de ranking global hospedado no Firebase:
+O jogo possui um sistema de ranking global hospedado no Firebase:
 
 ```javascript
-// Durante o jogo: apenas penalidades
+// Sistema simplificado e consistente
 Score = 1000 - (dias×5) - (ações×1) - (protocolos×8)
 
-// Na vitória: aplicação de bônus
-+ (paciência_restante×3) + bônus_velocidade + bônus_eficiência
-
-Bônus Velocidade (apenas na vitória):
-- ≤3 dias: +200 pontos
-- ≤5 dias: +150 pontos  
-- ≤10 dias: +75 pontos
-
-Bônus Eficiência (apenas na vitória):
-- ≤10 ações: +100 pontos
-- ≤15 ações: +75 pontos
-- ≤20 ações: +35 pontos
+Exemplos:
+- Vitória rápida (1 dia, 5 ações, 0 protocolos): 990 pontos
+- Vitória média (10 dias, 20 ações, 2 protocolos): 954 pontos  
+- Vitória lenta (30 dias, 50 ações, 5 protocolos): 860 pontos
 ```
 
 ### 🎯 **Recursos do Ranking**
