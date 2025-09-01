@@ -2,7 +2,7 @@ name: Deploy Firebase App
 
 on:
   push:
-    branches: [ "main" ]  # dispara sempre que fizer push na branch main
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -10,25 +10,26 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Substitui o placeholder pela secret do GitHub
       - name: Replace Firebase Key
         run: |
           sed -i "s|__FIREBASE_KEY__|${{ secrets.FIREBASE_KEY }}|g" script.js
 
-      # Prepara os arquivos da raiz para deploy no GitHub Pages
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
   deploy:
     needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages   # 👈 obrigatório pro deploy funcionar
     permissions:
       pages: write
       id-token: write
-    runs-on: ubuntu-latest
+
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
