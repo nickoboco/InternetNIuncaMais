@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIunca mais internet!</title>
+    <title>Internet NIunca mais!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="title-area">
-            <h1 class="game-title">NIunca mais internet!</h1>
+            <h1 class="game-title">Internet NIunca mais!</h1>
             <div class="title-buttons">
                 <button id="howto-btn" class="title-btn">❓ Como jogar</button>
                 <a href="https://www.linkedin.com/in/nickolas-selhorst/" class="title-btn" target="_blank" rel="noopener">💼 LinkedIn</a>
@@ -41,6 +41,10 @@
                 </div>
                 <span class="score-label">Resolução</span>
                 <span id="progress-bar-text">0%</span>
+            </div>
+            <div class="header-block">
+                <span class="score-label">Pontuação</span>
+                <span id="current-score">1000</span>
             </div>
         </div>
 
@@ -119,8 +123,8 @@
     </div>
     <div id="intro-modal" class="modal" style="display: flex;">
         <div class="modal-content">
-            <h2>Bem-vindo ao NIunca mais internet!</h2>
-            <p>O <b>NIunca mais internet!</b> é a sua chance de se estressar com essa operadora que vai testar sua <b>paciência</b>.  
+            <h2>Bem-vindo ao Internet NIunca mais!</h2>
+            <p>O <b>Internet NIunca mais!</b> é a sua chance de se estressar com essa operadora que vai testar sua <b>paciência</b>.  
                 Enfrente o desafio de tentar resolver seu problema de internet e se arrependa do dia em que se tornou um cliente.</p> 
             <p>A sua jornada de paciência começa agora!</p>
             <div class="modal-buttons">
@@ -145,7 +149,7 @@
     <div id="howto-modal" class="howto-modal">
         <div class="howto-modal-content">
             <div class="howto-body">
-                <h2>🎮 Como Jogar - NIunca mais internet!</h2>
+                <h2>🎮 Como Jogar - Internet NIunca mais!</h2>
                 
                 <div class="howto-grid">
                     <div class="howto-section">
@@ -155,9 +159,9 @@
                         <h3>🎲 Sistema de Probabilidade</h3>
                         <ul>
                             <li><strong>50%</strong> chance positiva/negativa por ação</li>
+                            <li><strong>5%</strong> chance de eventos aleatórios</li>
                             <li><span style="color: #28a745;">Positivos</span> aumentam progresso</li>
                             <li><span style="color: #dc3545;">Negativos</span> diminuem paciência</li>
-                            <li><strong>5%</strong> chance de eventos aleatórios</li>
                         </ul>
                     </div>
                     
@@ -172,7 +176,7 @@
                         
                         <h3>⚖️ Protocolos N3</h3>
                         <ul>
-                            <li>Uso único por jogo</li>
+                            <li>Uso único por jogo se abrir protocolo</li>
                             <li>Prazos específicos para aguardar</li>
                             <li>Ação bloqueada após encerramento</li>
                         </ul>
@@ -185,6 +189,17 @@
                             <li><strong>Derrota:</strong> Paciência = 0</li>
                             <li><strong>Alternativa:</strong> "Cancelar plano"</li>
                         </ul>
+                        
+                        <h3>🏆 Sistema de Pontuação</h3>
+                        <ul>
+                            <li><strong>Base:</strong> 1000 pontos</li>
+                            <li><strong>Dias:</strong> -5 pontos cada</li>
+                            <li><strong>Ações:</strong> -1 ponto cada</li>
+                            <li><strong>Protocolos:</strong> -8 pontos cada</li>
+                            <li><strong>Paciência:</strong> +3 pontos cada</li>
+                            <li><strong>Bônus velocidade:</strong> até +200</li>
+                            <li><strong>Bônus eficiência:</strong> até +100</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -195,6 +210,98 @@
         </div>
     </div>
 
+    <!-- Victory Modal with Ranking -->
+    <div id="victory-modal" class="modal" style="display:none;">
+        <div class="modal-content victory-content">
+            <h2>🎉 MILAGRE! Você conseguiu resolver!</h2>
+            <div class="victory-stats">
+                <div class="stat-item">
+                    <span class="stat-label">📅 Dias sem internet:</span>
+                    <span id="victory-days">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">🎯 Ações tomadas:</span>
+                    <span id="victory-actions">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">📋 Protocolos abertos:</span>
+                    <span id="victory-protocols">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">😌 Paciência restante:</span>
+                    <span id="victory-patience">0</span>
+                </div>
+            </div>
+            
+            <div class="score-display">
+                <h3>Sua Pontuação Final</h3>
+                <div class="final-score">
+                    <span id="final-score">0</span> pontos
+                </div>
+                <div class="score-breakdown" id="score-breakdown">
+                    <!-- Será preenchido via JavaScript -->
+                </div>
+            </div>
+            
+            <div class="ranking-submit">
+                <h4>🏆 Salvar no Ranking Global</h4>
+                <input type="text" id="player-name" placeholder="Digite seu nome (máx. 20 caracteres)" maxlength="20">
+                <div class="ranking-buttons">
+                    <button id="submit-score" class="btn-primary">Salvar Pontuação</button>
+                    <button id="skip-ranking" class="btn-secondary">Pular</button>
+                </div>
+                <div id="ranking-status" class="ranking-status"></div>
+            </div>
+            
+            <div class="victory-actions">
+                <button id="view-rankings" class="btn-ranking">Ver Ranking Global</button>
+                <button id="victory-restart" class="btn-restart">Jogar Novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ranking Modal -->
+    <div id="ranking-modal" class="modal" style="display:none;">
+        <div class="modal-content ranking-content">
+            <div class="ranking-header">
+                <h2>🏆 Ranking Global - Internet NIunca mais!</h2>
+                <button id="ranking-close" class="close-btn">×</button>
+            </div>
+            
+            <div class="ranking-stats" id="global-stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="total-games">-</span>
+                    <span class="stat-label">Jogos Totais</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="avg-score">-</span>
+                    <span class="stat-label">Pontuação Média</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="top-score">-</span>
+                    <span class="stat-label">Recorde</span>
+                </div>
+            </div>
+            
+            <div class="ranking-list-container">
+                <div class="ranking-list" id="ranking-list">
+                    <div class="loading">Carregando rankings...</div>
+                </div>
+            </div>
+            
+            <div class="ranking-footer">
+                <button id="refresh-rankings" class="btn-secondary">🔄 Atualizar</button>
+                <button id="close-rankings" class="btn-primary">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Scripts do jogo -->
+    <script src="ranking.js"></script>
     <script src="messages.js"></script>
     <script src="script.js"></script>
 </body>

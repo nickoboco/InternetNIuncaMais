@@ -99,12 +99,48 @@ http://localhost:8000
 
 ```
 gravatela/
-├── index.html          # Página principal
-├── style.css           # Estilos e layout responsivo
-├── script.js           # Lógica principal do jogo
-├── messages.js         # Banco de mensagens e outcomes
-└── README.md           # Este arquivo
+├── index.html              # Página principal
+├── style.css               # Estilos e layout responsivo
+├── script.js               # Lógica principal do jogo
+├── messages.js             # Banco de mensagens e outcomes
+├── ranking.js              # Sistema de ranking e Firebase
+├── firebase-config.js      # Configuração do Firebase
+└── README.md               # Este arquivo
 ```
+
+---
+
+## 🏆 Sistema de Ranking
+
+### 📊 **Pontuação**
+O jogo agora possui um sistema competitivo de ranking global:
+
+```javascript
+Score = 1000 - (dias×10) - (ações×2) - (protocolos×15) + 
+        (paciência×5) + bônus_velocidade + bônus_eficiência
+
+Bônus Velocidade:
+- ≤3 dias: +300 pontos
+- ≤5 dias: +200 pontos  
+- ≤10 dias: +100 pontos
+
+Bônus Eficiência:
+- ≤10 ações: +150 pontos
+- ≤15 ações: +100 pontos
+- ≤20 ações: +50 pontos
+```
+
+### 🎯 **Categorias de Ranking**
+- **🏃‍♂️ Geral**: Melhor pontuação geral
+- **📅 Hoje**: Melhores scores do dia
+- **📊 Semanal**: Top da semana
+- **📈 Mensal**: Ranking do mês
+
+### 🔧 **Configuração do Firebase**
+1. Crie um projeto no [Firebase Console](https://console.firebase.google.com)
+2. Ative o Firestore Database
+3. Configure as regras de segurança (veja `firebase-config.js`)
+4. Copie sua configuração para `script.js`
 
 ---
 

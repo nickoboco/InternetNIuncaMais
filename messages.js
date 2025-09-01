@@ -2,7 +2,7 @@ const messages = {
 	"ligar": {
 		"positive": [
 			{ "text": "O atendente abriu um chamado e te passou o protocolo. Agora é esperar.", "progresso": 3, "paciencia": 1, "opensTicket": true },
-			{ "text": "Depois de explicar tudo em detalhes 5 vezes, finalmente abriram um chamado para você.", "progresso": 3, "paciencia": -5, "opensTicket": true },
+			{ "text": "Depois de explicar tudo em detalhes 5 vezes, finalmente abriram um chamado para você.", "progresso": 3, "paciencia": 2, "opensTicket": true },
 			{ "text": "O atendente falou que sente muito pela sua situação e abriu um chamado.", "progresso": 3, "paciencia": 2, "opensTicket": true },
 			{ "text": "Seu caso foi registrado e está em análise.", "progresso": 3, "paciencia": 2, "opensTicket": true },
 			{ "text": "O sistema gerou um chamado para sua reclamação.", "progresso": 3, "paciencia": 1, "opensTicket": true },
@@ -125,7 +125,7 @@ const messages = {
             { "text": "O agente de IA te transferiu para um atendente humano que te informou que o agente de IA errou.", "paciencia": -7 },
             { "text": "O agente de IA te deu uma resposta incorreta e você foi cobrado por um serviço que não contratou.", "paciencia": -8 },
             { "text": "O agente de IA te fez várias perguntas, mas no final te informou que 'não pode te ajudar'.", "paciencia": -6 },
-            { "text": "O agente de IA te transferiu para outro agente de IA, que te transferiu novamente. Esse 'loop' te custou 9 pontos de paciência.", "paciencia": -9 },
+            { "text": "O agente de IA te transferiu para outro agente de IA, que te transferiu novamente. ", "paciencia": -9 },
             { "text": "O agente de IA te pediu para repetir a mesma informação quatro vezes.", "paciencia": -6 },
             { "text": "Você digitou a opção 'falar com atendente' e o agente de IA te deu uma resposta pré-gravada.", "paciencia": -7 },
             { "text": "O agente de IA identificou o seu problema, mas te pediu para ligar para outro número para resolver.", "paciencia": -5 },
@@ -277,7 +277,7 @@ const messages = {
     },
 	"procon": {
 		"positive": [
-			{ "text": "Você abriu uma reclamação no Procon. A empresa tem 10 dias para responder. Protocolo gerado.", "generatesProtocol": true, "deadline": 5, "paciencia": 5 },
+			{ "text": "Você abriu uma reclamação no Procon. A empresa tem 5 dias para responder. Protocolo gerado.", "generatesProtocol": true, "deadline": 5, "paciencia": 5 },
 			{ "text": "Procon notificou a empresa e houve primeiro contato.", "progresso": 10, "generatesProtocol": true, "deadline": 5 },
 			{ "text": "Procon confirmou recebimento e incluiu seu caso em relatório público.", "progresso": 5, "generatesProtocol": true, "deadline": 5 }
 		],

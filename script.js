@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const actionsCounterSpan = document.getElementById('actions-counter');
     const progressBar = document.getElementById('progress-bar');
     const progressBarText = document.getElementById('progress-bar-text');
+    const currentScoreSpan = document.getElementById('current-score');
     const logArea = document.getElementById('log');
     const protocolListDiv = document.getElementById('protocol-list');
 
@@ -82,6 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Core Functions ---
 
     function initializeGame() {
+        console.log('initializeGame chamada');
+        
         introStartBtn.onclick = () => {
             introModal.style.display = 'none';
             resetGame();
@@ -97,14 +100,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Register other event listeners once
-        Object.keys(actions).forEach(key => {
-            if (actions[key] && key !== 'cancelarPlano') {
-                actions[key].addEventListener('click', () => triggerAction(key));
+        // Register other event listeners once (evita duplicação)
+        if (!initializeGame.eventListenersAdded) {
+            Object.keys(actions).forEach(key => {
+                if (actions[key] && key !== 'cancelarPlano') {
+                    actions[key].addEventListener('click', () => triggerAction(key));
+                }
+            });
+            if (actions.cancelarPlano) {
+                actions.cancelarPlano.addEventListener('click', startCancellationSequence);
             }
-        });
-        if (actions.cancelarPlano) {
-            actions.cancelarPlano.addEventListener('click', startCancellationSequence);
+            initializeGame.eventListenersAdded = true;
+            console.log('Event listeners adicionados uma única vez');
         }
         
         // Event listeners para How to Play modal
@@ -204,13 +211,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         // Reset completo do estilo visual dos botões DIY
-        const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'trocarOperadora', 'CelsoRussomanno'];
+        const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'CelsoRussomanno'];
         n4_buttons.forEach(key => {
             if (actions[key]) {
                 actions[key].disabled = false;
                 actions[key].style.color = '';
                 actions[key].style.backgroundColor = '';
                 actions[key].style.opacity = '';
+                
+                // Restaura texto original se existir
+                if (updateActionButtonsState.originalN4Texts && updateActionButtonsState.originalN4Texts[key]) {
+                    actions[key].textContent = updateActionButtonsState.originalN4Texts[key];
+                }
             }
         });
         
@@ -235,6 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
     actionsCounterSpan.textContent = state.actionsTaken;
         progressBar.style.width = `${state.progresso}%`;
         progressBarText.textContent = `${state.progresso}%`;
+        
+        // Atualiza pontuação em tempo real
+        updateCurrentScore();
 
     // Update patience bar (diminui para a esquerda)
     const pacienciaPercent = Math.max(0, Math.min(100, state.paciencia));
@@ -254,6 +269,27 @@ document.addEventListener('DOMContentLoaded', () => {
         pacienciaBar.style.background = '#dc3545';
     }
 
+    function updateCurrentScore() {
+        if (!state) return;
+        
+        // Verifica se o rankingSystem está disponível
+        if (typeof rankingSystem === 'undefined') {
+            currentScoreSpan.textContent = '0';
+            return;
+        }
+        
+        // Calcula a pontuação atual usando o sistema de ranking
+        const gameData = {
+            days: state.daysPassed,
+            actions: state.actionsTaken,
+            protocols: state.protocols.length,
+            remainingPatience: state.paciencia
+        };
+        
+        const scoreResult = rankingSystem.calculateScore(gameData);
+        currentScoreSpan.textContent = scoreResult.score;
+    }
+
         if (state.paciencia <= 0) {
             const resumoGameOver = `Sua paciência acabou após ${state.daysPassed} dias tentando resolver o problema, tendo aberto ${state.protocols.length} chamados e tomado ${state.actionsTaken} ações. Você decide viver sem internet mesmo, pois no fim, NIem vale a pena..`;
             showGameoverModal(resumoGameOver);
@@ -262,6 +298,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (state.progresso >= 100) {
+            // LOG DE SUCESSO - Registra vitória no histórico do jogo
+            logVictoryMessage('🎉 VITÓRIA! Problema resolvido com sucesso! Internet funcionando 100%!');
+            
             // Fecha todos os protocolos quando o jogo encerra
             state.protocols.forEach(p => {
                 if (p.status === 'Em andamento') p.status = 'Encerrado';
@@ -271,9 +310,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fecha chamado se estiver aberto
             state.isTicketOpen = false;
             
-            const resumoMsg = `MILAGRE! Você conseguiu resolver seu problema de internet em ${state.daysPassed} dias abrindo somente ${state.protocols.length} chamados e tomando ${state.actionsTaken} ações. Seria uma pena se a operadora deixasse de atender seu endereço mês que vem..`;
-            showFinalModal(resumoMsg);
-            // Não bloqueia os botões automaticamente - só quando o user clicar em "Fechar"
+            // Mostra modal de vitória com sistema de ranking
+            showVictoryModal();
+            return; // Evita múltiplos modais
         }
 
     // Modal de finalização
@@ -477,6 +516,18 @@ document.addEventListener('DOMContentLoaded', () => {
         n4_buttons.forEach(key => { 
             if (actions[key]) {
                 const usageCount = state.diyUsageCount[key] || 0;
+                
+                // Usa texto original já capturado
+                const originalText = updateActionButtonsState.originalN4Texts[key];
+                if (originalText) {
+                    if (usageCount > 0) {
+                        actions[key].textContent = `${originalText} (${usageCount}/2)`;
+                        console.log(`Atualizando ${key}: "${originalText}" -> "${originalText} (${usageCount}/2)"`);
+                    } else {
+                        actions[key].textContent = originalText;
+                    }
+                }
+                
                 if (usageCount >= 2) {
                     actions[key].disabled = true;
                     actions[key].style.color = '#666';
@@ -536,6 +587,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function disableAllGameButtons() {
+        // Bloqueia todos os botões de ação do jogo
+        Object.values(actions).forEach(button => {
+            if (button) {
+                button.disabled = true;
+                // Adiciona um visual feedback de que o jogo terminou
+                button.style.opacity = '0.5';
+            }
+        });
+        
+        // Bloqueia também outros botões específicos
+        const howtoBtn = document.getElementById('howto-btn');
+        if (howtoBtn) {
+            howtoBtn.disabled = true;
+            howtoBtn.style.opacity = '0.5';
+        }
+        
+        console.log('Todos os botões do jogo foram bloqueados após vitória');
+    }
+
     function logMessage(message, pacienciaDelta = 0, progressoDelta = 0) {
         // Mostra mensagem em tempo real no espaço reservado
         let feedback = '';
@@ -587,6 +658,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function logVictoryMessage(message) {
+        // Adiciona mensagem de vitória diretamente ao log com estilo especial
+        const p = document.createElement('p');
+        p.className = 'log-entry victory';
+        p.innerHTML = message;
+        // Adiciona no TOPO do log (mensagem mais recente em cima)
+        if (logArea.firstChild) {
+            logArea.insertBefore(p, logArea.firstChild);
+        } else {
+            logArea.appendChild(p);
+        }
+    }
+
     function updateProtocolListUI() {
         protocolListDiv.innerHTML = '';
         if (state.protocols.length === 0) {
@@ -614,6 +698,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function triggerAction(actionType) {
         if (!state) return;
         
+        // Proteção contra execução dupla
+        if (triggerAction.isExecuting) {
+            console.log(`triggerAction já executando para ${actionType}, ignorando chamada duplicada`);
+            return;
+        }
+        triggerAction.isExecuting = true;
+        
+        console.log(`triggerAction chamada para: ${actionType}`);
+        
         // Incrementa contador de ações tomadas
         state.actionsTaken++;
         
@@ -622,6 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (Math.random() < 0.0002) {
             triggerMiracle();
+            triggerAction.isExecuting = false;
             return;
         }
 
@@ -629,6 +723,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof messages !== 'undefined' && messages.random && Math.random() < 0.05) {
             triggerRandomEvent();
             updateUI();
+            triggerAction.isExecuting = false;
             return; // Para aqui - não executa a ação normal
         }
 
@@ -636,6 +731,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (actionType === 'esperar') {
             handleEsperarAction();
+            triggerAction.isExecuting = false;
             return;
         } else {
             outcome = getOutcome(actionType, Math.random() > 0.5);
@@ -670,17 +766,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Incrementa contador de uso para botões DIY (nível 4)
-        const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'trocarOperadora', 'CelsoRussomanno'];
+        const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'CelsoRussomanno'];
         if (n4_buttons.includes(actionType)) {
             if (!state.diyUsageCount[actionType]) {
                 state.diyUsageCount[actionType] = 0;
             }
+            const prevCount = state.diyUsageCount[actionType];
             state.diyUsageCount[actionType]++;
+            console.log(`Ação ${actionType}: ${prevCount} -> ${state.diyUsageCount[actionType]} (incrementado uma vez)`);
         }
 
         if (outcome) {
             processOutcome(outcome, actionType);
         }
+        
+        // Libera proteção contra execução dupla
+        triggerAction.isExecuting = false;
         
         updateUI();
     }
@@ -962,6 +1063,357 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- RANKING SYSTEM FUNCTIONS ---
+
+    function showVictoryModal() {
+        const gameData = {
+            days: state.daysPassed,
+            actions: state.actionsTaken,
+            protocols: state.protocols.length,
+            remainingPatience: state.paciencia
+        };
+
+        // Calcular pontuação
+        const scoreResult = rankingSystem.calculateScore(gameData);
+        
+        // Preencher dados do modal
+        document.getElementById('victory-days').textContent = gameData.days;
+        document.getElementById('victory-actions').textContent = gameData.actions;
+        document.getElementById('victory-protocols').textContent = gameData.protocols;
+        document.getElementById('victory-patience').textContent = gameData.remainingPatience;
+        document.getElementById('final-score').textContent = scoreResult.score;
+        
+        // Criar breakdown da pontuação
+        const breakdown = scoreResult.breakdown;
+        const breakdownContainer = document.getElementById('score-breakdown');
+        breakdownContainer.innerHTML = '';
+        
+        const breakdownItems = [
+            { label: '📊 Base', value: breakdown.base, positive: true },
+            { label: '📅 Dias (-5 cada)', value: breakdown.daysPenalty, positive: false },
+            { label: '🎯 Ações (-1 cada)', value: breakdown.actionsPenalty, positive: false },
+            { label: '📋 Protocolos (-8 cada)', value: breakdown.protocolsPenalty, positive: false },
+            { label: '😌 Paciência (+3 cada)', value: breakdown.patienceBonus, positive: true },
+            { label: '⚡ Bônus Velocidade', value: breakdown.speedBonus, positive: true },
+            { label: '🎯 Bônus Eficiência', value: breakdown.efficiencyBonus, positive: true }
+        ];
+        
+        breakdownItems.forEach(item => {
+            if (item.value !== 0) {
+                const div = document.createElement('div');
+                div.className = `breakdown-item ${item.positive ? 'breakdown-positive' : 'breakdown-negative'}`;
+                div.innerHTML = `
+                    <span>${item.label}</span>
+                    <span>${item.value > 0 ? '+' : ''}${item.value}</span>
+                `;
+                breakdownContainer.appendChild(div);
+            }
+        });
+        
+        // Mostrar modal
+        document.getElementById('victory-modal').style.display = 'flex';
+        
+        // Event listeners para os botões
+        setupVictoryModalEvents(gameData, scoreResult.score);
+    }
+
+    function setupVictoryModalEvents(gameData, finalScore) {
+        const submitBtn = document.getElementById('submit-score');
+        const skipBtn = document.getElementById('skip-ranking');
+        const viewRankingsBtn = document.getElementById('view-rankings');
+        const victoryRestartBtn = document.getElementById('victory-restart');
+        const playerNameInput = document.getElementById('player-name');
+        const statusDiv = document.getElementById('ranking-status');
+
+        // Limpar event listeners anteriores
+        submitBtn.replaceWith(submitBtn.cloneNode(true));
+        skipBtn.replaceWith(skipBtn.cloneNode(true));
+        viewRankingsBtn.replaceWith(viewRankingsBtn.cloneNode(true));
+        victoryRestartBtn.replaceWith(victoryRestartBtn.cloneNode(true));
+
+        // Referenciar os novos elementos
+        const newSubmitBtn = document.getElementById('submit-score');
+        const newSkipBtn = document.getElementById('skip-ranking');
+        const newViewRankingsBtn = document.getElementById('view-rankings');
+        const newVictoryRestartBtn = document.getElementById('victory-restart');
+
+        newSubmitBtn.addEventListener('click', async () => {
+            const playerName = playerNameInput.value.trim();
+            
+            if (!playerName) {
+                showRankingStatus('Por favor, digite seu nome!', 'error');
+                return;
+            }
+            
+            if (playerName.length > 20) {
+                showRankingStatus('Nome muito longo! Máximo 20 caracteres.', 'error');
+                return;
+            }
+
+            try {
+                showRankingStatus('Salvando pontuação...', 'loading');
+                newSubmitBtn.disabled = true;
+                
+                const result = await rankingSystem.saveScore(playerName, gameData);
+                
+                if (result.success) {
+                    showRankingStatus(`Pontuação salva com sucesso! Score: ${result.score}`, 'success');
+                    playerNameInput.style.display = 'none';
+                    newSubmitBtn.style.display = 'none';
+                    newSkipBtn.textContent = 'Continuar';
+                } else {
+                    throw new Error('Falha ao salvar');
+                }
+            } catch (error) {
+                console.error('Erro ao salvar pontuação:', error);
+                showRankingStatus('Erro ao salvar pontuação. Tente novamente.', 'error');
+                newSubmitBtn.disabled = false;
+            }
+        });
+
+        newSkipBtn.addEventListener('click', () => {
+            document.getElementById('victory-modal').style.display = 'none';
+            // Bloqueia todos os botões do jogo após vitória
+            disableAllGameButtons();
+            // Opcional: mostrar botão restart no footer ou resetar automaticamente
+            showRestartButton();
+        });
+
+        newViewRankingsBtn.addEventListener('click', () => {
+            showRankingModal();
+        });
+
+        newVictoryRestartBtn.addEventListener('click', () => {
+            document.getElementById('victory-modal').style.display = 'none';
+            resetGame(true);
+        });
+
+        // Enter para submeter
+        playerNameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                newSubmitBtn.click();
+            }
+        });
+    }
+
+    function showRankingStatus(message, type) {
+        const statusDiv = document.getElementById('ranking-status');
+        statusDiv.textContent = message;
+        statusDiv.className = `ranking-status ${type}`;
+    }
+
+    async function showRankingModal() {
+        document.getElementById('ranking-modal').style.display = 'flex';
+        
+        // Verificar se já foi inicializado
+        if (!document.getElementById('ranking-modal').hasAttribute('data-initialized')) {
+            setupRankingModalEvents();
+            document.getElementById('ranking-modal').setAttribute('data-initialized', 'true');
+        }
+        
+        // Garantir que o filtro "all" esteja ativo
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.filter === 'all') {
+                btn.classList.add('active');
+            }
+        });
+        
+        // Carregar rankings
+        await loadRankings();
+        await loadGlobalStats();
+    }
+
+    function setupRankingModalEvents() {
+        // Close buttons
+        const rankingClose = document.getElementById('ranking-close');
+        if (rankingClose) {
+            rankingClose.replaceWith(rankingClose.cloneNode(true));
+            document.getElementById('ranking-close').addEventListener('click', () => {
+                document.getElementById('ranking-modal').style.display = 'none';
+            });
+        }
+
+        const closeRankings = document.getElementById('close-rankings');
+        if (closeRankings) {
+            closeRankings.replaceWith(closeRankings.cloneNode(true));
+            document.getElementById('close-rankings').addEventListener('click', () => {
+                document.getElementById('ranking-modal').style.display = 'none';
+            });
+        }
+
+        // Refresh button
+        const refreshBtn = document.getElementById('refresh-rankings');
+        if (refreshBtn) {
+            refreshBtn.replaceWith(refreshBtn.cloneNode(true));
+            document.getElementById('refresh-rankings').addEventListener('click', async () => {
+                console.log('Atualizando rankings globais');
+                await loadRankings();
+                await loadGlobalStats();
+            });
+        }
+
+        // Fechar clicando fora
+        const modal = document.getElementById('ranking-modal');
+        modal.addEventListener('click', (e) => {
+            if (e.target.id === 'ranking-modal') {
+                modal.style.display = 'none';
+            }
+        });
+    }
+
+    async function loadRankings() {
+        const listContainer = document.getElementById('ranking-list');
+        listContainer.innerHTML = '<div class="loading">Carregando rankings...</div>';
+        
+        console.log('Carregando rankings globais');
+
+        try {
+            const rankings = await rankingSystem.getTopRankings(20, 'all');
+            
+            console.log(`Recebidos ${rankings.length} rankings`);
+            
+            if (rankings.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="empty-ranking">
+                        <h3>📊 Nenhum ranking encontrado</h3>
+                        <p>Seja o primeiro a aparecer aqui!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            listContainer.innerHTML = '';
+            
+            rankings.forEach((rank, index) => {
+                const item = document.createElement('div');
+                item.className = `ranking-item ${index < 3 ? `top-${index + 1}` : ''}`;
+                
+                const position = index < 3 ? 
+                    ['🥇', '🥈', '🥉'][index] : 
+                    `#${index + 1}`;
+                
+                const timeAgo = getTimeAgo(rank.timestamp);
+                
+                item.innerHTML = `
+                    <div class="position">${position}</div>
+                    <div class="player-name">${escapeHtml(rank.playerName)}</div>
+                    <div class="player-score">${rank.score}</div>
+                    <div class="player-details">
+                        <span>📅 ${rank.days}d</span>
+                        <span>🎯 ${rank.actions}a</span>
+                        <span>📋 ${rank.protocols}p</span>
+                        <span>⏰ ${timeAgo}</span>
+                    </div>
+                `;
+                
+                listContainer.appendChild(item);
+            });
+            
+            console.log(`Rankings exibidos com sucesso`);
+        } catch (error) {
+            console.error('Erro ao carregar rankings:', error);
+            listContainer.innerHTML = `
+                <div class="empty-ranking">
+                    <h3>❌ Erro ao carregar rankings</h3>
+                    <p>Tente novamente em alguns instantes.</p>
+                    <p><em>Erro: ${error.message}</em></p>
+                </div>
+            `;
+        }
+    }
+
+    async function loadGlobalStats() {
+        try {
+            const stats = await rankingSystem.getGlobalStats();
+            
+            if (stats) {
+                document.getElementById('total-games').textContent = stats.totalGames.toLocaleString();
+                document.getElementById('avg-score').textContent = stats.averageScore.toLocaleString();
+                document.getElementById('top-score').textContent = stats.topScore.toLocaleString();
+            }
+        } catch (error) {
+            console.error('Erro ao carregar estatísticas:', error);
+        }
+    }
+
+    function getTimeAgo(date) {
+        const now = new Date();
+        const diff = now - date;
+        const minutes = Math.floor(diff / 60000);
+        const hours = Math.floor(diff / 3600000);
+        const days = Math.floor(diff / 86400000);
+
+        if (minutes < 1) return 'agora';
+        if (minutes < 60) return `${minutes}m`;
+        if (hours < 24) return `${hours}h`;
+        if (days < 7) return `${days}d`;
+        return date.toLocaleDateString('pt-BR');
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
     // --- Initialize --- 
     initializeGame();
+
+    // Adicionar botão "Ver Ranking" no header (opcional)
+    if (document.getElementById('howto-btn')) {
+        const titleButtons = document.querySelector('.title-buttons');
+        const rankingBtn = document.createElement('button');
+        rankingBtn.id = 'header-ranking-btn';
+        rankingBtn.className = 'title-btn';
+        rankingBtn.innerHTML = '🏆 Ranking';
+        rankingBtn.addEventListener('click', () => {
+            showRankingModal();
+        });
+        titleButtons.insertBefore(rankingBtn, titleButtons.firstChild);
+    }
+    
+    // Inicializa o jogo e atualiza a UI
+    initializeGame();
+    
+    // Captura textos originais dos botões N4 ANTES de qualquer modificação
+    const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'CelsoRussomanno'];
+    updateActionButtonsState.originalN4Texts = {};
+    n4_buttons.forEach(key => {
+        if (actions[key]) {
+            updateActionButtonsState.originalN4Texts[key] = actions[key].textContent;
+            console.log(`Texto original capturado para ${key}: "${actions[key].textContent}"`);
+        }
+    });
+    
+    // Inicializa estado básico para mostrar pontuação inicial
+    if (!state) {
+        state = {
+            paciencia: 100,
+            progresso: 0,
+            chamadosAbertos: 0,
+            daysPassed: 0,
+            actionsTaken: 0,
+            protocols: [],
+            diyUsageCount: {}
+        };
+    }
+    
+    updateUI();
+});
+
+// === FIREBASE CONFIGURATION ===
+// SUBSTITUA PELA SUA CONFIGURAÇÃO DO FIREBASE
+const firebaseConfig = {
+  apiKey: "AIzaSyA-7Du4OFJ75KYUw-o0yJKAnpREwjJb69g",
+  authDomain: "internetniuncamais.firebaseapp.com",
+  projectId: "internetniuncamais",
+  storageBucket: "internetniuncamais.firebasestorage.app",
+  messagingSenderId: "503832825549",
+  appId: "1:503832825549:web:fe09c58e3f4b101faee384"
+};
+
+// Inicializar Firebase quando a página carregar
+document.addEventListener('DOMContentLoaded', () => {
+    initializeRanking(firebaseConfig);
 });
