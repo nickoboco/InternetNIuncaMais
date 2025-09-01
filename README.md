@@ -4,6 +4,8 @@
 
 > *"O jogo que vai te fazer questionar se realmente vale a pena ter internet"*
 
+## 🎮 **[▶️ JOGAR AGORA](https://nickoboco.github.io/NIuncamaisinternet/)**
+
 ---
 
 ## 📋 Sobre o Jogo
@@ -65,46 +67,22 @@ Sua internet não funciona! Use as ações disponíveis para tentar resolver o p
 - **HTML5**: Estrutura semântica e acessível
 - **CSS3**: Design responsivo com animações suaves
 - **JavaScript (ES6+)**: Lógica de jogo e gerenciamento de estado
-- **LocalStorage**: Persistência de dados (se implementado)
-
----
-
-## 🚀 Como Executar
-
-### Método 1: Servidor Local
-```bash
-# Clone o repositório
-git clone [url-do-repositorio]
-
-# Navegue até o diretório
-cd gravatela
-
-# Abra um servidor HTTP simples
-python -m http.server 8000
-# ou
-npx serve .
-
-# Acesse no navegador
-http://localhost:8000
-```
-
-### Método 2: Abrir Diretamente
-1. Baixe todos os arquivos
-2. Abra `index.html` no seu navegador
-3. Comece a sofrer!
+- **Firebase Firestore**: Sistema de ranking global em tempo real
+- **GitHub Pages**: Hospedagem e deploy automatizado
 
 ---
 
 ## 📁 Estrutura do Projeto
 
 ```
-gravatela/
+NIuncamaisinternet/
 ├── index.html              # Página principal
 ├── style.css               # Estilos e layout responsivo
 ├── script.js               # Lógica principal do jogo
 ├── messages.js             # Banco de mensagens e outcomes
 ├── ranking.js              # Sistema de ranking e Firebase
 ├── firebase-config.js      # Configuração do Firebase
+├── firestore.rules         # Regras de segurança do Firestore
 └── README.md               # Este arquivo
 ```
 
@@ -113,34 +91,36 @@ gravatela/
 ## 🏆 Sistema de Ranking
 
 ### 📊 **Pontuação**
-O jogo agora possui um sistema competitivo de ranking global:
+O jogo possui um sistema competitivo de ranking global hospedado no Firebase:
 
 ```javascript
-Score = 1000 - (dias×10) - (ações×2) - (protocolos×15) + 
-        (paciência×5) + bônus_velocidade + bônus_eficiência
+// Durante o jogo: apenas penalidades
+Score = 1000 - (dias×5) - (ações×1) - (protocolos×8)
 
-Bônus Velocidade:
-- ≤3 dias: +300 pontos
-- ≤5 dias: +200 pontos  
-- ≤10 dias: +100 pontos
+// Na vitória: aplicação de bônus
++ (paciência_restante×3) + bônus_velocidade + bônus_eficiência
 
-Bônus Eficiência:
-- ≤10 ações: +150 pontos
-- ≤15 ações: +100 pontos
-- ≤20 ações: +50 pontos
+Bônus Velocidade (apenas na vitória):
+- ≤3 dias: +200 pontos
+- ≤5 dias: +150 pontos  
+- ≤10 dias: +75 pontos
+
+Bônus Eficiência (apenas na vitória):
+- ≤10 ações: +100 pontos
+- ≤15 ações: +75 pontos
+- ≤20 ações: +35 pontos
 ```
 
-### 🎯 **Categorias de Ranking**
-- **🏃‍♂️ Geral**: Melhor pontuação geral
-- **📅 Hoje**: Melhores scores do dia
-- **📊 Semanal**: Top da semana
-- **📈 Mensal**: Ranking do mês
+### 🎯 **Recursos do Ranking**
+- **� Ranking Global**: Competição mundial em tempo real
+- **� Estatísticas**: Jogos totais, pontuação média e recorde
+- **� Segurança**: Validação rigorosa contra trapaças
+- **� Responsivo**: Funciona perfeitamente em mobile
 
-### 🔧 **Configuração do Firebase**
-1. Crie um projeto no [Firebase Console](https://console.firebase.google.com)
-2. Ative o Firestore Database
-3. Configure as regras de segurança (veja `firebase-config.js`)
-4. Copie sua configuração para `script.js`
+### �️ **Sistema Anti-Trapaça**
+- Validação de dados no backend (Firestore Rules)
+- Restrições de domínio no Firebase
+- Limites realistas para pontuações e métricas
 
 ---
 
@@ -232,10 +212,17 @@ Bônus Eficiência:
 - Melhorias de interface
 
 ### 🔧 Desenvolvimento
+Se você quiser contribuir com o projeto:
+
 ```bash
 # Fork o repositório
+git clone https://github.com/seu-usuario/NIuncamaisinternet.git
+
 # Crie uma branch para sua feature
 git checkout -b minha-feature
+
+# Faça suas alterações e teste localmente
+python -m http.server 8000  # ou npx serve .
 
 # Commit suas mudanças
 git commit -m "Adiciona nova mensagem de frustração"
@@ -265,14 +252,21 @@ Este projeto é open-source e está disponível sob a licença MIT. Veja o arqui
 
 ## 📞 Contato
 
-- **LinkedIn**: [Nickolas Selhorst](https://www.linkedin.com/in/nickolas-selhorst/)
-- **Email**: [nickolas.selhorst@gmail.com]
+- **🎮 Jogue agora**: [nickoboco.github.io/NIuncamaisinternet](https://nickoboco.github.io/NIuncamaisinternet/)
+- **💼 LinkedIn**: [Nickolas Selhorst](https://www.linkedin.com/in/nickolas-selhorst/)
+- **📧 Email**: nickolas.selhorst@gmail.com
+- **🐙 GitHub**: [nickoboco](https://github.com/nickoboco)
 
 ---
 
 **⚠️ Aviso**: Este jogo pode causar flashbacks de experiências reais com operadoras. Jogue com moderação e tenha um anti-stress por perto.
 
 **🎮 Divirta-se** (se conseguir) com **NIunca mais internet!**
+
+### 🌟 **Compartilhe sua Pontuação!**
+Conseguiu uma boa pontuação? Compartilhe nas redes sociais e desafie seus amigos!
+
+**#NIuncamaisinternet #GameDev #BrazilianInternet**
 
 ---
 
