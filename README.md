@@ -6,7 +6,7 @@
 
 > *"O jogo que vai te fazer questionar se realmente vale a pena ter internet"*
 
-## 🎮 **[▶️ JOGAR AGORA](https://nickoboco.github.io/NIuncamaisinternet/){:target="_blank"}**
+## 🎮 [▶️ JOGAR AGORA](https://nickoboco.github.io/NIuncamaisinternet/)
 
 ---
 
@@ -273,3 +273,4 @@ Conseguiu uma boa pontuação? Compartilhe nas redes sociais e desafie seus amig
 ---
 
 *"Um projeto que nasceu da frustração e se tornou arte digital"* ✨
+
