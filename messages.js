@@ -8,21 +8,41 @@ const messages = {
 			{ "text": "O sistema gerou um chamado para sua reclamação.", "progresso": 3, "paciencia": 1, "opensTicket": true },
 			{ "text": "Atendente abriu chamado e prometeu retorno em até 48h.", "progresso": 3, "paciencia": 3, "opensTicket": true },
 			{ "text": "Chamado aberto! Agora é torcer para alguém olhar seu caso rápido.", "progresso": 3, "paciencia": 2, "opensTicket": true },
-			{ "text": "Seu chamado foi aberto e está na fila de atendimento da equipe técnica.", "progresso": 3, "paciencia": 1, "opensTicket": true }
+			{ "text": "Seu chamado foi aberto e está na fila de atendimento da equipe técnica.", "progresso": 3, "paciencia": 1, "opensTicket": true },
+            { "text": "O atendente digitou tudo devagar e no fim confirmou: chamado aberto.", "progresso": 3, "paciencia": 2, "opensTicket": true },
+            { "text": "Depois de ficar no telefone por quase meia hora, o protocolo foi gerado.", "progresso": 3, "paciencia": 3, "opensTicket": true },
+            { "text": "Chamado criado e registrado no sistema da operadora.", "progresso": 3, "paciencia": 1, "opensTicket": true },
+            { "text": "O atendente disse que já encaminhou sua solicitação para análise técnica.", "progresso": 3, "paciencia": 2, "opensTicket": true },
+            { "text": "Protocolo aberto! Agora é acompanhar o andamento pelo número fornecido.", "progresso": 3, "paciencia": 2, "opensTicket": true },
+            { "text": "Seu atendimento resultou em um chamado oficial registrado na central.", "progresso": 3, "paciencia": 1, "opensTicket": true },
+            { "text": "A ligação terminou com a abertura de um chamado para seu problema.", "progresso": 3, "paciencia": 2, "opensTicket": true },
+            { "text": "O sistema confirmou: chamado criado com sucesso.", "progresso": 3, "paciencia": 1, "opensTicket": true },
+            { "text": "O atendente abriu o chamado e disse que alguém entrará em contato em breve.", "progresso": 3, "paciencia": 3, "opensTicket": true },
+            { "text": "Chamado registrado! Só resta aguardar a boa vontade da equipe técnica.", "progresso": 3, "paciencia": 2, "opensTicket": true }
 		],
 		"negative": [
 			{ "text": "Você ficou 45 minutos ouvindo a musiquinha e a ligação caiu.", "paciencia": -5 },
             { "text": "Você confirmou seu CPF 3 vezes e a ura informou que estava errado, a ligação caiu.", "paciencia": -6 },
             { "text": "Atendente não conseguiu abrir o chamado por indisponibilidade no sistema.", "paciencia": -4 },
-            { "text": "O agente de IA na ura não conseguia te entender, entrou em loop e a ligação caiu.", "paciencia": -8 },
-			{ "text": "O atendente te transferiu para outro setor e a ligação caiu antes dele abrir o chamado.", "paciencia": -7 },
+            { "text": "O agente de IA na ura não conseguia te entender, entrou em loop e a ligação caiu.", "paciencia": -6 },
+			{ "text": "O atendente te transferiu para outro setor e a ligação caiu antes dele abrir o chamado.", "paciencia": -6 },
 			{ "text": "Você foi colocado em espera por mais de uma hora e desligou revoltado.", "paciencia": -5 },
 			{ "text": "O chamado que abriram sumiu do sistema assim que você desligou a ligação.", "paciencia": -6 },
-			{ "text": "O atendente ficava pedindo 'só mais um momento' e não abriu o chamado. Você perdeu tempo.", "paciencia": -8 },
+			{ "text": "O atendente ficava pedindo 'só mais um momento' e não abriu o chamado. Você perdeu tempo.", "paciencia": -6 },
 			{ "text": "Te atenderam e disseram que não há motivo para abrir chamado, pois o serviço vai normalizar sozinho em breve.", "paciencia": -1 },
 			{ "text": "A ura pediu o número do passaporte para prosseguir. Qual a lógica disso?", "paciencia": -3 },
 			{ "text": "O atendente registrou um chamado no cadastro errado e você só viu depois que desligou.", "paciencia": -6 },
 			{ "text": "A automação na ura marcou seu chamado como 'resolvido' assim que você desligou.", "paciencia": -4 },
+            { "text": "Depois de explicar tudo, o atendente disse que não era com ele e desligou.", "paciencia": -5 },
+            { "text": "Você caiu em um setor errado e ninguém soube te ajudar.", "paciencia": -4 },
+            { "text": "A ligação ficou muda por alguns minutos e depois caiu sozinha.", "paciencia": -6 },
+            { "text": "O atendente disse que não tinha sistema para abrir chamado agora.", "paciencia": -5 },
+            { "text": "Você repetiu seus dados e no fim falaram que só presencialmente é possível resolver.", "paciencia": -6 },
+            { "text": "A ura pediu para aguardar, mas a ligação encerrou sem aviso.", "paciencia": -6 },
+            { "text": "O atendente pediu para ligar de volta em outro horário porque o sistema estava fora do ar.", "paciencia": -4 },
+            { "text": "Você foi transferido três vezes e ninguém abriu nada para você.", "paciencia": -5 },
+            { "text": "Depois de esperar bastante, a ligação caiu antes de falar com alguém.", "paciencia": -5 },
+            { "text": "A ura informou que todos os atendentes estavam ocupados e desligou na sua cara.", "paciencia": -6 }
 		]
 	},
 	"chamarWpp": {
@@ -36,7 +56,17 @@ const messages = {
 			{ "text": "Atendente assumiu o atendimento e abriu um chamado.", "progresso": 2, "paciencia": 2, "opensTicket": true },
 			{ "text": "Seu chamado foi aberto e está aguardando análise.", "progresso": 1, "paciencia": 1, "opensTicket": true },
 			{ "text": "Chamado aberto! Agora é aguardar resposta.", "progresso": 2, "paciencia": 1, "opensTicket": true },
-			{ "text": "Protocolo gerado via WhatsApp.", "progresso": 1, "paciencia": 1, "opensTicket": true }
+			{ "text": "Protocolo gerado via WhatsApp.", "progresso": 1, "paciencia": 1, "opensTicket": true },
+            { "text": "Depois de digitar 'falar com atendente' cinco vezes, finalmente abriram um chamado para você.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "O bot confirmou seus dados e registrou um chamado no sistema.", "progresso": 1, "paciencia": 0, "opensTicket": true },
+            { "text": "Você recebeu no WhatsApp a mensagem: 'Chamado criado com sucesso!'.", "progresso": 3, "paciencia": 1, "opensTicket": true },
+            { "text": "Após várias mensagens automáticas, um humano entrou e abriu o chamado.", "progresso": 4, "paciencia": 2, "opensTicket": true },
+            { "text": "Seu protocolo foi enviado direto no chat do WhatsApp.", "progresso": 2, "paciencia": 0, "opensTicket": true },
+            { "text": "O sistema confirmou via WhatsApp que o chamado foi aberto.", "progresso": 3, "paciencia": 1, "opensTicket": true },
+            { "text": "Chamado aberto! Você recebeu o número do protocolo no chat.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "Depois de responder ao bot com 'SIM' três vezes, o chamado foi aberto.", "progresso": 1, "paciencia": 1, "opensTicket": true },
+            { "text": "O atendente pediu prints e, após analisar, abriu um chamado para você.", "progresso": 3, "paciencia": 2, "opensTicket": true },
+            { "text": "Protocolo gerado automaticamente pelo bot no WhatsApp.", "progresso": 1, "paciencia": 0, "opensTicket": true }
 		],
 		"negative": [
 			{ "text": "O bot pediu seu CPF 3 vezes e depois encerrou o atendimento por inatividade.", "paciencia": -3 },
@@ -50,7 +80,17 @@ const messages = {
 			{ "text": "Respostas automáticas conflitantes te confundiram e não geraram o chamado.", "paciencia": -5 },
 			{ "text": "O chat saiu do ar durante envio de seu documento.", "paciencia": -6 },
 			{ "text": "Atendimento encerrou sem gerar protocolo. Você ficou sem registro.", "paciencia": -9 },
-			{ "text": "O Agent de IA no WhatsApp é só um bot comum e não conseguiu abrir o chamado.", "paciencia": -7 }
+			{ "text": "O Agent de IA no WhatsApp é só um bot comum e não conseguiu abrir o chamado.", "paciencia": -7 },
+            { "text": "O bot respondeu com stickers aleatórios e não abriu o chamado.", "paciencia": -4 },
+            { "text": "Você digitou todas as informações e o sistema respondeu apenas 'Desculpe, não entendi'.", "paciencia": -5 },
+            { "text": "O chat pediu seus dados, mas reiniciou do nada e perdeu tudo.", "paciencia": -6 },
+            { "text": "Depois de esperar um atendente humano, o chat encerrou sozinho.", "paciencia": -7 },
+            { "text": "O link de confirmação expirou antes de você conseguir abrir o chamado.", "paciencia": -5 },
+            { "text": "O bot travou em um loop infinito pedindo a mesma opção.", "paciencia": -6 },
+            { "text": "Você mandou sua mensagem e recebeu como resposta apenas um emoji genérico.", "paciencia": -3 },
+            { "text": "O atendimento pediu para digitar '1' para continuar, mas nada acontecia.", "paciencia": -4 },
+            { "text": "O chat enviou propaganda no lugar da abertura do chamado.", "paciencia": -5 },
+            { "text": "O sistema pediu documento em PDF, mas só aceita JPG. Atendimento encerrado.", "paciencia": -6 }
 		]
 	},
 	"abrirApp": {
@@ -65,7 +105,17 @@ const messages = {
             { "text": "O app enviou uma notificação de que seu chamado foi encaminhado para a equipe de supervisão.", "progresso": 1, "paciencia": 1, "opensTicket": true },
             { "text": "Você recebeu uma mensagem no chat do app confirmando a abertura do seu chamado.", "progresso": 2, "paciencia": 1, "opensTicket": true },
             { "text": "O app te informou a previsão de atendimento do seu chamado. Pelo menos você tem uma data.", "progresso": 2, "paciencia": 2, "opensTicket": true },
-            { "text": "O app gerou um número de protocolo e te mandou um e-mail de confirmação. A burocracia está funcionando!", "progresso": 3, "paciencia": 2, "opensTicket": true }
+            { "text": "O app gerou um número de protocolo e te mandou um e-mail de confirmação. A burocracia está funcionando!", "progresso": 3, "paciencia": 2, "opensTicket": true },
+            { "text": "Você preencheu o formulário no app e o chamado foi aberto com sucesso.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "O app confirmou: chamado criado e em andamento.", "progresso": 1, "paciencia": 2, "opensTicket": true },
+            { "text": "Depois de alguns cliques no app, seu chamado foi registrado.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "Seu protocolo apareceu direto na tela do app. Chamado aberto!", "progresso": 3, "paciencia": 2, "opensTicket": true },
+            { "text": "O app gerou automaticamente um chamado para sua solicitação.", "progresso": 1, "paciencia": 1, "opensTicket": true },
+            { "text": "Você recebeu uma notificação push confirmando a abertura do chamado.", "progresso": 2, "paciencia": 2, "opensTicket": true },
+            { "text": "O app registrou seu chamado e já mostrou o status como 'em análise'.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "Protocolo criado pelo app e salvo no histórico de atendimentos.", "progresso": 3, "paciencia": 2, "opensTicket": true },
+            { "text": "Seu chamado foi aberto e o app exibiu o tempo médio de resolução.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "Chamado registrado no app e vinculado à sua conta. Agora é acompanhar.", "progresso": 2, "paciencia": 2, "opensTicket": true }
             ],
 		"negative": [
 			{ "text": "O app deu 'Erro ao conectar com o servidor'. Tente mais tarde.", "paciencia": -2 },
@@ -78,7 +128,17 @@ const messages = {
 			{ "text": "Formulário do app repetia campos e travou no envio.", "paciencia": -5 },
             { "text": "Você não conseguiu anexar arquivos importantes pelo app.", "paciencia": -6 },
             { "text": "O app não mostra seu endereço.", "paciencia": -4 },
-			{ "text": "Você não encontrou suporte humano pelo app e não conseguiu gerar o chamado.", "paciencia": -6 }
+			{ "text": "Você não encontrou suporte humano pelo app e não conseguiu gerar o chamado.", "paciencia": -6 },
+            { "text": "O app travou bem na hora de enviar sua solicitação.", "paciencia": -5 },
+            { "text": "Você preencheu tudo e o app simplesmente fechou sozinho.", "paciencia": -6 },
+            { "text": "O app pediu atualização obrigatória e você perdeu o progresso.", "paciencia": -4 },
+            { "text": "Após enviar as informações, o app ficou carregando eternamente.", "paciencia": -5 },
+            { "text": "O app não reconheceu seus dados de login e bloqueou o acesso.", "paciencia": -7 },
+            { "text": "Seu chamado sumiu do histórico do app logo após ser enviado.", "paciencia": -6 },
+            { "text": "O app não conseguiu validar seu endereço e cancelou a abertura do chamado.", "paciencia": -5 },
+            { "text": "Você recebeu a mensagem 'Função indisponível no momento'.", "paciencia": -3 },
+            { "text": "O app pediu foto do problema, mas não conseguiu enviar o arquivo.", "paciencia": -4 },
+            { "text": "Depois de todo o processo, o app apenas exibiu 'Erro desconhecido'.", "paciencia": -6 }
 		]
 	},
     "enviarEmail": {
@@ -96,7 +156,17 @@ const messages = {
             { "text": "O suporte respondeu ao seu e-mail e, como previsto, um novo chamado foi criado em seu nome.", "progresso": 2, "paciencia": 1, "opensTicket": true },
             { "text": "Um e-mail de confirmação chegou, e com ele, a certeza de que seu problema foi registrado e será tratado.", "progresso": 2, "paciencia": 2, "opensTicket": true },
             { "text": "Seu e-mail foi lido, seu caso foi analisado e um chamado foi aberto para que a solução seja encontrada. Você tem um protocolo.", "progresso": 3, "paciencia": 3, "opensTicket": true },
-            { "text": "O suporte enviou um e-mail de resposta, garantindo que seu problema foi recebido e um chamado de atendimento foi aberto.", "progresso": 2, "paciencia": 2, "opensTicket": true }
+            { "text": "O suporte enviou um e-mail de resposta, garantindo que seu problema foi recebido e um chamado de atendimento foi aberto.", "progresso": 2, "paciencia": 2, "opensTicket": true },
+            { "text": "Após enviar todos os detalhes por e-mail, você recebeu a confirmação de chamado aberto.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "O suporte registrou sua solicitação e enviou o número do protocolo por e-mail.", "progresso": 2, "paciencia": 0, "opensTicket": true },
+            { "text": "Você recebeu uma resposta automática confirmando a abertura do chamado.", "progresso": 1, "paciencia": 0, "opensTicket": true },
+            { "text": "O time de atendimento confirmou por e-mail que um chamado foi criado para seu caso.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "Seu e-mail foi processado e gerou automaticamente um chamado de suporte.", "progresso": 1, "paciencia": 0, "opensTicket": true },
+            { "text": "Chamado criado com sucesso! Você recebeu o protocolo por e-mail.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "O suporte respondeu dizendo que seu problema já está registrado sob um protocolo oficial.", "progresso": 2, "paciencia": 2, "opensTicket": true },
+            { "text": "Você abriu o e-mail e encontrou a confirmação do chamado junto ao número do protocolo.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "A operadora enviou um e-mail confirmando que seu chamado foi aberto e está em análise.", "progresso": 3, "paciencia": 2, "opensTicket": true },
+            { "text": "Seu problema foi registrado via e-mail e você recebeu até prazo estimado para atendimento.", "progresso": 3, "paciencia": 2, "opensTicket": true }
         ],
         "negative": [
             { "text": "Você enviou o e-mail e recebeu uma resposta automática dizendo que o canal está desativado.", "paciencia": -5 },
@@ -110,7 +180,17 @@ const messages = {
             { "text": "O sistema do suporte identificou seu e-mail como 'SPAM' e o removeu automaticamente.", "paciencia": -7 },
             { "text": "O e-mail foi enviado e recebido, mas a fila de suporte é gigantesca. O prazo de resposta é de 10 dias úteis.", "paciencia": -6 },
             { "text": "A resposta do suporte direciona você para um outro canal de contato que também não funciona.", "paciencia": -8 },
-            { "text": "Seu e-mail foi respondido por um assistente virtual que entra em 'loop' infinito sem resolver seu problema.", "paciencia": -5 }
+            { "text": "Seu e-mail foi respondido por um assistente virtual que entra em 'loop' infinito sem resolver seu problema.", "paciencia": -5 },
+            { "text": "Você enviou o e-mail e recebeu como resposta um erro de 'caixa de entrada inexistente'.", "paciencia": -6 },
+            { "text": "Seu e-mail foi encaminhado para o setor errado e não gerou chamado algum.", "paciencia": -5 },
+            { "text": "O suporte respondeu pedindo para usar o app em vez do e-mail.", "paciencia": -4 },
+            { "text": "Sua mensagem voltou com erro de anexo não suportado.", "paciencia": -5 },
+            { "text": "O e-mail de confirmação dizia apenas 'Recebemos sua solicitação', sem protocolo.", "paciencia": -3 },
+            { "text": "Você recebeu uma resposta automática cheia de links quebrados.", "paciencia": -4 },
+            { "text": "Seu e-mail foi redirecionado para outro time que não responde clientes.", "paciencia": -6 },
+            { "text": "O suporte demorou tanto para responder que sua paciência já acabou.", "paciencia": -7 },
+            { "text": "A resposta veio incompleta e pedindo informações que você já tinha enviado.", "paciencia": -5 },
+            { "text": "O suporte respondeu ao seu e-mail com um simples 'Por favor, ligue para a central'.", "paciencia": -8 }
         ]
     },
     "usarAssistenteVirtual": {
@@ -118,8 +198,23 @@ const messages = {
             { "text": "O agente de IA abriu um chamado para você.", "progresso": 2, "paciencia": 0, "opensTicket": true },
             { "text": "Após algumas tentativas, o agente de IA registrou seu problema e abriu chamado.", "progresso": 1, "paciencia": 1, "opensTicket": true },
             { "text": "Chamado aberto pelo Agente de IA.", "progresso": 2, "paciencia": 0, "opensTicket": true },
-            { "text": "Seu caso foi registrado pelo Agente de IA.", "progresso": 1, "paciencia": 1, "opensTicket": true }
-        ],
+            { "text": "Seu caso foi registrado pelo Agente de IA.", "progresso": 1, "paciencia": 1, "opensTicket": true },
+            { "text": "O Agente de IA entendeu seu problema e já abriu o chamado.", "progresso": 2, "paciencia": 0, "opensTicket": true },
+            { "text": "O chatbot de IA registrou sua solicitação com sucesso.", "progresso": 1, "paciencia": 1, "opensTicket": true },
+            { "text": "Chamado criado automaticamente pelo Agente de IA.", "progresso": 2, "paciencia": 0, "opensTicket": true },
+            { "text": "O Agente de IA processou sua solicitação e abriu um chamado.", "progresso": 1, "paciencia": 1, "opensTicket": true },
+            { "text": "Sua solicitação foi registrada pelo chatbot inteligente.", "progresso": 2, "paciencia": 0, "opensTicket": true },
+            { "text": "O Agente de IA agilizou o processo e abriu o chamado para você.", "progresso": 1, "paciencia": 1, "opensTicket": true },
+            { "text": "Problema identificado pelo chatbot e chamado aberto com sucesso.", "progresso": 2, "paciencia": 0, "opensTicket": true },
+            { "text": "O Agente de IA registrou o chamado em tempo recorde.", "progresso": 1, "paciencia": 1, "opensTicket": true },
+            { "text": "Sua solicitação foi encaminhada automaticamente pelo Agente de IA.", "progresso": 2, "paciencia": 0, "opensTicket": true },
+            { "text": "O chatbot de IA cuidou disso para você e já abriu o chamado.", "progresso": 1, "paciencia": 1, "opensTicket": true },
+            { "text": "O agente de IA analisou seu caso e abriu um chamado em poucos segundos.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "Chamado registrado pelo agente de IA. Protocolo enviado para você.", "progresso": 2, "paciencia": 0, "opensTicket": true },
+            { "text": "O Agente de IA identificou seu problema e garantiu que um chamado foi aberto.", "progresso": 1, "paciencia": 1, "opensTicket": true },
+            { "text": "Seu problema foi resolvido parcialmente pelo Agente de IA, que abriu o chamado para acompanhamento.", "progresso": 2, "paciencia": 1, "opensTicket": true },
+            { "text": "O agente de IA confirmou que seu chamado foi registrado e será atendido em breve.", "progresso": 1, "paciencia": 1, "opensTicket": true }
+            ],
         "negative": [
             { "text": "O agente de IA não te entendeu e te encaminhou para um setor que não existe.", "paciencia": -5 },
             { "text": "O agente de IA te transferiu para um atendente humano que te informou que o agente de IA errou.", "paciencia": -7 },
@@ -130,9 +225,18 @@ const messages = {
             { "text": "Você digitou a opção 'falar com atendente' e o agente de IA te deu uma resposta pré-gravada.", "paciencia": -7 },
             { "text": "O agente de IA identificou o seu problema, mas te pediu para ligar para outro número para resolver.", "paciencia": -5 },
             { "text": "O agente de IA te informou que para resolver seu problema, você deve assinar com outra operadora.", "paciencia": -8 },
-            { "text": "O agente de IA te disse que o sistema está fora do ar e você deve ligar de novo mais tarde.", "paciencia": -6 }
-        ]
-    },
+            { "text": "O agente de IA te disse que o sistema está fora do ar e você deve ligar de novo mais tarde.", "paciencia": -6 },
+            { "text": "O agente de IA pediu para você avaliar o atendimento antes mesmo de te ajudar.", "paciencia": -5 },
+            { "text": "O agente de IA respondeu com emojis confusos no lugar de uma solução.", "paciencia": -6 },
+            { "text": "O agente de IA fechou a conversa porque 'você demorou demais para responder'.", "paciencia": -7 },
+            { "text": "O agente de IA entendeu errado e bloqueou seu acesso temporariamente.", "paciencia": -9 },
+            { "text": "O agente de IA confundiu seu CPF com um número de protocolo e travou.", "paciencia": -8 },
+            { "text": "O agente de IA te pediu feedback e depois não registrou sua solicitação.", "paciencia": -5 },
+            { "text": "O agente de IA repetiu a mesma resposta automática três vezes seguidas.", "paciencia": -6 },
+            { "text": "O agente de IA disse 'ótima pergunta!' mas não trouxe nenhuma resposta útil.", "paciencia": -7 },
+            { "text": "O agente de IA ficou preso em um loop e sempre respondia: 'Desculpe, não entendi.'.", "paciencia": -8 },
+            { "text": "O agente de IA sugeriu uma solução que custava mais caro do que o seu problema.", "paciencia": -9 }
+        ],
 	"receberTecnico": {
 		"positive": [
 			{ "text": "O técnico veio e resolveu o problema! ...só que não. Ele disse que o problema é na central e que vão te ligar.", "progresso": 6, "paciencia": 1 },
@@ -142,7 +246,17 @@ const messages = {
 			{ "text": "O técnico trocou o modem e a internet funcionou por 10 minutos. Assim que ele foi embora o problema voltou, pelo menos o chamado continua aberto.", "progresso": 5, "paciencia": 1},
 			{ "text": "O técnico só confirmou o problema e solicitou troca do modem para a Central. Abriu um novo chamado e disse que vão te ligar.", "progresso": 5, "paciencia": 1, "opensTicket": true },
 			{ "text": "O técnico confirmou que sua instalação estava incorreta e informou que a Central vai te ligar pra falar o que fazer.", "progresso": 7, "paciencia": 1 },
-			{ "text": "O técnico realizou um teste e encaminhou seu chamado para outra equipe que vai voltar em até 48 horas.", "progresso": 9, "paciencia": 1}
+			{ "text": "O técnico realizou um teste e encaminhou seu chamado para outra equipe que vai voltar em até 48 horas.", "progresso": 9, "paciencia": 1},
+            { "text": "O técnico veio, checou a instalação e disse que vai precisar de autorização da central para concluir.", "progresso": 5, "paciencia": 1 },
+            { "text": "O técnico testou a linha e identificou interferência. Agendou retorno para substituição de cabos.", "progresso": 6, "paciencia": 1 },
+            { "text": "O técnico confirmou que o modem está funcionando, mas a falha persiste. Ele abriu um relatório para a central.", "progresso": 5, "paciencia": 1, "opensTicket": true },
+            { "text": "O técnico verificou a instalação interna e disse que precisará de outro técnico especializado para finalizar.", "progresso": 6, "paciencia": 1 },
+            { "text": "O técnico registrou fotos e mediu a velocidade da internet. Prometeu retorno em breve com outra equipe.", "progresso": 5, "paciencia": 1 },
+            { "text": "O técnico tentou resetar o equipamento, mas precisará de autorização da central para ajustes finais.", "progresso": 6, "paciencia": 1 },
+            { "text": "O técnico veio, confirmou o problema e disse que um outro setor entrará em contato.", "progresso": 5, "paciencia": 1, "opensTicket": true },
+            { "text": "O técnico verificou cabos e conexões, mas informou que só a central pode liberar o reparo completo.", "progresso": 6, "paciencia": 1 },
+            { "text": "O técnico fez testes iniciais e disse que a troca de equipamento está pendente de aprovação.", "progresso": 5, "paciencia": 1, "opensTicket": true },
+            { "text": "O técnico registrou a ocorrência, tirou fotos e marcou retorno para a equipe especializada em até 48h.", "progresso": 6, "paciencia": 1 }
 		],
 		"negative": [
 			{ "text": "O técnico não apareceu na janela de 24h. Seu chamado fechou sozinho por 'indisponibilidade'.", "paciencia": -8, "closesTicket": true },
@@ -156,7 +270,17 @@ const messages = {
 			{ "text": "O técnico disse que precisa cobrar um valor extra alegando que o serviço está fora do contrato, você não pagou e ele fechou o chamado.", "paciencia": -6 , "closesTicket": true },
 			{ "text": "O técnico veio, mas fechou seu chamado dizendo que estava tudo certo, mesmo sem funcionar.", "paciencia": -9, "closesTicket": true },
 			{ "text": "O técnico cancelou todos os chamados abertos alegando que deu erro no sistema e foi embora. ", "paciencia": -8, "closesTicket": true },
-			{ "text": "O técnico fechou o chamado sem resolver. Você terá que abrir outro.", "paciencia": -8, "closesTicket": true }
+			{ "text": "O técnico fechou o chamado sem resolver. Você terá que abrir outro.", "paciencia": -8, "closesTicket": true },
+            { "text": "O técnico chegou atrasado, não trouxe peças e seu chamado foi fechado por falta de conclusão.", "paciencia": -8, "closesTicket": true },
+            { "text": "O técnico só olhou rapidamente e disse que precisa de autorização da central. Fechou o chamado.", "paciencia": -7, "closesTicket": true },
+            { "text": "O técnico cancelou a visita alegando problema no carro e seu chamado foi encerrado.", "paciencia": -6, "closesTicket": true },
+            { "text": "O técnico fez apenas testes superficiais e disse que nada pode ser feito hoje. Chamado permanece aberto.", "paciencia": -5 },
+            { "text": "O técnico registrou a visita, mas esqueceu de abrir o relatório. Chamado fechado por erro do sistema.", "paciencia": -8, "closesTicket": true },
+            { "text": "O técnico não conseguiu acessar sua residência e seu chamado foi cancelado.", "paciencia": -7, "closesTicket": true },
+            { "text": "O técnico só falou que o problema é externo e foi embora. Chamado encerrado sem solução.", "paciencia": -9, "closesTicket": true },
+            { "text": "O técnico testou o modem, desligou tudo e disse que a central resolve depois. Seu chamado foi fechado.", "paciencia": -8, "closesTicket": true },
+            { "text": "O técnico veio sem autorização da supervisão e não realizou nenhum reparo. Chamado permanece aberto.", "paciencia": -6 },
+            { "text": "O técnico pediu que você comprasse peças por conta própria e fechou o chamado quando recusou.", "paciencia": -7, "closesTicket": true }
 		]
 	},
 	"pegarStatusN2": {
@@ -171,7 +295,17 @@ const messages = {
             { "text": "O status do chamado foi alterado para 'Em avaliação técnica'. Seu problema está sendo investigado.", "progresso": 3 },
             { "text": "Atendente confirmou que a solicitação foi lida pela equipe responsável e que eles estão cientes do problema.", "progresso": 1 },
             { "text": "O atendente apenas confirmou seu endereço. Mas essa nova verificação pode significar algum progresso.", "progresso": 1 },
-            { "text": "Atendente informou que o problema foi escalado para a próxima etapa do processo interno. A burocracia está seguindo o fluxo.", "progresso": 2 }
+            { "text": "Atendente informou que o problema foi escalado para a próxima etapa do processo interno. A burocracia está seguindo o fluxo.", "progresso": 2 },
+            { "text": "O atendente confirmou que seu chamado está em análise, mas ainda sem previsão de conclusão.", "progresso": 2 },
+            { "text": "O status do chamado é 'Aguardando decisão do supervisor'. Pelo menos algo está acontecendo.", "progresso": 3 },
+            { "text": "Atendente informou que o setor responsável já viu seu chamado. Pequeno avanço!", "progresso": 2 },
+            { "text": "O status do chamado mudou para 'Em verificação'. Ainda não resolve, mas indica movimento.", "progresso": 2 },
+            { "text": "Recebeu a confirmação que seu caso foi repassado para a equipe técnica. Algo é melhor que nada.", "progresso": 3 },
+            { "text": "Atendente disse que seu chamado está 'sob monitoramento ativo'. Um passo a mais no processo.", "progresso": 2 },
+            { "text": "Seu protocolo foi revisado e marcado como prioridade média. Não resolve, mas indica atenção.", "progresso": 3 },
+            { "text": "O status do chamado está 'Em avaliação de soluções'. Pelo menos o processo está andando.", "progresso": 3 },
+            { "text": "Atendente confirmou que todos os dados foram registrados corretamente e que a análise continua.", "progresso": 1 },
+            { "text": "Seu chamado foi escalado para um setor especializado, mas ainda sem solução definitiva.", "progresso": 4, "opensTicket": true }
 		],
 		"negative": [
 			{ "text": "O sistema não encontrou seu protocolo. Você tem certeza que anotou certo? Deve ter sido um bug.", "paciencia": -5, "closesTicket": true },
@@ -185,18 +319,28 @@ const messages = {
 			{ "text": "Disseram que o chamado está na fila e é pra você esperar.", "paciencia": -7 },
 			{ "text": "Falaram que você é impaciente e que deve aguardar alguém te ligar.", "paciencia": -9 },
 			{ "text": "O status mudou para 'Encerrado por engano'. Foi fechado sem solução.", "paciencia": -7, "closesTicket": true },
-			{ "text": "O sistema fechou todos os chamados abertos por um bug na plataforma.", "paciencia": -9, "closesTicket": true }
+			{ "text": "O sistema fechou todos os chamados abertos por um bug na plataforma.", "paciencia": -9, "closesTicket": true },
+            { "text": "O sistema não retorna o status do chamado e insiste que você tente novamente mais tarde.", "paciencia": -5 },
+            { "text": "Atendente disse que não há informações novas sobre seu chamado. Continue aguardando.", "paciencia": -4 },
+            { "text": "O status do chamado voltou para 'Não iniciado' após atualização do sistema.", "paciencia": -6 },
+            { "text": "Atendente informou que seu chamado foi perdido na central. Vai ter que abrir outro.", "paciencia": -7, "closesTicket": true },
+            { "text": "O sistema mostra 'Em análise', mas ninguém entrou em contato. Você se sente ignorado.", "paciencia": -6 },
+            { "text": "O chamado foi marcado como 'Resolvido', mas você não percebeu nenhuma mudança.", "paciencia": -5 },
+            { "text": "Atendente disse que o chamado será revisado novamente, sem previsão de retorno.", "paciencia": -4 },
+            { "text": "Seu protocolo aparece como 'Em fila', mas a fila nunca anda.", "paciencia": -7 },
+            { "text": "O status do chamado foi alterado para 'Aguardando confirmação', mas ninguém confirmou nada.", "paciencia": -5 },
+            { "text": "O atendente apenas repetiu que seu caso está sendo tratado e encerrou a ligação sem mais informações.", "paciencia": -6 }
 		]
 	},
     "ligarOuvidoria": {
         "positive": [
-            { "text": "A Ouvidoria atendeu, gerou um novo protocolo e prometeu acompanhar o caso de perto.", "paciencia": 5, "generatesProtocol": true,  "deadline": 4, },
-            { "text": "Falar na Ouvidoria fez seu caso ser marcado como 'crítico'.", "progresso": 3,  "generatesProtocol": true,  "deadline": 3,"paciencia": 5 },
-            { "text": "A Ouvidoria atendeu, gerou um novo protocolo e prometeu acompanhar o caso de perto.", "paciencia": 5, "generatesProtocol": true, "deadline": 4, },
+            { "text": "A Ouvidoria atendeu, gerou um novo protocolo e prometeu acompanhar o caso de perto.", "progresso": 5, "paciencia": 5, "generatesProtocol": true,  "deadline": 4, },
+            { "text": "Falar na Ouvidoria fez seu caso ser marcado como 'crítico'.", "progresso": 5,  "generatesProtocol": true,  "deadline": 3,"paciencia": 5 },
+            { "text": "A Ouvidoria atendeu, gerou um novo protocolo e prometeu acompanhar o caso de perto.", "progresso": 5,"paciencia": 5, "generatesProtocol": true, "deadline": 4, },
             { "text": "Falar na Ouvidoria fez seu caso ser marcado como 'crítico'.", "progresso": 3, "generatesProtocol": true, "deadline": 3,"paciencia": 5 },
-            { "text": "O atendente da Ouvidoria informou que o seu problema foi entendido e que será tratado com prioridade. Eles abriram um novo protocolo.", "paciencia": 6, "generatesProtocol": true, "deadline": 4, "progresso": 3 },
-            { "text": "A Ouvidoria te transferiu para um setor de alta gerência e disse que vão avaliar. ", "paciencia": 4, "generatesProtocol": true, "deadline": 4, "progresso": 4 },
-            { "text": "O atendente da Ouvidoria te ouviu por 15 minutos e disse que entrará em contato com a gerência do suporte para resolver o seu problema.", "paciencia": 5, "generatesProtocol": true, "deadline": 5, "progresso": 5 }
+            { "text": "O atendente da Ouvidoria informou que o seu problema foi entendido e que será tratado com prioridade. Eles abriram um novo protocolo.", "progresso": 5,"paciencia": 6, "generatesProtocol": true, "deadline": 4 },
+            { "text": "A Ouvidoria te transferiu para um setor de alta gerência e disse que vão avaliar. ", "progresso": 5,"paciencia": 4, "generatesProtocol": true, "deadline": 4},
+            { "text": "O atendente da Ouvidoria te ouviu por 15 minutos e disse que entrará em contato com a gerência do suporte para resolver o seu problema.", "progresso": 5, "paciencia": 5, "generatesProtocol": true, "deadline": 5 }
         ],
         "negative": [
             { "text": "A Ouvidoria só atende das 10 às 14 de segunda a quarta. Hoje não é um desses dias.", "paciencia": -4 },
@@ -213,9 +357,9 @@ const messages = {
             { "text": "O prazo de resposta da Ouvidoria é de 15 dias úteis, e você precisa aguardar esse tempo.", "paciencia": -7, "closesTicket": false },
             { "text": "A Ouvidoria fechou o chamado alegando que já foi solucionado, mas na verdade não foi.", "paciencia": -7, "closesTicket": true },
             { "text": "A Ouvidoria te transferiu para o suporte regular e seu chamado foi encerrado.", "paciencia": -8, "closesTicket": true },
-            { "text": "O status do seu chamado foi alterado para 'Em avaliação pela alta gestão'. É um pequeno progresso.", "progresso": 2, "paciencia": 3, "closesTicket": true },
+            { "text": "O status do seu chamado foi alterado para 'Em avaliação pela alta gestão'. É um pequeno progresso.", "progresso": 5, "paciencia": 3, "closesTicket": true },
             { "text": "A Ouvidoria confirmou que seu caso foi encaminhado para a equipe técnica de supervisão. Melhor que nada.", "progresso": 5, "paciencia": 5, "closesTicket": true  },
-            { "text": "A Ouvidoria confirmou que um técnico será enviado em 48 horas para resolver seu problema. Será?", "progresso": 7, "paciencia": 7, "closesTicket": true  }
+            { "text": "A Ouvidoria confirmou que um técnico será enviado em 48 horas para resolver seu problema. Será?", "progresso": 10, "paciencia": 7, "closesTicket": true  }
         ]
     },
     "reclamarRedeSocial": {
@@ -229,7 +373,17 @@ const messages = {
             { "text": "Um influenciador digital com milhares de seguidores curtiu sua reclamação, o que aumentou a visibilidade do seu post.", "progresso": 3, "paciencia": 6 },
             { "text": "Você recebeu uma mensagem privada com um link para o chat de suporte. Bora tentar né.", "progresso": 3, "paciencia": 5 },
             { "text": "O perfil oficial marcou seu post como 'em andamento'. Ao menos estão olhando pra ele.", "progresso": 1, "paciencia": 2 },
-            { "text": "A operadora te mandou uma mensagem automática com um link de um formulário. Vai saber se dá certo.", "progresso": 2, "paciencia": 2 }
+            { "text": "A operadora te mandou uma mensagem automática com um link de um formulário. Vai saber se dá certo.", "progresso": 2, "paciencia": 2 },
+            { "text": "Seu tweet foi visto por alguém que provavelmente trabalha na operadora. Eles curtiram! Um sinal de vida!", "progresso": 3, "paciencia": 3 },
+            { "text": "O perfil oficial comentou no seu post com 'Obrigado pelo feedback'. Não resolve nada, mas faz você se sentir ouvido.", "progresso": 2, "paciencia": 2 },
+            { "text": "Alguém da equipe de redes sociais respondeu com emojis e abriu um chamado interno. Pelo menos fizeram alguma coisa.", "progresso": 4, "paciencia": 3, "opensTicket": true },
+            { "text": "O gerente da comunidade marcou seu post como importante. Agora seu problema tem uma estrela ao lado!", "progresso": 3, "paciencia": 4 },
+            { "text": "Um bot inteligente respondeu e disse que seu caso está 'em investigação'. Parece sério, mas ninguém sabe ainda.", "progresso": 3, "paciencia": 2 },
+            { "text": "Outros clientes comentaram em solidariedade. A revolta coletiva aumentou a pressão sobre a operadora.", "progresso": 2, "paciencia": 3 },
+            { "text": "O perfil oficial compartilhou seu post para outro setor. Talvez alguém finalmente veja!", "progresso": 3, "paciencia": 2 },
+            { "text": "Você recebeu uma DM com um link para preencher outro formulário. Pelo menos estão tentando algo…", "progresso": 2, "paciencia": 2 },
+            { "text": "Seu post ganhou um like de um funcionário. Um pequeno gesto de reconhecimento!", "progresso": 1, "paciencia": 3 },
+            { "text": "O perfil oficial respondeu pedindo um print do problema. Está avançando, mas ainda longe da solução.", "progresso": 3, "paciencia": 2 }
         ],
         "negative": [
             { "text": "Sua reclamação foi ignorada. Aparentemente, o estagiário das redes sociais está de folga.", "paciencia": -4 },
@@ -241,7 +395,17 @@ const messages = {
             { "text": "Você recebeu uma resposta da equipe de redes sociais que te direciona para a central de atendimento telefônico.", "paciencia": -8 },
             { "text": "O perfil oficial respondeu de forma pública com uma mensagem que não tem nada a ver com o seu problema.", "paciencia": -5 },
             { "text": "Ninguém da empresa respondeu, mas perfis falsos com o nome da empresa começaram a te seguir.", "paciencia": -3 },
-            { "text": "Sua reclamação se perdeu no meio de outras centenas de reclamações não respondidas.", "paciencia": -6 }
+            { "text": "Sua reclamação se perdeu no meio de outras centenas de reclamações não respondidas.", "paciencia": -6 },
+            { "text": "O bot respondeu sua reclamação com um GIF engraçado. Nada de ajuda real, mas ao menos você sorriu.", "paciencia": -4 },
+            { "text": "Seu post foi curtido por dez perfis falsos. Nenhum deles vai resolver seu problema.", "paciencia": -5 },
+            { "text": "A operadora respondeu pedindo para você enviar o problema por fax. Sim, fax mesmo.", "paciencia": -6 },
+            { "text": "O perfil oficial marcou seu post como 'resolvido'. Só que nada foi resolvido.", "paciencia": -5 },
+            { "text": "Você recebeu um reply automático que só dizia 'Aguarde'. Por quanto tempo? Ninguém sabe.", "paciencia": -4 },
+            { "text": "Sua reclamação foi comentada por um estagiário com 'Boa sorte!'. Obrigado pela ajuda.", "paciencia": -3 },
+            { "text": "O post sumiu misteriosamente. Talvez tenha sido abduzido por trolls da internet.", "paciencia": -6 },
+            { "text": "O perfil oficial respondeu com uma frase de efeito genérica sobre 'valorização do cliente'. Nada de chamado.", "paciencia": -5 },
+            { "text": "Sua mensagem foi marcada como 'feedback duplicado'. Ninguém leu a primeira.", "paciencia": -4 },
+            { "text": "Você recebeu uma notificação de que seu caso está sendo 'avaliado', mas o link leva para um tutorial inútil.", "paciencia": -5 }
         ]
     },
     "receberLigacao": {
@@ -257,7 +421,17 @@ const messages = {
             { "text": "A ligação era para avisar que sua solicitação foi encaminhada para a equipe de supervisão. É uma etapa a mais.", "paciencia": 2 },
             { "text": "O atendente te ligou para dizer que entende sua frustração. A empatia vale um pouco, certo?", "paciencia": 1 },
             { "text": "A operadora te ligou apenas para confirmar seu endereço de e-mail. Eles se preocupam com os detalhes.", "paciencia": 1 },
-            { "text": "Você recebeu uma ligação da operadora agradecendo por sua paciência. É algo, eu acho.", "paciencia": 2 }
+            { "text": "Você recebeu uma ligação da operadora agradecendo por sua paciência. É algo, eu acho.", "paciencia": 2 },
+            { "text": "Você atendeu e a atendente falou que vai escalar seu chamado. Nada resolvido, mas parece sério.", "progresso": 3, "paciencia": 2 },
+            { "text": "Ligação recebida! Só ouviram seu relato e pediram para aguardar o próximo contato.", "progresso": 2, "paciencia": 1 },
+            { "text": "O atendente perguntou detalhes sobre o problema que você já explicou 10 vezes. Pelo menos estão anotando.", "progresso": 3, "paciencia": 2 },
+            { "text": "Você recebeu uma ligação automática informando que seu chamado está em 'tratativa'.", "progresso": 1, "paciencia": 2 },
+            { "text": "O técnico ligou só para confirmar seu endereço. Pequeno avanço, mas nada foi feito.", "progresso": 2, "paciencia": 1 },
+            { "text": "Ligação recebida! Disseram que seu problema está sendo analisado e que vão te ligar novamente.", "progresso": 2, "paciencia": 2 },
+            { "text": "Você falou com um supervisor que só repetiu as informações do chamado. Pelo menos alguém ouviu.", "progresso": 3, "paciencia": 2 },
+            { "text": "O atendente ligou e pediu mais fotos. Parece que estão tentando entender o problema.", "progresso": 2, "paciencia": 1 },
+            { "text": "Recebeu uma ligação de aviso que seu chamado foi escalado para outro setor. Um pequeno progresso.", "progresso": 3, "paciencia": 2 },
+            { "text": "Ligação recebida! Apenas para informar que seu caso está 'em fila de análise'. Nada de solução ainda.", "progresso": 1, "paciencia": 1 }
         ],
         "negative": [
             { "text": "A operadora te ligou para oferecer um novo plano de celular. Eles realmente não leem o histórico.", "paciencia": -7 },
@@ -272,14 +446,24 @@ const messages = {
             { "text": "O robô da operadora te ligou e desligou na sua cara.", "paciencia": -6 },
             { "text": "A ligação informou que seu plano foi alterado sem a sua permissão.", "paciencia": -8 },
             { "text": "Você atendeu a ligação e foi direcionado para uma música de espera infinita.", "paciencia": -7 },
-            { "text": "O robô encerrou seu chamado sem a sua autorização.", "paciencia": -9, "closesTicket": true }
+            { "text": "O robô encerrou seu chamado sem a sua autorização.", "paciencia": -9, "closesTicket": true },
+            { "text": "O atendente ligou, falou algo inaudível e desligou. O chamado foi encerrado.", "paciencia": -6, "closesTicket": true },
+            { "text": "Ligação perdida! Quando você retornou, a linha estava ocupada e o chamado foi fechado.", "paciencia": -5, "closesTicket": true },
+            { "text": "O técnico ligou, pediu que você ligasse de volta para outro número, e desapareceu. Chamado fechado.", "paciencia": -6, "closesTicket": true },
+            { "text": "Atendente te transferiu para outro setor, ninguém atendeu e o chamado foi encerrado.", "paciencia": -7, "closesTicket": true },
+            { "text": "Você atendeu e ouviu uma gravação. Quando a atendente finalmente falou, desligou sem anotar nada. Chamado fechado.", "paciencia": -6, "closesTicket": true },
+            { "text": "Ligação recebida! Mas só disseram que não há técnicos disponíveis e cancelaram seu chamado.", "paciencia": -7, "closesTicket": true },
+            { "text": "O atendente pediu para você esperar na linha 1 hora e desligou. O chamado foi encerrado.", "paciencia": -8, "closesTicket": true },
+            { "text": "Você falou com um supervisor que não conseguiu acessar seu protocolo. Chamado fechado sem aviso.", "paciencia": -6, "closesTicket": true },
+            { "text": "Ligação perdida duas vezes. Quando finalmente atendeu, disseram que o chamado foi encerrado por 'inatividade'.", "paciencia": -7, "closesTicket": true },
+            { "text": "O atendente ligou, confundiu seu caso com outro cliente e desligou. Chamado fechado por erro de sistema.", "paciencia": -7, "closesTicket": true }
         ]
     },
 	"procon": {
 		"positive": [
-			{ "text": "Você abriu uma reclamação no Procon. A empresa tem 5 dias para responder. Protocolo gerado.", "generatesProtocol": true, "deadline": 5, "paciencia": 5 },
-			{ "text": "Procon notificou a empresa e houve primeiro contato.", "progresso": 10, "generatesProtocol": true, "deadline": 5 },
-			{ "text": "Procon confirmou recebimento e incluiu seu caso em relatório público.", "progresso": 5, "generatesProtocol": true, "deadline": 5 }
+			{ "text": "Você abriu uma reclamação no Procon. A empresa tem 5 dias para responder. Protocolo gerado.", "progresso": 10, "generatesProtocol": true, "deadline": 5, "paciencia": 5 },
+			{ "text": "Procon notificou a empresa e houve primeiro contato.", "progresso": 10, "generatesProtocol": true, "deadline": 5, "paciencia": 5 },
+			{ "text": "Procon confirmou recebimento e incluiu seu caso em relatório público.", "progresso": 10, "generatesProtocol": true, "deadline": 5, "paciencia": 5 }
 		],
 		"negative": [
 			{ "text": "O site do Procon está fora do ar. Parece que não é só a sua internet.", "paciencia": -5 },
@@ -295,15 +479,18 @@ const messages = {
 		],
 		"status": [
 			{ "text": "O Procon informou que a empresa apresentou uma defesa justa e que sua reclamação não procede. What?!", "paciencia": -5 , "closesTicket": true},
-			{ "text": "O Procon intermediou um acordo e você vai receber R$15 reais de desconto na próxima fatura. Ual!", "progresso": 2,  "paciencia": -5, "closesTicket": true },
+			{ "text": "O Procon intermediou um acordo e você vai receber R$15 reais de desconto na próxima fatura!", "progresso": 5,  "paciencia": -5, "closesTicket": true },
 			{ "text": "O Procon cancelou sua reclamação alegando que está fora da área de atuação deles. Brincadeira!", "paciencia": -8, "closesTicket": true },
-			{ "text": "O Procon solicitou uma audiência de conciliação presencial na sede da empresa. Haja paciência!", "progresso": 8,  "paciencia":-10, "closesTicket": true }
+			{ "text": "O Procon solicitou uma audiência de conciliação presencial na sede da empresa. Haja paciência!", "progresso": 10,  "paciencia":-10, "closesTicket": true }
 		]
 	},
 	"reclameAqui": {
 		"positive": [
-			{ "text": "Sua reclamação no Reclame Aqui foi publicada! A reputação da empresa que lute. Protocolo gerado.", "generatesProtocol": true, "deadline": 5, "paciencia": 2 },
-			{ "text": "Reclame Aqui abriu canal de negociação direta com a empresa.", "progresso": 15, "deadline": 5, "generatesProtocol": true },
+			{ "text": "Sua reclamação no Reclame Aqui foi publicada! A reputação da empresa que lute. Protocolo gerado.", "progresso": 10, "generatesProtocol": true, "deadline": 5, "paciencia": 2 },
+			{ "text": "Reclame Aqui abriu canal de negociação direta com a empresa.", "progresso": 10, "deadline": 5, "generatesProtocol": true },
+            { "text": "Um atendente da empresa comentou na sua reclamação. Nada resolvido ainda, mas eles estão acordando pra vida.", "progresso": 10,"generatesProtocol": true, "deadline": 5, "paciencia": 3 },
+            { "text": "Reclame Aqui criou um protocolo e marcou sua reclamação como 'em análise'. A burocracia está funcionando!", "progresso": 10, "generatesProtocol": true, "deadline": 5, "paciencia": 2 },
+            { "text": "Seu post no Reclame Aqui gerou engajamento de outros usuários. Agora ninguém ignora sua dor de cabeça.", "progresso": 10,"generatesProtocol": true, "deadline": 5, "paciencia": 3 }
 		],
 		"negative": [
 			{ "text": "Você esqueceu sua senha do Reclame Aqui. A recuperação de senha não funciona.", "paciencia": -3 },
@@ -318,37 +505,46 @@ const messages = {
 			{ "text": "Moderação negou publicação por conteúdo técnico sem sentido.", "paciencia": -4 }
 		],
 		"status": [
-			{ "text": "A empresa respondeu no Reclame Aqui com uma mensagem padrão.", "paciencia": -6 },
+			{ "text": "A empresa respondeu no Reclame Aqui com uma mensagem padrão.", "paciencia": -6, "closesTicket": true},
+            { "text": "A empresa respondeu dizendo que vão resolver em 48 horas. É um avanço, mas será verdade?", "paciencia": -6, "progresso": 10,"closesTicket": true},
 			{ "text": "Sua reclamação foi marcada como resolvida, mas você não recebeu contato algum.", "paciencia": -7, "closesTicket": true },
 			{ "text": "A empresa pediu 10 documentos diferente em anexo e fechou o caso logo na sequência por falta de documentação.", "paciencia": -10 , "closesTicket": true},
 		]
 	},
 	"consumidorGov": {
-		"positive": [
-			{ "text": "Reclamação registrada no Consumidor.gov.", "generatesProtocol": true, "deadline": 6, "paciencia": 5 },
-			{ "text": "Consumidor.gov sugeriu conciliação e marcou audiência virtual com prazo de 5 dias.", "progresso": 15, "deadline": 5,"generatesProtocol": true },
-		],
-		"negative": [
-			{ "text": "O sistema do Consumidor.gov exige um cadastro complexo que te fez desistir.", "paciencia": -4 },
-			{ "text": "O sistema travou e você não conseguir abrir a reclamação.", "paciencia": -6 },
-			{ "text": "Consumidor.gov reportou conflito de informações e não gerou o protocolo", "paciencia": -5 },
-			{ "text": "A empresa contestou tudo e o caso travou sem registro de protocolo.", "paciencia": -9 },
-			{ "text": "O painel da plataforma apresentou erro e ninguém conseguiu acessar o processo.", "paciencia": -8 },
-		],
-		"status": [
-			{ "text": "Consumidor.gov informou que a empresa respondeu pedindo um prazo de 10 dias para avaliar.", "paciencia": -8, "closesTicket": true },
-			{ "text": "O sistema marcou seu caso como 'Resolvido' automaticamente. Você terá que abrir outro chamado.", "paciencia": -5, "closesTicket": true },
-			{ "text": "A empresa propôs um acordo via Consumidor.gov e disse que vai tentar resolver em 15 dias.","paciencia": -3, "progresso": 15 , "closesTicket": true},
-			{ "text": "Seu caso foi encaminhado para análise administrativa da operadora e eles têm prazo de 5 dias para tentar ver o que fazer", "paciencia": -3, "progresso": 5, "closesTicket": true },
-			{ "text": "Empresa respondeu dizendo que só resolverá fora da plataforma. Fecharam sua reclamação.", "paciencia": -7, "closesTicket": true },
-		]
+        "positive": [
+            { "text": "Reclamação registrada no Consumidor.gov.", "generatesProtocol": true, "progresso": 10, "deadline": 6, "paciencia": 5 },
+            { "text": "Consumidor.gov sugeriu conciliação e marcou audiência virtual com prazo de 5 dias.", "progresso": 15, "deadline": 5, "generatesProtocol": true },
+            { "text": "Seu protocolo foi gerado e a plataforma promete notificar qualquer movimentação. Pelo menos alguém vai olhar.", "generatesProtocol": true, "deadline": 6, "paciencia": 4, "progresso": 10 },
+            { "text": "O sistema confirmou que sua reclamação foi registrada. Agora é esperar a mágica acontecer.", "progresso": 10, "generatesProtocol": true, "deadline": 5, "paciencia": 3 },
+            { "text": "Consumidor.gov indicou que a empresa precisa se manifestar em até 7 dias. O relógio da burocracia começou a contar.", "progresso": 8, "generatesProtocol": true, "deadline": 7, "paciencia": 4 },
+            { "text": "Protocolo criado! Agora seu problema entrou oficialmente na fila do governo. Que comecem os jogos burocráticos.", "progresso": 8, "generatesProtocol": true, "deadline": 6, "paciencia": 5 }
+        ],
+        "negative": [
+            { "text": "O sistema do Consumidor.gov exige um cadastro complexo que te fez desistir.", "paciencia": -4 },
+            { "text": "O sistema travou e você não conseguir abrir a reclamação.", "paciencia": -6 },
+            { "text": "Consumidor.gov reportou conflito de informações e não gerou o protocolo.", "paciencia": -5 },
+            { "text": "A empresa contestou tudo e o caso travou sem registro de protocolo.", "paciencia": -9 },
+            { "text": "O painel da plataforma apresentou erro e ninguém conseguiu acessar o processo.", "paciencia": -8 },
+            { "text": "O site da plataforma ficou fora do ar durante o envio da reclamação. Resultado: nada registrado.", "paciencia": -7 }
+        ],
+        "status": [
+            { "text": "Consumidor.gov informou que a empresa respondeu pedindo um prazo de 10 dias para avaliar.", "paciencia": -8, "closesTicket": true },
+            { "text": "O sistema marcou seu caso como 'Resolvido' automaticamente. Você terá que abrir outro chamado.", "paciencia": -5, "closesTicket": true },
+            { "text": "A empresa propôs um acordo via Consumidor.gov e disse que vai tentar resolver em 15 dias.", "paciencia": -3, "progresso": 15, "closesTicket": true },
+            { "text": "Seu caso foi encaminhado para análise administrativa da operadora e eles têm prazo de 5 dias para tentar ver o que fazer.", "paciencia": -3, "progresso": 5, "closesTicket": true },
+            { "text": "O sistema notificou que a empresa abriu prazo de 7 dias para responder. Nada muda por enquanto, mas está andando.", "paciencia": -2, "progresso": 10, "closesTicket": true },
+            { "text": "Consumidor.gov mostrou atualização: a empresa leu sua reclamação e colocou em 'aguardando resposta'. O progresso é quase invisível, mas é progresso.", "paciencia": -2, "progresso": 5, "closesTicket": true }
+        ]
 	},
 	"anatel": {
 		"positive": [
-			{ "text": "Você apelou para a ANATEL. A coisa ficou séria. Protocolo gerado.", "generatesProtocol": true, "deadline": 4, "paciencia": 10 },
-			{ "text": "ANATEL notificou a operadora e abriu processo administrativo.", "progresso": 25, "generatesProtocol": true, "deadline": 5 },
-			{ "text": "ANATEL solicitou relatório detalhado da empresa e acelerou a investigação.", "progresso": 30, "deadline": 5, "generatesProtocol": true },
-			{ "text": "ANATEL exigiu relatório de ação com prazo.", "progresso": 26, "deadline": 6,"generatesProtocol": true }
+			{ "text": "Você apelou para a ANATEL. A coisa ficou séria. Protocolo gerado.", "progresso": 15, "generatesProtocol": true, "deadline": 4, "paciencia": 10 },
+			{ "text": "ANATEL notificou a operadora e abriu processo administrativo.", "progresso": 15, "generatesProtocol": true, "deadline": 5 },
+			{ "text": "ANATEL solicitou relatório detalhado da empresa e acelerou a investigação.", "progresso": 12, "deadline": 5, "generatesProtocol": true },
+			{ "text": "ANATEL exigiu relatório de ação com prazo.", "progresso": 15, "deadline": 6,"generatesProtocol": true },
+            { "text": "O protocolo da ANATEL foi gerado e a operadora foi oficialmente cobrada. Pelo menos alguém vai olhar.", "progresso": 10, "generatesProtocol": true, "deadline": 5, "paciencia": 8 },
+        { "text": "ANATEL confirmou recebimento da sua denúncia e prometeu atualização em 7 dias. A burocracia está funcionando.", "progresso": 15, "deadline": 7, "generatesProtocol": true }
 		],
 		"negative": [
 			{ "text": "A ANATEL informa que você precisa de um protocolo da ouvidoria da empresa, que você não tem.", "paciencia": -8 },
@@ -365,13 +561,23 @@ const messages = {
             { "text": "A ANATEL informou que a operadora pediu mais tempo para avaliar o caso e fechou seu protocolo.", "paciencia": -10, "closesTicket": true  },
             { "text": "A ANATEL encerrou o processo por falta de evidências.", "paciencia": -12, "closesTicket": true },
             { "text": "A ANATEL notificou a empresa novamente e eles pediram mais 10 dias de prazo. Pelo menos tem um prazo.", "progresso": 10, "paciencia": -5, "closesTicket": true  },
-            { "text": "Seu caso foi encaminhado para fiscalização externa. Pena que o prazo é 30 dias.", "paciencia": -5, "progresso": 8, "closesTicket": true}
+            { "text": "Seu caso foi encaminhado para fiscalização externa. Pena que o prazo é 30 dias.", "paciencia": -5, "progresso": 15, "closesTicket": true},
+            { "text": "ANATEL atualizou que a operadora respondeu parcialmente e pediu extensão de prazo. Nada resolvido, mas ainda em andamento.", "progresso": 5, "paciencia": -4, "closesTicket": true },
+            { "text": "O protocolo da ANATEL mostra 'em análise'. É só uma linha no sistema, mas é um passo burocrático.", "progresso": 5, "paciencia": -3, "closesTicket": true }
         ]
     },
     "mensagemCEO": {
         "positive": [
             { "text": "Sua postagem citando o CEO no LinkedIn foi notada por um gerente que entrou em contato prometendo ajudar.", "progresso": 3, "paciencia": 2 },
-            { "text": "Sua postagem recebeu algumas curtidas de funcionários da empresa. Talvez alguém veja.", "progresso": 1, "paciencia": 2 }
+            { "text": "Sua postagem recebeu algumas curtidas de funcionários da empresa. Talvez alguém veja.", "progresso": 1, "paciencia": 2 },
+            { "text": "Um funcionário da equipe de marketing comentou elogiando sua iniciativa. Pequenos passos.", "progresso": 2, "paciencia": 3 },
+            { "text": "Sua postagem recebeu uma reação de aplausos de ex-funcionários da operadora. Moral lá em cima!", "progresso": 1, "paciencia": 2 },
+            { "text": "Alguém do RH respondeu com um emoji de atenção. Está dentro do radar da empresa.", "progresso": 2, "paciencia": 3 },
+            { "text": "Sua publicação foi compartilhada por um colega influente. Mais olhos no seu caso.", "progresso": 3, "paciencia": 4 },
+            { "text": "O CEO ainda não respondeu, mas o post recebeu comentários de especialistas do setor, gerando pressão indireta.", "progresso": 3, "paciencia": 3 },
+            { "text": "Você recebeu uma menção de outro usuário pedindo para a empresa olhar seu caso.", "progresso": 2, "paciencia": 3 },
+            { "text": "Alguém da diretoria visualizou seu post e marcou para discussão interna.", "progresso": 4, "paciencia": 3 },
+            { "text": "Sua postagem virou trending topic interno da empresa, mas ninguém ainda entrou em contato. Pelo menos estão cientes.", "progresso": 2, "paciencia": 2 }
         ],
         "negative": [
             { "text": "Sua postagem citando o CEO foi visualizada e ignorada.", "paciencia": -5 },
@@ -390,28 +596,23 @@ const messages = {
             { "text": "O CEO visualizou sua mensagem, mas não respondeu.", "paciencia": -7 },
             { "text": "Um gerente entrou em contato após o CEO ver sua mensagem.", "progresso": 5 },
             { "text": "Sua mensagem foi ignorada e o caso foi encerrado.", "paciencia": -8, "closesTicket": true },
-            { "text": "O CEO pediu para o suporte te ligar.", "progresso": 3 }
-        ]
-    },
-	"defensoriaPublica": {
-        "positive": [
-            { "text": "A Defensoria Pública aceitou seu caso e enviou uma notificação para a empresa. Quem sabe!", "progresso": 10, "paciencia": 5, "generatesProtocol": true, "deadline": 6 },
-            { "text": "Após a notificação da Defensoria, a empresa te ligou para propor um acordo. Vamos ver no que dá!", "progresso": 15, "paciencia": 10 }
-        ],
-        "negative": [
-            { "text": "A fila na Defensoria Pública era enorme. Você conseguiu apenas agendar um atendimento para daqui a 2 meses.", "paciencia": -8 },
-            { "text": "A Defensoria Pública considerou seu caso de baixa complexidade e orientou procurar o Juizado Especial Cível.", "paciencia": -5 }
-        ],
-        "status": [
-            { "text": "A Defensoria Pública informou que a empresa não respondeu.", "paciencia": -10 },
-            { "text": "A Defensoria marcou uma audiência de conciliação. ", "progresso": 8 },
-            { "text": "Seu caso foi arquivado por falta de resposta.", "paciencia": -12, "closesTicket": true },
-            { "text": "A Defensoria conseguiu um acordo extrajudicial.", "progresso": 15 }
+            { "text": "O CEO pediu para o suporte te ligar.", "progresso": 3 },
+            { "text": "O gerente responsável marcou sua postagem para revisão interna. Progresso mínimo garantido.", "progresso": 2, "paciencia": 2 },
+            { "text": "Sua postagem foi encaminhada para o comitê de comunicação da empresa. Ainda sem solução, mas atenção existe.", "progresso": 3, "paciencia": 3 },
+            { "text": "O CEO visualizou o post, comentou internamente e pediu que a área de atendimento acompanhe.", "progresso": 4, "paciencia": 3 },
+            { "text": "Alguém do time de compliance marcou sua postagem. Pelo menos o problema entrou na fila interna.", "progresso": 3, "paciencia": 2 },
+            { "text": "Sua postagem gerou uma reunião rápida entre gerentes, mas ninguém te ligou ainda.", "progresso": 3, "paciencia": 2 },
+            { "text": "O LinkedIn enviou notificação de que sua postagem teve grande alcance corporativo. Progresso visível, ação mínima.", "progresso": 2, "paciencia": 2 }
         ]
     },
     "acaoJudicial": {
         "positive": [
-            { "text": "Você entrou com uma ação no Juizado Especial Cível. A empresa foi citada e tem uma audiência marcada para daqui 6 dias.", "progresso": 20, "paciencia": -10, "generatesProtocol": true, "deadline": 6  },
+            { "text": "Você entrou com uma ação no Juizado Especial Cível. A empresa foi citada e tem uma audiência marcada para daqui 6 dias.", "progresso": 15, "paciencia": -10, "generatesProtocol": true, "deadline": 6  },
+            { "text": "O oficial de justiça entregou a citação à empresa. Protocolo gerado e eles agora não podem fingir que não receberam.", "progresso": 12, "paciencia": -9, "generatesProtocol": true, "deadline": 5 },
+            { "text": "A audiência inicial foi confirmada e você recebeu um número de protocolo para acompanhar o caso.", "progresso": 15, "paciencia": -8, "generatesProtocol": true, "deadline": 4 },
+            { "text": "O cartório enviou notificações a todos os envolvidos. O processo está oficialmente em andamento.", "progresso": 12, "paciencia": -7, "generatesProtocol": true, "deadline": 4 },
+            { "text": "Seu advogado recebeu confirmação do juiz sobre documentos válidos apresentados. Pequeno avanço!", "progresso": 10, "paciencia": -6, "generatesProtocol": true, "deadline": 3 },
+            { "text": "Foi marcada audiência de conciliação. Nem resolve o problema, mas pelo menos agora a empresa está com o radar ligado.", "progresso": 10, "paciencia": -5, "generatesProtocol": true, "deadline": 5 }
         ],
         "negative": [
             { "text": "O processo é lento. A primeira audiência foi marcada para daqui a 6 meses.", "paciencia": -10 },
@@ -419,12 +620,23 @@ const messages = {
             { "text": "Você não conseguiu juntar a documentação necessária e o processo foi arquivado.", "paciencia": -10 },
             { "text": "A empresa não compareceu à audiência. Apenas protelaram o problema.", "paciencia": -9 },
             { "text": "Você descobriu que o advogado da empresa já trabalhou no tribunal.", "paciencia": -8 },
-            { "text": "A operadora contratou um escritório de advocacia que é conhecido por usar táticas de intimidação.", "paciencia": -9 }
+            { "text": "A operadora contratou um escritório de advocacia que é conhecido por usar táticas de intimidação.", "paciencia": -9 },
+             { "text": "O cartório perdeu uma das suas notificações. Agora terá que ser reenviada.", "paciencia": -7 },
+            { "text": "O processo foi redistribuído a outro juiz, e todo o histórico precisa ser revisado.", "paciencia": -8 },
+            { "text": "O advogado da empresa solicitou mais prazo para apresentar documentos, atrasando tudo.", "paciencia": -9 },
+            { "text": "O sistema do tribunal apresentou erro e sua petição não foi registrada corretamente.", "paciencia": -10 }
         ],
         "status": [
             { "text": "O processo judicial foi arquivado, mas nem falaram com você.", "paciencia": -15, "closesTicket": true },
             { "text": "O juiz marcou nova audiência para daqui a 6 meses. Segue sem internet.", "paciencia": -10, "progresso": 1,"closesTicket": true },
-            { "text": "Você ganhou o processo e terá um desconto de R$30 reais de desconto na fatura. A internet não voltou a funcionar.", "progresso": 10, "paciencia": -10, "closesTicket": true}
+            { "text": "Você ganhou o processo e terá um desconto de R$30 reais de desconto na fatura. A internet não voltou a funcionar.", "progresso": 10, "paciencia": -10, "closesTicket": true},
+            { "text": "O tribunal notificou a empresa, mas a audiência foi remarcada por conflito de agenda.", "progresso": 5, "paciencia": -5 , "closesTicket": true},
+            { "text": "O juiz pediu documentos adicionais. Prepare-se para enviar mais papelada.", "progresso": 3, "paciencia": -6, "closesTicket": true },
+            { "text": "A audiência de conciliação foi adiada por força maior. Ninguém resolveu nada, mas está em andamento.", "progresso": 2, "paciencia": -4 , "closesTicket": true},
+            { "text": "O processo foi colocado em fila de análise priorizada, mas não há previsão de conclusão.", "progresso": 4, "paciencia": -5 , "closesTicket": true},
+            { "text": "A empresa apresentou contestação parcial. Pelo menos agora a questão está oficialmente reconhecida.", "progresso": 6, "paciencia": -3 , "closesTicket": true},
+            { "text": "O juiz notificou novamente a operadora para resposta. Progresso burocrático, mas progresso.", "progresso": 5, "paciencia": -4 , "closesTicket": true},
+            { "text": "A audiência preliminar ocorreu, mas nada foi decidido. Só conferiram presença.", "progresso": 3, "paciencia": -2 , "closesTicket": true}
         ]
     },
     "arrumarSozinho": {
@@ -537,5 +749,5 @@ const messages = {
         { "text": "A operadora te enviou um e-mail de 'obrigado' por ser um cliente fiel.", "paciencia": -4 },
         { "text": "Você acessou o APP e descobriu que fecharam todos seus chamados há 3 dias.", "paciencia": -6, "closesTicket": true },
         ] 
-    };
-    
+    }
+};

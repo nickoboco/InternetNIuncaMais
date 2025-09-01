@@ -446,13 +446,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateActionButtonsState() {
-        // Debug para verificar estado do jogo
-        console.log('updateActionButtonsState - Estado:', {
-            isTicketOpen: state.isTicketOpen,
-            paciencia: state.paciencia,
-            activeN3Protocol: state.activeN3Protocol
-        });
-        
         Object.values(actions).forEach(button => {
             // Desabilita todos os botões exceto cancelar-plano
             if (button && button.id !== 'cancelar-plano') button.disabled = true;
@@ -478,10 +471,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const n4_buttons = ['arrumarSozinho', 'vizinhoWifi', 'videoTikTok', 'mensagemCEO', 'CelsoRussomanno'];
 
         if (!state.isTicketOpen) {
-            console.log('Habilitando botões N1:', n1_buttons);
             n1_buttons.forEach(key => { if(actions[key]) actions[key].disabled = false; });
         } else {
-            console.log('Habilitando botões N2:', n2_buttons);
             n2_buttons.forEach(key => { if(actions[key]) actions[key].disabled = false; });
         }
         
@@ -532,7 +523,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (originalText) {
                     if (usageCount > 0) {
                         actions[key].textContent = `${originalText} (${usageCount}/2)`;
-                        console.log(`Atualizando ${key}: "${originalText}" -> "${originalText} (${usageCount}/2)"`);
                     } else {
                         actions[key].textContent = originalText;
                     }
@@ -722,12 +712,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Move mensagem atual para o log antes de processar nova ação
         moveCurrentMessageToLog();
-        
-        if (Math.random() < 0.0002) {
-            triggerMiracle();
-            triggerAction.isExecuting = false;
-            return;
-        }
 
         // Verifica se deve ocorrer evento aleatório ANTES da ação normal
         if (typeof messages !== 'undefined' && messages.random && Math.random() < 0.05) {
@@ -957,15 +941,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return outcomes[Math.floor(Math.random() * outcomes.length)];
     }
 
-    function triggerMiracle() {
-        logMessage('EVENTO CÓSMICO RARÍSSIMO: Um alinhamento planetário fez com que um técnico sênior resolvesse tudo em 15 minutos.');
-        state.progresso = 100;
-        state.paciencia += 100;
-        if (state.paciencia > 100) state.paciencia = 100; // Cap at 100
-        shakeScreen();
-        updateUI();
-    }
-
     function triggerRandomEvent() {
         shakeScreen();
         const randomEvent = messages.random[Math.floor(Math.random() * messages.random.length)];
@@ -1027,7 +1002,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 onReject = () => nextCancellationEvent();
                 break;
             case 2:
-                const fine = Math.floor(Math.random() * 685) + 400;
+                const fine = Math.floor(Math.random() * 846) + 1250;
                 msg = `Disseram que você terá que pagar uma multa de R$ ${fine},00. Aceita pagar a multa?`;
                 onAccept = () => {
                     logMessage(`O boleto de pagamento falhou e te transferiram para o setor de retenção.`);
