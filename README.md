@@ -1,16 +1,18 @@
-# 🌐 NIunca mais internet!
+# 🌐 Internet NIunca mais
+
+**BASEADO EM FATOS REAIS!**
 
 **Um simulador de paciência realista sobre problemas de internet no Brasil**
 
 > *"O jogo que vai te fazer questionar se realmente vale a pena ter internet"*
 
-## 🎮 **[▶️ JOGAR AGORA](https://nickoboco.github.io/NIuncamaisinternet/)**
+## 🎮 [▶️ JOGAR AGORA](https://nickoboco.github.io/NIuncamaisinternet/)
 
 ---
 
 ## 📋 Sobre o Jogo
 
-**NIunca mais internet!** é um jogo de simulação que recria fielmente a experiência frustrante de tentar resolver problemas de internet com operadoras brasileiras. Teste sua paciência enquanto navega por protocolos, chamados técnicos e a burocracia infinita das telecomunicações.
+**Internet NIunca mais** é um jogo de simulação que recria fielmente a experiência frustrante de tentar resolver problemas de internet com operadoras brasileiras. Teste sua paciência enquanto navega por protocolos, chamados técnicos e a burocracia infinita das telecomunicações.
 
 ### 🎯 Objetivo
 Sua internet não funciona! Use as ações disponíveis para tentar resolver o problema antes que sua paciência chegue a zero. Conseguirá chegar aos 100% de resolução sem perder a sanidade?
@@ -158,7 +160,7 @@ Bônus Eficiência (apenas na vitória):
 ### 🎲 Elementos de Sorte
 - **RNG Realista**: Baseado em experiências reais dos usuários
 - **Eventos Aleatórios**: Podem ajudar ou atrapalhar drasticamente
-- **Milagre Cósmico**: 0.02% de chance de resolução instantânea
+- **Pura Sorte**: Resultados 50/50 mantêm o jogo sempre interessante
 
 ---
 
@@ -192,10 +194,10 @@ Bônus Eficiência (apenas na vitória):
 
 ## 🎪 Easter Eggs
 
-- 🌟 **Milagre Cósmico**: Evento ultra-raro de resolução instantânea
 - 🔄 **Eventos Aleatórios**: Situações absurdas mas realistas
 - 🎭 **Sequência de Cancelamento**: Experiência "kafkiana" autêntica
 - 📺 **Celso Russomanno**: Porque sempre tem alguém que sugere
+- 🎯 **Ações Criativas**: Soluções não convencionais que às vezes funcionam
 
 ---
 
@@ -261,13 +263,14 @@ Este projeto é open-source e está disponível sob a licença MIT. Veja o arqui
 
 **⚠️ Aviso**: Este jogo pode causar flashbacks de experiências reais com operadoras. Jogue com moderação e tenha um anti-stress por perto.
 
-**🎮 Divirta-se** (se conseguir) com **NIunca mais internet!**
+**🎮 Divirta-se** (se conseguir) com **Internet NIunca mais!**
 
 ### 🌟 **Compartilhe sua Pontuação!**
 Conseguiu uma boa pontuação? Compartilhe nas redes sociais e desafie seus amigos!
 
-**#NIuncamaisinternet #GameDev #BrazilianInternet**
+**#InternetNIuncamais #GameDev #BrazilianInternet**
 
 ---
 
-*"Um projeto que nasceu da frustração coletiva e se tornou arte digital"* ✨
+*"Um projeto que nasceu da frustração e se tornou arte digital"* ✨
+
